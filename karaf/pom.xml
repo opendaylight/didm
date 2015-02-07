@@ -16,9 +16,11 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <artifactId>didm-karaf</artifactId>
   <version>0.1.0-SNAPSHOT</version>
   <name>${project.artifactId}</name>
+<!-- This is broken due to a bug in karaf 3.0.1 not pulling in the config file. Add back after migration to 3.0.2 is complete.
   <properties>
-    <karaf.localFeature>odl-didm-identification-api</karaf.localFeature>
+    <karaf.localFeature>odl-didm-identification</karaf.localFeature>
   </properties>
+-->
   <dependencyManagement>
     <dependencies>
       <dependency>

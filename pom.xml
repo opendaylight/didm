@@ -23,6 +23,7 @@
 
   <modules>
     <module>identification/api</module>
+    <module>identification/impl</module>
     <module>karaf</module>
     <module>artifacts</module>
     <module>features</module>
