@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a96c907_2bbc9e05",
+        "filename": "drivers/api/src/main/yang/openflow-feature.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-11T20:24:46Z",
+      "side": 1,
+      "message": "I would like to see us make sure we add descriptions to our yang interfaces, just so that (a) I think this gets generated to JavaDoc and is in the Java code and (b) make sure there is not ambiguity in the purpose of the model element.",
+      "revId": "f97d7e28d914f9bd21419273b93e63652940453b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_4bb9ea13",
+        "filename": "drivers/api/src/main/yang/openflow-feature.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-11T20:24:46Z",
+      "side": 1,
+      "message": "nit: i guess checkstyle doesn\u0027t check yang ;)",
+      "revId": "f97d7e28d914f9bd21419273b93e63652940453b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_eb39d6a4",
+        "filename": "features/src/main/features/features.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-11T20:24:46Z",
+      "side": 1,
+      "message": "Wondering if we need to put a discussion item somewhere about expected features. Not that we have to \"do\" anything about it right now, but I suspect long term I don\u0027t think we want 1:1 between JAR and feature.",
+      "revId": "f97d7e28d914f9bd21419273b93e63652940453b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
