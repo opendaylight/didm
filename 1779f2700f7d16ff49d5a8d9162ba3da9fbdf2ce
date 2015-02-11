@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_f5b8d7c9",
+        "filename": "identification/api/src/main/yang/didm-device-types.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-11T06:33:12Z",
+      "side": 1,
+      "message": "Looks like the parent poms used by the  startup archetype don\u0027t enable checkstyle. I ran it and you\u0027re correct that it fails on both accounts.",
+      "parentUuid": "7a96c907_4349d4b5",
+      "revId": "1779f2700f7d16ff49d5a8d9162ba3da9fbdf2ce",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_e3c90027",
         "filename": "identification/impl/src/main/java/org/opendaylight/didm/identification/impl/FetchSysOid.java",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2015-02-10T19:58:51Z",
       "side": 1,
       "message": "This seems to be a synchronous call. Should we be looking to make this async (i.e. with a callback as opposed to a wait get?)",
+      "revId": "1779f2700f7d16ff49d5a8d9162ba3da9fbdf2ce",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_d5b35be7",
+        "filename": "identification/impl/src/main/java/org/opendaylight/didm/identification/impl/FetchSysOid.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-11T06:33:12Z",
+      "side": 1,
+      "message": "Agreed. There is a TODO in the mgr wrt making the entire algorithm fully async. I can work on that before we submit this if you would prefer.",
+      "parentUuid": "7a96c907_03cf4c2b",
       "revId": "1779f2700f7d16ff49d5a8d9162ba3da9fbdf2ce",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
