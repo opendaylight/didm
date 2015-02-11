@@ -29,5 +29,11 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <bundle>mvn:org.opendaylight.didm/didm-identification-impl/${project.version}</bundle>
     <configfile finalname="${config.configfile.directory}/didm-identification.xml">mvn:org.opendaylight.didm/didm-identification-impl/${project.version}/xml/config</configfile>
   </feature>
+  <feature name='odl-didm-drivers-api' version='${project.version}' description='OpenDaylight :: didm drivers :: api'>
+    <feature version='${yangtools.version}'>odl-yangtools-models</feature>
+    <feature version='${mdsal.version}'>odl-flow-model</feature>
+
+    <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
+  </feature>
 
 </features>
