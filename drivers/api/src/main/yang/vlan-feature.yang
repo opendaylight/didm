@@ -1,0 +1,203 @@
+/*
+ * Copyright (c) 2015 Hewlett-Packard Development Company, L.P. and others.  All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ */
+module vlan-feature {
+
+    namespace "urn:opendaylight:params:xml:ns:yang:didm:drivers:vlan";
+    prefix vlan;
+
+    import yang-ext {prefix ext; revision-date "2013-07-09";}
+    import ietf-inet-types {prefix inet; revision-date "2010-09-24";}
+    import opendaylight-l2-types {prefix l2t; revision-date "2013-08-27";}
+    import opendaylight-inventory {prefix inv; revision-date "2013-08-19";}
+
+    revision "2015-02-11" { description "Initial implementation."; }
+
+    typedef tag-type {
+        description "VLAN tag types that represent how the port is associated with the VLAN.";
+        type enumeration {
+            enum tagged {
+                description "Packets require VLAN header";
+            }
+            enum untagged {
+                description "VLAN header will be added to packets going to TAGGED ports";
+            }
+            enum forbidden {
+                description "Port can not be added to VLAN";
+            }
+        }
+    }
+
+    grouping vlan-port-entry {
+        leaf vlan-id {
+            type l2t:vlan-id;
+        }
+        leaf port {
+            type int32;
+        }
+        leaf tag {
+            type tag-type;
+        }
+    }
+
+    grouping vlan {
+        leaf id {
+            type l2t:vlan-id;
+        }
+
+        leaf name {
+            type string;
+        }
+
+        leaf description {
+            type string;
+        }
+
+        list ports {
+            key "port tag";
+
+            leaf port {
+                type int32;
+            }
+            leaf tag {
+                type tag-type;
+            }
+        }
+
+        leaf-list ip-addresses {
+            type inet:ipv4-prefix;
+        }
+    }
+
+    grouping vlans {
+        list vlan {
+            key "id";
+            uses vlan;
+        }
+    }
+
+    augment "/inv:nodes/inv:node" {
+        ext:augment-identifier "vlan-capable-node";
+
+        uses vlans;
+    }
+
+    rpc create-vlan {
+        description "Creates a vlan";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                description "the vlan identifier (VID) to be assigned to the vlan";
+                type l2t:vlan-id;
+            }
+            leaf name {
+                description "the vlan name";
+                type string;
+            }
+            leaf description {
+                description "description of the vlan";
+                type string;
+            }
+        }
+    }
+
+    rpc delete-vlan {
+        description "Delete the vlan identified by the vlan identifier (VID)";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                type l2t:vlan-id;
+            }
+        }
+    }
+
+    rpc add-port {
+        description "Add a port to a vlan.";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                type l2t:vlan-id;
+            }
+            container port {
+                uses vlan-port-entry;
+            }
+        }
+    }
+
+    rpc remove-port {
+        description "Remove a port from a vlan.";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                type l2t:vlan-id;
+            }
+            container port {
+                uses vlan-port-entry;
+            }
+        }
+    }
+
+    rpc add-ip-address {
+        description "Add an IP address to the vlan.";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                type l2t:vlan-id;
+            }
+            leaf address {
+                type inet:ipv4-prefix;
+            }
+        }
+    }
+
+    rpc remove-ip-address {
+        description "Remove an IP address from the vlan.";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                type l2t:vlan-id;
+            }
+            leaf address {
+                type inet:ipv4-prefix;
+            }
+        }
+    }
+
+    rpc set-name {
+        description "Set or change the vlan name";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                type l2t:vlan-id;
+            }
+            leaf name {
+                type string;
+            }
+        }
+    }
+
+    rpc set-description {
+        description "Set or change the vlan description";
+        input {
+            uses "inv:node-context-ref";
+
+            leaf vlan-id {
+                type l2t:vlan-id;
+            }
+            leaf description {
+                type string;
+            }
+        }
+    }
+}
