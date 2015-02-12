@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_0edbf050",
+        "filename": "drivers/api/src/main/yang/openflow-feature.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-12T04:27:15Z",
+      "side": 1,
+      "message": "I\u0027m having to manually run checkstyle right now... I think it only checks yang if you have the right config. the one i copied from controller doesn\u0027t...",
+      "parentUuid": "7a96c907_4bb9ea13",
+      "revId": "f97d7e28d914f9bd21419273b93e63652940453b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_eb39d6a4",
         "filename": "features/src/main/features/features.xml",
         "patchSetId": 1
@@ -47,6 +65,24 @@
       "writtenOn": "2015-02-11T20:24:46Z",
       "side": 1,
       "message": "Wondering if we need to put a discussion item somewhere about expected features. Not that we have to \"do\" anything about it right now, but I suspect long term I don\u0027t think we want 1:1 between JAR and feature.",
+      "revId": "f97d7e28d914f9bd21419273b93e63652940453b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_6ee954e5",
+        "filename": "features/src/main/features/features.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-12T04:27:15Z",
+      "side": 1,
+      "message": "I was having the same thought today as I was writing the impl for the mininet driver and feature. The way I was going to implement it, the feature pulls in the full didm id implementation, but the code only pulls in the didm id api. Which means we really don\u0027t need an API feature. Unless we expected there to be multiple didm ID implementations, which would all include an API feature? Or does each impl feature embed the API bundle assuming only one is active at a time?",
+      "parentUuid": "7a96c907_eb39d6a4",
       "revId": "f97d7e28d914f9bd21419273b93e63652940453b",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
