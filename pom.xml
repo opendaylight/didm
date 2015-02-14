@@ -25,6 +25,8 @@
     <module>identification/api</module>
     <module>identification/impl</module>
     <module>drivers/api</module>
+    <module>vendor/mininet/impl</module>
+    <module>vendor/mininet/features</module>
     <module>karaf</module>
     <module>artifacts</module>
     <module>features</module>
