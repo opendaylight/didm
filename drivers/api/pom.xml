@@ -37,4 +37,20 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     </dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <!-- This is required for the RoutingContext attribute to be found when validating the routed RPC registration -->
+            <Import-Package>org.opendaylight.yangtools.yang.binding.annotations, *</Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
