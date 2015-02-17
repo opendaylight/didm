@@ -10,6 +10,8 @@ module didm-device-types {
     namespace "urn:opendaylight:params:xml:ns:yang:didm:identification:devicetypes";
     prefix dt;
 
+    import didm-identification { prefix id; revision-date "2015-02-02"; }
+
     description "YANG model for storing device type information in the MD-SAL data store";
 
     revision "2015-02-02" {
@@ -18,10 +20,12 @@ module didm-device-types {
 
     container device-types {
         list device-type-info {
-            key "device-type-name";
+            key "device-type";
 
-            leaf device-type-name {
-                type string;
+            leaf device-type {
+                type identityref {
+                    base id:device-type-base;
+                }
                 description "identifier for a list entry, the device type name.";
             }
 

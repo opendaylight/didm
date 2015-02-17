@@ -17,10 +17,21 @@ module didm-identification {
       description "Initial implementation.";
     }
 
+    identity device-type-base {
+        description "base identity for all device type identifiers";
+    }
+
+    identity unknown-device-type {
+        description "Indicates the device type could not be identified.";
+        base device-type-base;
+    }
+
     augment "/inv:nodes/inv:node" {
         ext:augment-identifier "device-type";
         leaf device-type {
-            type string;
+            type identityref {
+                base device-type-base;
+            }
         }
     }
 }
