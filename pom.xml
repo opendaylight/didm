@@ -45,4 +45,11 @@
       </plugin>
     </plugins>
   </build>
+
+  <scm>
+    <connection>scm:git:ssh://git.opendaylight.org:29418/didm.git</connection>
+    <developerConnection>scm:git:ssh://git.opendaylight.org:29418/didm.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://wiki.opendaylight.org/view/DIDM:Main</url>
+  </scm>
 </project>
