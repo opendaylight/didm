@@ -15,6 +15,7 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.ide
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfo;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfoBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfoKey;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceTypeBase;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +30,10 @@ import java.util.List;
 public class MininetModule extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.vendor.mininet.rev150211.AbstractMininetModule {
     private static final Logger LOG = LoggerFactory.getLogger(MininetModule.class);
 
-    private static final String DEVICE_TYPE = "mininet";
+    private static final Class<? extends DeviceTypeBase> DEVICE_TYPE = MininetDeviceType.class;
     private static final String MANUFACTURER = "Nicira, Inc.";
     private static final List<String> HARDWARE = ImmutableList.of("Open vSwitch");
-    private static final DeviceTypeInfo DEVICE_TYPE_INFO = new DeviceTypeInfoBuilder().setDeviceTypeName(DEVICE_TYPE)
+    private static final DeviceTypeInfo DEVICE_TYPE_INFO = new DeviceTypeInfoBuilder().setDeviceType(DEVICE_TYPE)
             .setOpenflowManufacturer(MANUFACTURER)
             .setOpenflowHardware(HARDWARE).build();
 
@@ -101,8 +102,8 @@ public class MininetModule extends org.opendaylight.yang.gen.v1.urn.opendaylight
         });
     }
 
-    private static InstanceIdentifier<DeviceTypeInfo> createKeyedDeviceTypeInfoPath(String name) {
-        Preconditions.checkArgument(!Strings.isNullOrEmpty(name));
+    private static InstanceIdentifier<DeviceTypeInfo> createKeyedDeviceTypeInfoPath(Class<? extends DeviceTypeBase> name) {
+        Preconditions.checkNotNull(name);
         return InstanceIdentifier.builder(DeviceTypes.class).child(DeviceTypeInfo.class, new DeviceTypeInfoKey(name)).build();
     }
 

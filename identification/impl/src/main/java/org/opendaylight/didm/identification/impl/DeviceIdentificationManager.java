@@ -32,7 +32,9 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.nodes.N
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.DeviceTypes;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfo;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceType;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceTypeBase;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceTypeBuilder;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.UnknownDeviceType;
 import org.opendaylight.yangtools.concepts.ListenerRegistration;
 import org.opendaylight.yangtools.yang.binding.DataObject;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
@@ -54,7 +56,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
     private static final InstanceIdentifier<Node> NODE_IID = InstanceIdentifier.builder(Nodes.class).child(Node.class).build();
     private static final InstanceIdentifier<DeviceTypes> DEVICE_TYPES_IID = InstanceIdentifier.builder(DeviceTypes.class).build();
     private static final ScheduledExecutorService executorService = MoreExecutors.listeningDecorator(Executors.newScheduledThreadPool(1));
-    private static final String UNKNOWN_DEVICE_TYPE = "unknown";
+    private static final Class<? extends DeviceTypeBase> UNKNOWN_DEVICE_TYPE = UnknownDeviceType.class;
 
     private final DataBroker dataBroker;
     private final RpcProviderRegistry rpcProviderRegistry;
@@ -160,7 +162,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                 if (manufacturer != null && (manufacturer.equals(dti.getOpenflowManufacturer()))) {
                     List<String> hardwareValues = dti.getOpenflowHardware();
                     if(hardwareValues != null && hardwareValues.contains(hardware)) {
-                            setDeviceType(dti.getDeviceTypeName(), path);
+                            setDeviceType(dti.getDeviceType(), path);
                             return;
                     }
                 }
@@ -190,7 +192,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                 for (DeviceTypeInfo dti : dtiInfoList) {
                     List<String> sysoidValues = dti.getSysoid();
                     if(sysoidValues != null && sysoidValues.contains(sysOid)){
-                        setDeviceType(dti.getDeviceTypeName(), path);
+                        setDeviceType(dti.getDeviceType(), path);
                         return;
                     }
                 }
@@ -201,7 +203,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
         setDeviceType(UNKNOWN_DEVICE_TYPE, path);
     }
 
-    private void setDeviceType(String deviceType, InstanceIdentifier<Node> path) {
+    private void setDeviceType(Class<? extends DeviceTypeBase> deviceType, InstanceIdentifier<Node> path) {
         final InstanceIdentifier<DeviceType> deviceTypePath = path.augmentation(DeviceType.class);
         final WriteTransaction tx = dataBroker.newWriteOnlyTransaction();
 

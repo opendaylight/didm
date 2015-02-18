@@ -28,6 +28,8 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.dri
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.output.Flow;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.output.FlowBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceType;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceTypeBase;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.vendor.mininet.rev150211.MininetDeviceType;
 import org.opendaylight.yangtools.concepts.ListenerRegistration;
 import org.opendaylight.yangtools.yang.binding.DataObject;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
@@ -52,6 +54,7 @@ import java.util.concurrent.Future;
 public class OpenFlowDeviceDriver implements OpenflowFeatureService, DataChangeListener, AutoCloseable {
     private static final Logger LOG = LoggerFactory.getLogger(OpenFlowDeviceDriver.class);
     private static final InstanceIdentifier<DeviceType> PATH = InstanceIdentifier.builder(Nodes.class).child(Node.class).augmentation(DeviceType.class).build();
+    private static final Class<? extends DeviceTypeBase> DEVICE_TYPE = MininetDeviceType.class;
 
     private final Map<InstanceIdentifier<?>, BindingAwareBroker.RoutedRpcRegistration<OpenflowFeatureService>> rpcRegistrations = new HashMap<>();
     private final RpcProviderRegistry rpcRegistry;
@@ -94,15 +97,12 @@ public class OpenFlowDeviceDriver implements OpenflowFeatureService, DataChangeL
 
     @Override
     public void onDataChanged(AsyncDataChangeEvent<InstanceIdentifier<?>, DataObject> change) {
-        // TODO: share this constant with identification
-        final String DEVICE_TYPE = "mininet";
-
         // NOTE: we're ignoring updates
         Map<InstanceIdentifier<?>, DataObject> createdData = change.getCreatedData();
         if(createdData != null) {
             for (Map.Entry<InstanceIdentifier<?>, DataObject> entry : createdData.entrySet()) {
                 DeviceType deviceType = (DeviceType)entry.getValue();
-                if(deviceType.getDeviceType().equals(DEVICE_TYPE)) {
+                if(isMininetDeviceType(deviceType.getDeviceType())) {
                     registerRpcService(entry.getKey().firstIdentifierOf(Node.class));
                 }
             }
@@ -113,11 +113,15 @@ public class OpenFlowDeviceDriver implements OpenflowFeatureService, DataChangeL
         if((removedPaths != null) && !removedPaths.isEmpty()) {
             for (InstanceIdentifier<?> removedPath : removedPaths) {
                 DeviceType deviceType = (DeviceType)change.getOriginalData().get(removedPath);
-                if(deviceType.getDeviceType().equals(DEVICE_TYPE)) {
+                if(isMininetDeviceType(deviceType.getDeviceType())) {
                     closeRpcRegistration(removedPath.firstIdentifierOf(Node.class));
                 }
             }
         }
+    }
+
+    private static boolean isMininetDeviceType(Class<? extends DeviceTypeBase> deviceType) {
+        return deviceType == DEVICE_TYPE;
     }
 
     private void registerRpcService(InstanceIdentifier<Node> path) {

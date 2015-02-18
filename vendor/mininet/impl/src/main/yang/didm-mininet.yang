@@ -12,8 +12,14 @@ module mininet-didm {
 
     import config { prefix config; revision-date 2013-04-05; }
     import opendaylight-md-sal-binding { prefix mdsal; revision-date 2013-10-28; }
+    import didm-identification { prefix id; revision-date "2015-02-02"; }
 
     revision "2015-02-11" { description "Initial implementation."; }
+
+    identity mininet-device-type {
+        description "Device type for mininet devices";
+        base id:device-type-base;
+    }
 
     identity mininet-didm {
             base config:module-type;
