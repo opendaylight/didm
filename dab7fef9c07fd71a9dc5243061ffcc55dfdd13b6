@@ -2,6 +2,229 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a96c907_b24b2cb0",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/didm/vendor/hp3800/OpenFlowDeviceDriver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "Add copyright",
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_92ce302d",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/didm/vendor/hp3800/OpenFlowDeviceDriver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "I think we want a common \u0027hp\u0027 package name. So either ...vendor.hp.3800 or just ...vendor.hp",
+      "range": {
+        "startLine": 1,
+        "startChar": 37,
+        "endLine": 1,
+        "endChar": 43
+      },
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_32cf1c2b",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/didm/vendor/hp3800/OpenFlowDeviceDriver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "debug",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 17
+      },
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_b2e24c9e",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/didm/vendor/hp/rev150218/HP3800Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "final",
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_72f04467",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/didm/vendor/hp/rev150218/HP3800Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "this should be immutable. Look at guava\u0027s ImmutableList.",
+      "range": {
+        "startLine": 35,
+        "startChar": 43,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_d2dfd8d4",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/didm/vendor/hp/rev150218/HP3800Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "final",
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_92f5d058",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/didm/vendor/hp/rev150218/HP3800Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "final",
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_52ebc877",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/didm/vendor/hp/rev150218/HP3800Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "We already know its a 3800. What\u0027s the significance of 119? The start index? I\u0027d say this can just be SYSOIDS.",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 47
+      },
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_32e63cb1",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/didm/vendor/hp/rev150218/HP3800Module.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "immutable",
+      "range": {
+        "startLine": 45,
+        "startChar": 50,
+        "endLine": 45,
+        "endChar": 67
+      },
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_f203f43f",
+        "filename": "vendor/hp/3800/src/main/java/org/opendaylight/yang/gen/v1/urn/opendaylight/params/xml/ns/yang/didm/vendor/hp/rev150218/HP3800ModuleFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "copyright",
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_1201c037",
+        "filename": "vendor/hp/features/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "These don\u0027t appear to be used.",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_529c285d",
         "filename": "vendor/mininet/impl/src/main/java/org/opendaylight/didm/vendor/mininet/OpenFlowDeviceDriver.java",
         "patchSetId": 1
@@ -13,6 +236,24 @@
       "writtenOn": "2015-02-20T00:14:35Z",
       "side": 1,
       "message": "Is this really an error log message?",
+      "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_b2f9ec4f",
+        "filename": "vendor/mininet/impl/src/main/java/org/opendaylight/didm/vendor/mininet/OpenFlowDeviceDriver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-20T06:18:52Z",
+      "side": 1,
+      "message": "Agree with David. This change should be removed.",
+      "parentUuid": "7a96c907_529c285d",
       "revId": "dab7fef9c07fd71a9dc5243061ffcc55dfdd13b6",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
