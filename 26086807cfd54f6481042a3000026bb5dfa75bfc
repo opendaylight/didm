@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_191ec05f",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T21:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a96c907_275d9447",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_c755d01e",
         "filename": "state/api/src/main/yang/didm-state.yang",
         "patchSetId": 2
@@ -42,6 +60,24 @@
         "endLine": 27,
         "endChar": 78
       },
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_39237ca8",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T21:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a96c907_c755d01e",
       "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_d93b78cf",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T21:50:59Z",
+      "side": 1,
+      "message": "I agree, just not sure, and haven\u0027t checked yet, how the AAA project is tracking subjects. This should be referring to an object in AAA.",
+      "parentUuid": "7a96c907_7906e41e",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_d914d845",
         "filename": "state/api/src/main/yang/didm-state.yang",
         "patchSetId": 2
@@ -88,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_f93f54b2",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T21:50:59Z",
+      "side": 1,
+      "message": "Still not sure I fully understand what is being suggested here. Success and failure are not an either / or option, both will be set at the time.\n\nie., I can have both last_success information and last_attempt information set.",
+      "parentUuid": "7a96c907_d914d845",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_67471c78",
         "filename": "state/api/src/main/yang/didm-state.yang",
         "patchSetId": 2
@@ -99,6 +171,24 @@
       "writtenOn": "2015-02-23T21:05:37Z",
       "side": 1,
       "message": "Do we need this container? The gen\u0027d code ends up with 2 DeviceState classes since the ext:augment-identifier already creates a wrapper class for the augmentation.",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_b92eac8a",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T21:50:59Z",
+      "side": 1,
+      "message": "killed it",
+      "parentUuid": "7a96c907_67471c78",
       "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -128,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_993170ef",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T21:50:59Z",
+      "side": 1,
+      "message": "how did the yang compiler not catch that.\n\nthere was also an indentation issue (the uses was at the wrong level)",
+      "parentUuid": "7a96c907_6715dc47",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_4710e058",
         "filename": "state/api/src/main/yang/didm-state.yang",
         "patchSetId": 2
@@ -139,6 +247,24 @@
       "writtenOn": "2015-02-23T21:05:37Z",
       "side": 1,
       "message": "Do we want a \u0027connecting\u0027 state?",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_594f686b",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T21:50:59Z",
+      "side": 1,
+      "message": "fair question. we have not seen a need for it yet, but happy to add it if you feel we should have it.",
+      "parentUuid": "7a96c907_4710e058",
       "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
