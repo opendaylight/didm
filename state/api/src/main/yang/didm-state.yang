@@ -46,14 +46,19 @@ module didm-state {
             description "timestamp of last successful operation on the state.";
             type yang:timestamp;
         }
+        leaf last_success_by {
+            description "indicates which authentication subject invoked the last successful
+                        attempt.";
+            type yang:timestamp;
+        }
         leaf last_attempt {
             description "timestamp of last attempted operation on this state. Should equal
                         last success timestamp if the operation was a success.";
             type yang:timestamp;
         }
-        leaf last_update_by {
-            description "indicates which authentication subject invoked that last state
-                        change or attempt.";
+        leaf last_attempt_by {
+            description "indicates which authentication subject invoked that last attempt
+                        regardless of its success or not.";
             type string;
         }
         leaf last_error {
