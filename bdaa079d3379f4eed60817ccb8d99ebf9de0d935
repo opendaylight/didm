@@ -22,6 +22,24 @@
       "revId": "bdaa079d3379f4eed60817ccb8d99ebf9de0d935",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_67cddcb6",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T15:32:21Z",
+      "side": 1,
+      "message": "A couple of thoughts here. Wondering if we really need a last_success_by and last_attempt_by as opposed a single last_update_by for the attempt_info. \n\nOne reason I am staying away from a choice, I think even if the last attempt was a success, then I am thinking that we still may want to keep around the last fail time, not positive, but thinking about it. I know the reverse is true that if the last attempt failed you would want to know when the last success was.",
+      "parentUuid": "7a96c907_218824c4",
+      "revId": "bdaa079d3379f4eed60817ccb8d99ebf9de0d935",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
