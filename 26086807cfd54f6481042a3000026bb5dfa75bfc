@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a96c907_275d9447",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-23T21:05:37Z",
+      "side": 1,
+      "message": "a",
+      "range": {
+        "startLine": 18,
+        "startChar": 62,
+        "endLine": 18,
+        "endChar": 64
+      },
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_c755d01e",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-23T21:05:37Z",
+      "side": 1,
+      "message": "changed",
+      "range": {
+        "startLine": 27,
+        "startChar": 71,
+        "endLine": 27,
+        "endChar": 78
+      },
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_7906e41e",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-23T21:05:37Z",
+      "side": 1,
+      "message": "consider making this an identityref.",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_d914d845",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-23T21:05:37Z",
+      "side": 1,
+      "message": "As Steve mentioned, I would group these and use the existing change_info grouping. So last_sucess { uses change_info } last_attempt { uses change_info }. change_info could be a little more generic (\"timestamp\", \"by\")",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_67471c78",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-23T21:05:37Z",
+      "side": 1,
+      "message": "Do we need this container? The gen\u0027d code ends up with 2 DeviceState classes since the ext:augment-identifier already creates a wrapper class for the augmentation.",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_6715dc47",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-23T21:05:37Z",
+      "side": 1,
+      "message": "uses",
+      "range": {
+        "startLine": 114,
+        "startChar": 20,
+        "endLine": 114,
+        "endChar": 25
+      },
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_4710e058",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-23T21:05:37Z",
+      "side": 1,
+      "message": "Do we want a \u0027connecting\u0027 state?",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
