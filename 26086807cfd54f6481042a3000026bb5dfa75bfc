@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_99e4103d",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-23T22:14:44Z",
+      "side": 1,
+      "message": "Looking at the aaa yang file, it looks like user is a simple string and users are not part of the ODL model, which is not unexpected as ODL must support an external AAA service. Not clear how we would ever get the user ID looking at the yang and have a question out to them.",
+      "parentUuid": "7a96c907_7906e41e",
+      "revId": "26086807cfd54f6481042a3000026bb5dfa75bfc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_d914d845",
         "filename": "state/api/src/main/yang/didm-state.yang",
         "patchSetId": 2
