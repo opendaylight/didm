@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a96c907_218824c4",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 3293
+      },
+      "writtenOn": "2015-02-23T03:48:44Z",
+      "side": 1,
+      "message": "David, This looks good.  I only have one minor comment.  We should also discuss how this is used at some point.  \n\nThere is some overlay of the data stored in change-info and attempt-info.  The overlay is last_updated_by and last_updated.  An idea might be to organize as follows:\n\nChange-info\n    Last_updated\n    Last-updated-by\n\nAttempt-info\n     Choice\n         Case Success\n         Case Error\n\nYou would always save both change-info and attempt-info in the synchronization and communication containers. \n\nYou could also save either success for error using the choice statement.\n\nEither way will work.",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 24
+      },
+      "revId": "bdaa079d3379f4eed60817ccb8d99ebf9de0d935",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
