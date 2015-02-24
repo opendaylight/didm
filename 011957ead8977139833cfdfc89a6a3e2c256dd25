@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a96c907_79510435",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 2527
+      },
+      "writtenOn": "2015-02-24T04:26:10Z",
+      "side": 1,
+      "message": "successfully",
+      "range": {
+        "startLine": 96,
+        "startChar": 53,
+        "endLine": 96,
+        "endChar": 65
+      },
+      "revId": "011957ead8977139833cfdfc89a6a3e2c256dd25",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
