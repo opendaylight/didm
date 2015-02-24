@@ -93,7 +93,7 @@ module didm-state {
                         description "Device is currently being synchronized.";
                     }
                     enum synchronized {
-                        description "Device has been successcully synchronized;";
+                        description "Device has been successfully synchronized;";
                     }
                     enum error {
                         description "An error was encountered during last synchronization attempt.";
