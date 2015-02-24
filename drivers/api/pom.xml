@@ -22,6 +22,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 
   <properties>
     <mdsal.version>1.2.0-SNAPSHOT</mdsal.version>
+    <ofplugin.version>0.1.0-SNAPSHOT</ofplugin.version>
   </properties>
 
   <dependencies>
@@ -31,9 +32,9 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       <version>${mdsal.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.opendaylight.controller.model</groupId>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>
       <artifactId>model-flow-base</artifactId>
-      <version>${mdsal.version}</version>
+      <version>${ofplugin.version}</version>
     </dependency>
   </dependencies>
 

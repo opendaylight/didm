@@ -14,10 +14,10 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.controller/features-flow/${mdsal.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.snmp/features-snmp/${snmp.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${ofplugin.version}/xml/features</repository>
 
   <feature name='odl-didm-identification-api' version='${project.version}' description='OpenDaylight :: didm identification :: api'>
-    <feature version='${yangtools.version}'>odl-yangtools-models</feature>
-    <feature version='${mdsal.version}'>odl-flow-model</feature>
+    <feature version='${ofplugin.version}'>odl-openflowplugin-nsf-model</feature>
 
     <bundle>mvn:org.opendaylight.didm/didm-identification-api/${project.version}</bundle>
   </feature>
@@ -30,8 +30,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <configfile finalname="${config.configfile.directory}/didm-identification.xml">mvn:org.opendaylight.didm/didm-identification-impl/${project.version}/xml/config</configfile>
   </feature>
   <feature name='odl-didm-drivers-api' version='${project.version}' description='OpenDaylight :: didm drivers :: api'>
-    <feature version='${yangtools.version}'>odl-yangtools-models</feature>
-    <feature version='${mdsal.version}'>odl-flow-model</feature>
+    <feature version='${ofplugin.version}'>odl-openflowplugin-nsf-model</feature>
 
     <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
   </feature>
