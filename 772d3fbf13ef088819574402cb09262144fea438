@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_a33191ee",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-25T19:04:53Z",
+      "side": 1,
+      "message": "I think it will be captured in an audit log, but having the last value as part of the state of a node provides value. Nodes do have state as an attribute.",
+      "parentUuid": "7a96c907_087664d7",
+      "revId": "772d3fbf13ef088819574402cb09262144fea438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_08af442b",
         "filename": "state/api/src/main/yang/didm-state.yang",
         "patchSetId": 5
@@ -71,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "7a96c907_835495ff",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-25T19:04:53Z",
+      "side": 1,
+      "message": "This is really prep for longer term support of a deleted state v. purging the data and removing it from the system. I believe this is required.",
+      "parentUuid": "7a96c907_c87b9cbc",
+      "revId": "772d3fbf13ef088819574402cb09262144fea438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a96c907_a87e50ad",
         "filename": "state/api/src/main/yang/didm-state.yang",
         "patchSetId": 5
@@ -88,6 +124,24 @@
         "endLine": 105,
         "endChar": 31
       },
+      "revId": "772d3fbf13ef088819574402cb09262144fea438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_e342393d",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1045
+      },
+      "writtenOn": "2015-02-25T19:04:53Z",
+      "side": 1,
+      "message": "Not tied to the name. Ciena tends to use comms state as opposed to connection state. \n\nI think the distinction is somewhat subjective. I can connect to an NE and attempt to authenticate. If that fails I was able to connect, but not communicate.\n\nSimilarly, if a node is not reachable that means that I can neither connect nor communicate.",
+      "parentUuid": "7a96c907_a87e50ad",
       "revId": "772d3fbf13ef088819574402cb09262144fea438",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
