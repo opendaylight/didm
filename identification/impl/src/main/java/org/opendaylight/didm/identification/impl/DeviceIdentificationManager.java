@@ -29,6 +29,7 @@ import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.FlowCapableNode;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.Nodes;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.nodes.Node;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.connection.rev150224.ConnectionInfo;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.DeviceTypes;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfo;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceType;
@@ -112,8 +113,8 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                 // sleep 250ms and then re-read the Node information to give OF a change to update with FlowCapable
                 // TODO: Figure out why FlowCapableNode is attached later. Who adds the original Node?
                 executorService.schedule(new Callable<Void>() {
-                        @Override
-                        public Void call() throws Exception {
+                    @Override
+                    public Void call() throws Exception {
                         ReadOnlyTransaction readOnlyTransaction = dataBroker.newReadOnlyTransaction();
                         final CheckedFuture<Optional<Node>, ReadFailedException> readFuture = readOnlyTransaction.read(LogicalDatastoreType.OPERATIONAL, path);
                         Futures.addCallback(readFuture, new FutureCallback<Optional<Node>>() {
@@ -133,8 +134,8 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                         });
 
                         return null;
-                        }
-                    }, 250, TimeUnit.MILLISECONDS);
+                    }
+                }, 250, TimeUnit.MILLISECONDS);
             }
         }
     }
@@ -157,30 +158,36 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                     node.getId().getValue(), hardware, manufacturer, serialNumber, software);
 
             // TODO: is there a more efficient way to do this?
-            for(DeviceTypeInfo dti: dtiInfoList) {
+            for (DeviceTypeInfo dti : dtiInfoList) {
                 // if the manufacturer matches and there is a h/w match
                 if (manufacturer != null && (manufacturer.equals(dti.getOpenflowManufacturer()))) {
                     List<String> hardwareValues = dti.getOpenflowHardware();
-                    if(hardwareValues != null && hardwareValues.contains(hardware)) {
-                            setDeviceType(dti.getDeviceType(), path);
-                            return;
+                    if (hardwareValues != null && hardwareValues.contains(hardware)) {
+                        setDeviceType(dti.getDeviceType(), path);
+                        return;
                     }
                 }
             }
         }
 
         // 2) check for sysOID match
+        ConnectionInfo connectionInfo = node.getAugmentation(ConnectionInfo.class);
         String ipStr = null;
-        if(flowCapableNode != null) {
-            IpAddress ip = flowCapableNode.getIpAddress();
+        IpAddress ip = null;
+        // TODO: Handle IPv6
+        if (flowCapableNode != null) {
+            ip = flowCapableNode.getIpAddress();
             ipStr = ip.getIpv4Address().getValue();
         } else {
-            // TODO: Write the code to get the IP address for a non-OF device.
-            //       We still need to define how we get the IP address for a
-            //       non-OF device
+            /*
+             * If we have a discovery augmentation then fetch the connection IP address from the augmentation.
+             */
+            if (connectionInfo != null && (ip = connectionInfo.getAddress()) != null) {
+                ipStr = ip.getIpv4Address().getValue();
+            }
         }
 
-        if(ipStr != null) {
+        if (ipStr != null) {
             FetchSysOid fetchSysOid = new FetchSysOid(rpcProviderRegistry);
             String sysOid = fetchSysOid.fetch(ipStr);
             if (sysOid == null) {
@@ -191,7 +198,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                 // TODO: is there a more efficient way to do this?
                 for (DeviceTypeInfo dti : dtiInfoList) {
                     List<String> sysoidValues = dti.getSysoid();
-                    if(sysoidValues != null && sysoidValues.contains(sysOid)){
+                    if (sysoidValues != null && sysoidValues.contains(sysOid)) {
                         setDeviceType(dti.getDeviceType(), path);
                         return;
                     }

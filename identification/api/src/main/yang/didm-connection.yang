@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2015 Ciena and others.  All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ */
+module didm-connection {
+
+    namespace "urn:opendaylight:params:xml:ns:yang:didm:connection";
+    prefix connection;
+
+    import yang-ext { prefix ext; revision-date "2013-07-09"; }
+    import ietf-inet-types { prefix inet; revision-date 2010-09-24;}
+    import opendaylight-inventory { prefix inv; revision-date "2013-08-19"; }
+
+    description "Provide a node augmentation that can be leveraged to enable addition
+        of devices to the controller where the initial connection to the
+        controller initates from the controller, not the device.";
+
+    revision "2015-02-24" {
+        description "Initial implementation.";
+    }
+    
+    augment "/inv:nodes/inv:node" {
+        ext:augment-identifier "connection-info";
+        description "Provides an augmentation on the ODL inventory node that provides
+                information to support an initial connection to a
+                device.";
+
+        leaf address {
+            description "The address that should be used to connect to the a device in
+                        order to establish its identify and type.";
+            type inet:ip-address;
+        }
+        leaf port {
+            description "The preferred port on which to connect to the device.";
+            type  inet:port-number;
+            mandatory false;
+        }
+        leaf id {
+            description "Provides the ability for the operator to override a default ID
+                        to use when attempting to connect to a network element.";
+            type string;
+            mandatory false;
+        }
+        leaf secret {
+            description "Provides the ability for the operator to override a default credential
+                        to use when attempting to connect to the network element. This
+                        value should be encrypted using a public key assigned to the controller.";
+            type string;
+            mandatory false;
+        }
+    }
+}
