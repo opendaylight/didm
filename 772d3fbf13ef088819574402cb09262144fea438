@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a96c907_087664d7",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2528
+      },
+      "writtenOn": "2015-02-25T17:49:34Z",
+      "side": 1,
+      "message": "In general, seems like this should be captured in an audit log?",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 15
+      },
+      "revId": "772d3fbf13ef088819574402cb09262144fea438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_08af442b",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2528
+      },
+      "writtenOn": "2015-02-25T17:49:34Z",
+      "side": 1,
+      "message": "repetitively",
+      "range": {
+        "startLine": 42,
+        "startChar": 50,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "772d3fbf13ef088819574402cb09262144fea438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_c87b9cbc",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2528
+      },
+      "writtenOn": "2015-02-25T17:49:34Z",
+      "side": 1,
+      "message": "Can you clarify this state and whether it can exist independent of the inventory node, assumption is that the node will be removed if deleted?",
+      "range": {
+        "startLine": 73,
+        "startChar": 18,
+        "endLine": 73,
+        "endChar": 25
+      },
+      "revId": "772d3fbf13ef088819574402cb09262144fea438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a96c907_a87e50ad",
+        "filename": "state/api/src/main/yang/didm-state.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 2528
+      },
+      "writtenOn": "2015-02-25T17:49:34Z",
+      "side": 1,
+      "message": "Was communication intended to capture connection state and if so, would that term be more clear?",
+      "range": {
+        "startLine": 105,
+        "startChar": 18,
+        "endLine": 105,
+        "endChar": 31
+      },
+      "revId": "772d3fbf13ef088819574402cb09262144fea438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
