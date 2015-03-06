@@ -24,6 +24,7 @@
   <modules>
     <module>identification/api</module>
     <module>identification/impl</module>
+    <module>state/api</module>
     <module>drivers/api</module>
     <module>vendor/mininet/impl</module>
     <module>vendor/mininet/features</module>
