@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.vendor.hp3800;
+package org.opendaylight.didm.hp3800;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +31,7 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.dri
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.output.Flow;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceType;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.rev150202.DeviceTypeBase;
-import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.vendor.hp.rev150218.Hp3800DeviceType;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.hp.rev150218.Hp3800DeviceType;
 import org.opendaylight.yangtools.concepts.ListenerRegistration;
 import org.opendaylight.yangtools.yang.binding.DataObject;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;

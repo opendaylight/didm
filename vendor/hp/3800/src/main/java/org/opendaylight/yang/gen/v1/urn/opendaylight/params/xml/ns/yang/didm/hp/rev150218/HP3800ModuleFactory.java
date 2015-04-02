@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.vendor.hp.rev150218;
-public class HP3800ModuleFactory extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.vendor.hp.rev150218.AbstractHP3800ModuleFactory {
+package org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.hp.rev150218;
+public class HP3800ModuleFactory extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.hp.rev150218.AbstractHP3800ModuleFactory {
 
 }

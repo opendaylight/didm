@@ -7,7 +7,7 @@
  */
 module hp-3800 {
 
-    namespace "urn:opendaylight:params:xml:ns:yang:vendor:hp";
+    namespace "urn:opendaylight:params:xml:ns:yang:didm:hp";
     prefix hp-3800;
 
     import config { prefix config; revision-date 2013-04-05; }

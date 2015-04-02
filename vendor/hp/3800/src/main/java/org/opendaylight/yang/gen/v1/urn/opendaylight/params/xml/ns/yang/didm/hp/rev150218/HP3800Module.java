@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.vendor.hp.rev150218;
+package org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.hp.rev150218;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.md.sal.binding.api.WriteTransaction;
 import org.opendaylight.controller.md.sal.common.api.data.LogicalDatastoreType;
 import org.opendaylight.controller.md.sal.common.api.data.TransactionCommitFailedException;
-import org.opendaylight.vendor.hp3800.OpenFlowDeviceDriver;
+import org.opendaylight.didm.hp3800.OpenFlowDeviceDriver;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.DeviceTypes;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfo;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfoBuilder;
@@ -35,7 +35,7 @@ import com.google.common.util.concurrent.Futures;
  *   1) the HP 3800 device type info
  *   2) the HP 3800 OF driver
  */
-public class HP3800Module extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.vendor.hp.rev150218.AbstractHP3800Module {
+public class HP3800Module extends org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.hp.rev150218.AbstractHP3800Module {
     private static final Logger LOG = LoggerFactory.getLogger(HP3800Module.class);
 
     private static final Class<? extends DeviceTypeBase> DEVICE_TYPE = Hp3800DeviceType.class;
@@ -70,7 +70,7 @@ public class HP3800Module extends org.opendaylight.yang.gen.v1.urn.opendaylight.
         super(identifier, dependencyResolver);
     }
 
-    public HP3800Module(org.opendaylight.controller.config.api.ModuleIdentifier identifier, org.opendaylight.controller.config.api.DependencyResolver dependencyResolver, org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.vendor.hp.rev150218.HP3800Module oldModule, java.lang.AutoCloseable oldInstance) {
+    public HP3800Module(org.opendaylight.controller.config.api.ModuleIdentifier identifier, org.opendaylight.controller.config.api.DependencyResolver dependencyResolver, org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.hp.rev150218.HP3800Module oldModule, java.lang.AutoCloseable oldInstance) {
         super(identifier, dependencyResolver, oldModule, oldInstance);
     }
 

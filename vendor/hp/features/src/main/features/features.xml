@@ -17,8 +17,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <feature version='${didm.version}'>odl-didm-identification</feature>
     <feature version='${didm.version}'>odl-didm-drivers-api</feature>
 
-    <bundle>mvn:org.opendaylight.vendor.hp/hp-3800-impl/${project.version}</bundle>
-    <configfile finalname="${config.configfile.directory}/hp-3800.xml">mvn:org.opendaylight.vendor.hp/hp-3800-impl/${project.version}/xml/config</configfile>
+    <bundle>mvn:org.opendaylight.didm.hp3800/hp-3800-impl/${project.version}</bundle>
+    <configfile finalname="${config.configfile.directory}/hp-3800.xml">mvn:org.opendaylight.didm.hp3800/hp-3800-impl/${project.version}/xml/config</configfile>
   </feature>
 
 </features>

@@ -9,15 +9,15 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 -->
 <snapshot>
     <required-capabilities>
-      <capability>urn:opendaylight:params:xml:ns:yang:didm:vendor:hp?module=hp-3800-didm&amp;revision=2015-02-18</capability>
+      <capability>urn:opendaylight:params:xml:ns:yang:didm:hp?module=hp-3800&amp;revision=2015-02-18</capability>
     </required-capabilities>
     <configuration>
 
         <data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <modules xmlns="urn:opendaylight:params:xml:ns:yang:controller:config">
                 <module>
-                    <type xmlns:hp3800="urn:opendaylight:params:xml:ns:yang:didm:vendor:hp">hp3800:hp-3800-didm</type>
-                    <name>hp-3800-didm</name>
+                    <type xmlns:hp3800="urn:opendaylight:params:xml:ns:yang:didm:hp">hp3800:hp-3800</type>
+                    <name>hp-3800</name>
 
                     <rpc-registry>
                         <type xmlns:binding="urn:opendaylight:params:xml:ns:yang:controller:md:sal:binding">binding:binding-rpc-registry</type>

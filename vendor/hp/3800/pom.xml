@@ -17,7 +17,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.opendaylight.vendor.hp</groupId>
+  <groupId>org.opendaylight.didm.hp3800</groupId>
   <artifactId>hp-3800-impl</artifactId>
   <version>0.1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
