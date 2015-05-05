@@ -55,7 +55,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
     private static final Logger LOG = LoggerFactory.getLogger(DeviceIdentificationManager.class);
     private static final InstanceIdentifier<Node> NODE_IID = InstanceIdentifier.builder(Nodes.class).child(Node.class).build();
     private static final InstanceIdentifier<DeviceTypes> DEVICE_TYPES_IID = InstanceIdentifier.builder(DeviceTypes.class).build();
-    private static final ScheduledExecutorService executorService = MoreExecutors.listeningDecorator(Executors.newScheduledThreadPool(1));
+    private static final ScheduledExecutorService EXECUTORSERVICE = MoreExecutors.listeningDecorator(Executors.newScheduledThreadPool(1));
     private static final Class<? extends DeviceTypeBase> UNKNOWN_DEVICE_TYPE = UnknownDeviceType.class;
 
     private final DataBroker dataBroker;
@@ -111,7 +111,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
 
                 // sleep 250ms and then re-read the Node information to give OF a change to update with FlowCapable
                 // TODO: Figure out why FlowCapableNode is attached later. Who adds the original Node?
-                executorService.schedule(new Callable<Void>() {
+                EXECUTORSERVICE.schedule(new Callable<Void>() {
                         @Override
                         public Void call() throws Exception {
                         ReadOnlyTransaction readOnlyTransaction = dataBroker.newReadOnlyTransaction();
@@ -138,6 +138,31 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
             }
         }
     }
+    
+    private void checkOFMatch(final InstanceIdentifier<Node> path, Node node, FlowCapableNode flowCapableNode, List<DeviceTypeInfo> dtiInfoList ){
+    	 if (flowCapableNode != null) {
+             String hardware = flowCapableNode.getHardware();
+             String manufacturer = flowCapableNode.getManufacturer();
+             String serialNumber = flowCapableNode.getSerialNumber();
+             String software = flowCapableNode.getSoftware();
+
+             LOG.debug("Node '{}' is FlowCapable (\"{}\", \"{}\", \"{}\", \"{}\")",
+                     node.getId().getValue(), hardware, manufacturer, serialNumber, software);
+
+             // TODO: is there a more efficient way to do this?
+             for(DeviceTypeInfo dti: dtiInfoList) {
+                 // if the manufacturer matches and there is a h/w match
+                 if (manufacturer != null && (manufacturer.equals(dti.getOpenflowManufacturer()))) {
+                     List<String> hardwareValues = dti.getOpenflowHardware();
+                     if(hardwareValues != null && hardwareValues.contains(hardware)) {
+                             setDeviceType(dti.getDeviceType(), path);
+                             return;
+                     }
+                 }
+             }
+         }
+
+    }
 
     private void identifyDevice(final InstanceIdentifier<Node> path, Node node) {
         LOG.debug("Attempting to identify '{}'", node.getId().toString());
@@ -147,28 +172,8 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
 
         // 1) check for OF match
         FlowCapableNode flowCapableNode = node.getAugmentation(FlowCapableNode.class);
-        if (flowCapableNode != null) {
-            String hardware = flowCapableNode.getHardware();
-            String manufacturer = flowCapableNode.getManufacturer();
-            String serialNumber = flowCapableNode.getSerialNumber();
-            String software = flowCapableNode.getSoftware();
-
-            LOG.debug("Node '{}' is FlowCapable (\"{}\", \"{}\", \"{}\", \"{}\")",
-                    node.getId().getValue(), hardware, manufacturer, serialNumber, software);
-
-            // TODO: is there a more efficient way to do this?
-            for(DeviceTypeInfo dti: dtiInfoList) {
-                // if the manufacturer matches and there is a h/w match
-                if (manufacturer != null && (manufacturer.equals(dti.getOpenflowManufacturer()))) {
-                    List<String> hardwareValues = dti.getOpenflowHardware();
-                    if(hardwareValues != null && hardwareValues.contains(hardware)) {
-                            setDeviceType(dti.getDeviceType(), path);
-                            return;
-                    }
-                }
-            }
-        }
-
+        checkOFMatch(path,node,flowCapableNode,dtiInfoList);
+        
         // 2) check for sysOID match
         String ipStr = null;
         if(flowCapableNode != null) {
