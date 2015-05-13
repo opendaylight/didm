@@ -25,7 +25,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.CheckedFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -50,7 +49,7 @@ public class HP3800Module extends org.opendaylight.yang.gen.v1.urn.opendaylight.
                                                                   "3800-24G-PoE+-2XG Switch",
                                                                   "3800-48G-PoE+-4XG Switch",
                                                                   "3800Stack");
-    private static List<String> SYSOIDS = ImmutableList.of("1.3.6.1.4.1.11.2.3.7.11.119",
+    private static List<String> sysOIDS = ImmutableList.of("1.3.6.1.4.1.11.2.3.7.11.119",
                                                            "1.3.6.1.4.1.11.2.3.7.11.120",
                                                            "1.3.6.1.4.1.11.2.3.7.11.121",
                                                            "1.3.6.1.4.1.11.2.3.7.11.122",
@@ -62,7 +61,7 @@ public class HP3800Module extends org.opendaylight.yang.gen.v1.urn.opendaylight.
                                                            "1.3.6.1.4.1.11.2.3.7.8.5.2");
     private static final DeviceTypeInfo DEVICE_TYPE_INFO = new DeviceTypeInfoBuilder().setDeviceType(DEVICE_TYPE)
             .setOpenflowManufacturer(MANUFACTURER)
-            .setSysoid(SYSOIDS)
+            .setSysoid(sysOIDS)
             .setOpenflowHardware(HARDWARE).build();
 
         
