@@ -9,17 +9,17 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.controller</groupId>
     <artifactId>karaf-parent</artifactId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.5.0-Lithium</version>
     <relativePath/>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-karaf</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0-Lithium</version>
   <name>${project.artifactId}</name>
   <properties>
-    <mininet.version>0.1.0-SNAPSHOT</mininet.version>
-    <ofplugin.version>0.1.0-SNAPSHOT</ofplugin.version>
+    <mininet.version>0.1.0-Lithium</mininet.version>
+    <ofplugin.version>0.1.0-Lithium</ofplugin.version>
   </properties>
   <dependencyManagement>
     <dependencies>
