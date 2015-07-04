@@ -176,7 +176,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
         
         // 2) check for sysOID match
         String ipStr = null;
-        if(flowCapableNode != null) {
+        if(flowCapableNode == null) {
             IpAddress ip = flowCapableNode.getIpAddress();
             ipStr = ip.getIpv4Address().getValue();
         } else {
