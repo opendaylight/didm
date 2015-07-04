@@ -139,7 +139,17 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
         }
     }
     
-    private void checkOFMatch(final InstanceIdentifier<Node> path, Node node, FlowCapableNode flowCapableNode, List<DeviceTypeInfo> dtiInfoList ){
+    /**
+     * This Private method identifies the correct device type for the FlowCapable
+     * node and augment the device type to inventory node using the information 
+     * available in the FlowCapable node. 
+     * @param path
+     * @param node
+     * @param flowCapableNode
+     * @param dtiInfoList
+     * @return boolean, True if a device type match found for the FlowCapable node otherwise return false.
+     */
+    private boolean checkOFMatch(final InstanceIdentifier<Node> path, Node node, FlowCapableNode flowCapableNode, List<DeviceTypeInfo> dtiInfoList ){
     	 if (flowCapableNode != null) {
              String hardware = flowCapableNode.getHardware();
              String manufacturer = flowCapableNode.getManufacturer();
@@ -156,12 +166,12 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                      List<String> hardwareValues = dti.getOpenflowHardware();
                      if(hardwareValues != null && hardwareValues.contains(hardware)) {
                              setDeviceType(dti.getDeviceType(), path);
-                             return;
+                             return true;
                      }
                  }
              }
          }
-
+    	 return false;
     }
 
     private void identifyDevice(final InstanceIdentifier<Node> path, Node node) {
@@ -172,7 +182,12 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
 
         // 1) check for OF match
         FlowCapableNode flowCapableNode = node.getAugmentation(FlowCapableNode.class);
-        checkOFMatch(path,node,flowCapableNode,dtiInfoList);
+        
+        if (checkOFMatch(path,node,flowCapableNode,dtiInfoList)) {
+        	// Device type is found for the FlowCapableNode and 
+        	// device type is augmented to the inventory node.
+        	return;
+        }
         
         // 2) check for sysOID match
         String ipStr = null;
