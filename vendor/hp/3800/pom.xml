@@ -12,18 +12,18 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <parent>
     <groupId>org.opendaylight.controller</groupId>
     <artifactId>config-parent</artifactId>
-    <version>0.3.1-SNAPSHOT</version>
+    <version>0.3.1-Lithium-SR1</version>
     <relativePath/>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm.hp3800</groupId>
   <artifactId>hp-3800-impl</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.1-Lithium-SR1</version>
   <packaging>bundle</packaging>
 
   <properties>
-    <didm.version>0.1.1-SNAPSHOT</didm.version>
+    <didm.version>0.1.1-Lithium-SR1</didm.version>
   </properties>
 
   <dependencies>
