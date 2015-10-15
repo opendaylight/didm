@@ -14,7 +14,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   </parent>
 
   <groupId>org.opendaylight.didm.hp</groupId>
-  <artifactId>hp-features</artifactId>
+  <artifactId>features-hp</artifactId>
   <version>0.2.0-SNAPSHOT</version>
   <name>${project.artifactId}</name>
   <modelVersion>4.0.0</modelVersion>
