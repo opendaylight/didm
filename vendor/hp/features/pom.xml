@@ -52,5 +52,14 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <artifactId>hp-3800-impl</artifactId>
       <version>${project.version}</version>
     </dependency>
+    
+    <dependency>
+      <groupId>org.opendaylight.didm.hp3800</groupId>
+      <artifactId>hp-3800-impl</artifactId>
+      <version>${project.version}</version>
+      <classifier>config</classifier>
+      <type>xml</type>
+    </dependency>
+
   </dependencies>
 </project>
