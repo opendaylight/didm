@@ -1,0 +1,61 @@
+/*
+ * (c) Copyright 2015 Hewlett-Packard Development Company, L.P.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ */
+module didm-driver-test {
+
+    yang-version 1; 
+    namespace "urn:opendaylight:didm:drivertest";
+    prefix dt;
+
+    import config { prefix config; revision-date 2013-04-05; }
+    import opendaylight-md-sal-binding { prefix mdsal; revision-date 2013-10-28; }
+
+    revision "2014-11-14" {
+      description
+        "Initial implementation.";
+    }
+
+    identity didm-drivertest {
+            base config:module-type;
+
+            config:java-name-prefix DriverTest;
+    }
+
+    augment "/config:modules/config:module/config:configuration" {
+        case didm-drivertest {
+            when "/config:modules/config:module/config:type = 'didm-drivertest'";
+
+            container data-broker {
+                uses config:service-ref {
+                    refine type {
+                        mandatory false;
+                        config:required-identity mdsal:binding-async-data-broker;
+                    }
+                }
+            }
+
+            container rpc-registry {
+               uses config:service-ref {
+                   refine type {
+                       mandatory true;
+                       config:required-identity mdsal:binding-rpc-registry;
+                   }
+               }
+           }
+        }
+    }
+
+    rpc callDrivers {
+        input {
+            leaf node-id {
+                // NOTE: we could really use a node-ref here, but a string for just the ID is easier for testing
+                type string;
+            }
+        }
+    }
+
+}

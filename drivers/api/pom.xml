@@ -7,51 +7,80 @@ terms of the Eclipse Public License v1.0 which accompanies this distribution,
 and is available at http://www.eclipse.org/legal/epl-v10.html
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <groupId>org.opendaylight.mdsal</groupId>
-    <artifactId>binding-parent</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
-    <relativePath/>
-  </parent>
 
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opendaylight.didm</groupId>
+    <artifactId>didm-parent</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+    <relativePath>../../parent</relativePath>
+  </parent>
+
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-drivers-api</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <properties>
-    <controller.mdsal.version>1.3.0-SNAPSHOT</controller.mdsal.version>
-    <ofplugin.version>0.2.0-SNAPSHOT</ofplugin.version>
-  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.opendaylight.controller.model</groupId>
-      <artifactId>model-inventory</artifactId>
-      <version>${controller.mdsal.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.opendaylight.openflowplugin.model</groupId>
-      <artifactId>model-flow-base</artifactId>
-      <version>${ofplugin.version}</version>
-    </dependency>
-  </dependencies>
-
   <build>
+
     <plugins>
+
+      <!-- for the bundle packaging -->
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <!-- This is required for the RoutingContext attribute to be found when validating the routed RPC registration -->
-            <Import-Package>org.opendaylight.yangtools.yang.binding.annotations, *</Import-Package>
-          </instructions>
-        </configuration>
+
+           <configuration>
+               <instructions>
+                   <Import-Package>*</Import-Package>
+                   <Export-Package>
+                       org.opendaylight.yang.gen.v1.urn.opendaylight.didm.api.openflow.rev151015,
+                       org.opendaylight.yang.gen.v1.urn.opendaylight.didm.api.openflow.rev151015.*,
+                       org.opendaylight.didm.drivers.common
+                   </Export-Package>
+               </instructions>
+           </configuration>
       </plugin>
+
+      <!-- for yang -->
+      <plugin>
+        <groupId>org.opendaylight.yangtools</groupId>
+        <artifactId>yang-maven-plugin</artifactId>
+      </plugin>
+
     </plugins>
   </build>
+
+  <dependencies>
+
+    <!-- for config -->
+    <dependency>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>config-api</artifactId>
+      <version>${config.version}</version>
+    </dependency>
+
+    <!-- for models -->
+    <dependency>
+      <groupId>org.opendaylight.yangtools.model</groupId>
+      <artifactId>ietf-inet-types</artifactId>
+      <version>${ietf-inet-types.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.yangtools.model</groupId>
+      <artifactId>opendaylight-l2-types</artifactId>
+      <version>${opendaylight-l2-types.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.controller.model</groupId>
+      <artifactId>model-inventory</artifactId>
+      <version>${mdsal.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.controller.model</groupId>
+      <artifactId>model-flow-base</artifactId>
+      <version>${mdsal.version}</version>
+    </dependency>
+
+  </dependencies>
 
 </project>

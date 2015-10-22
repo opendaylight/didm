@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+     (c) Copyright 2015 Hewlett-Packard Development Company, L.P.
+
+     This program is made available under the terms of the 
+     Eclipse Public License v1.0 which accompanies this distribution,
+     and is available at http://www.eclipse.org/legal/epl-v10.html
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>odlparent</artifactId>
+    <groupId>org.opendaylight.odlparent</groupId>
+    <version>1.6.0-SNAPSHOT</version>
+    <relativePath></relativePath>
+  </parent>
+
+  <groupId>org.opendaylight.didm</groupId>
+  <artifactId>didm-parent</artifactId>
+  <version>0.2.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <!-- ODL dependencies for Helium Release -->
+    <yangtools.version>0.7.0-SNAPSHOT</yangtools.version>
+    <ietf-inet-types.version>2010.09.24.7-SNAPSHOT</ietf-inet-types.version>
+    <opendaylight-l2-types.version>2013.08.27.7-SNAPSHOT</opendaylight-l2-types.version>
+    <controller.version>1.5.0-SNAPSHOT</controller.version>
+    <mdsal.version>1.2.0-SNAPSHOT</mdsal.version>
+    <config.version>0.3.0-SNAPSHOT</config.version>
+    <openflowplugin.version>0.1.0-SNAPSHOT</openflowplugin.version>
+    <openflowjava.version>0.7.0-SNAPSHOT</openflowjava.version>
+
+    <!-- ODL dependencies for Helium Release -->
+<!--
+    <yangtools.version>0.6.2-Helium</yangtools.version>
+    <ietf-inet-types.version>2010.09.24.4-Helium</ietf-inet-types.version>
+    <opendaylight-l2-types.version>2013.08.27.4-Helium</opendaylight-l2-types.version>
+    <controller.version>1.4.2-Helium</controller.version>
+    <mdsal.version>1.1-Helium</mdsal.version>
+    <config.version>0.2.5-Helium</config.version>
+-->
+
+    <!-- ODL dependencies for Helium Release SR1 -->
+<!--
+    <ietf-inet-types.version>2010.09.24.4.1-Helium-SR1</ietf-inet-types.version>
+    <opendaylight-l2-types.version>2013.08.27.4.1-Helium-SR1</opendaylight-l2-types.version>
+    <yangtools.version>0.6.3-Helium-SR1</yangtools.version>
+    <controller.version>1.4.3-Helium-SR1</controller.version>
+    <mdsal.version>1.1.1-Helium-SR1</mdsal.version>
+    <config.version>0.2.6-Helium-SR1</config.version>
+-->
+
+    <!-- paths -->
+    <jmxGeneratorPath>target/generated-sources/config</jmxGeneratorPath>
+    <salGeneratorPath>target/generated-sources/sal</salGeneratorPath>
+
+    <!-- config xml file names -->
+    <didm.identification.configfile>didm-identification.xml</didm.identification.configfile>
+    <didm.drivertest.configfile>didm-drivertest.xml</didm.drivertest.configfile>
+    <didm.flowmod-test.configfile>flowmod-test.xml</didm.flowmod-test.configfile>
+
+    <!-- SNMP Plugin project -->
+    <snmp.version>1.0-SNAPSHOT</snmp.version>
+
+    <apache.servicemix.guava.version>10_1</apache.servicemix.guava.version>
+    <google.guava.version>15.0</google.guava.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+  
+      <!-- for yang --> 
+      <dependency>
+        <groupId>org.opendaylight.yangtools</groupId>
+        <artifactId>yang-binding</artifactId>
+        <version>${yangtools.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>sal-common-util</artifactId>
+        <version>${mdsal.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opendaylight.yangtools</groupId>
+        <artifactId>yang-common</artifactId>
+        <version>${yangtools.version}</version>
+      </dependency>
+  
+      <!-- for config -->
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>config-api</artifactId>
+        <version>${config.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>sal-binding-config</artifactId>
+        <version>${mdsal.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>sal-binding-api</artifactId>
+        <version>${mdsal.version}</version>
+      </dependency>
+
+      <!-- for models -->
+      <dependency>
+        <groupId>org.opendaylight.controller.model</groupId>
+        <artifactId>model-inventory</artifactId>
+        <version>${mdsal.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.opendaylight.controller.model</groupId>
+        <artifactId>model-flow-service</artifactId>
+        <version>${mdsal.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>${maven.bundle.version}</version>
+          <extensions>true</extensions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>${jmxGeneratorPath}</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+              </fileset>
+              <fileset>
+                <directory>${salGeneratorPath}</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+              </fileset>
+            </filesets>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compile.plugin.version}</version>
+          <configuration>
+            <source>${java.version.source}</source>
+            <target>${java.version.target}</target>
+            <testSource>${java.version.source}</testSource>
+            <testTarget>${java.version.target}</testTarget>
+          </configuration>
+        </plugin>
+
+        <!-- for yang -->
+        <plugin>
+          <groupId>org.opendaylight.yangtools</groupId>
+          <artifactId>yang-maven-plugin</artifactId>
+          <version>${yangtools.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate-sources</goal>
+              </goals>
+              <configuration>
+                <yangFilesRootDir>src/main/yang</yangFilesRootDir>
+                <codeGenerators>
+                  <generator>
+                    <codeGeneratorClass>org.opendaylight.controller.config.yangjmxgenerator.plugin.JMXGenerator</codeGeneratorClass>
+                    <outputBaseDir>${jmxGeneratorPath}</outputBaseDir>
+                    <additionalConfiguration>
+                        <namespaceToPackage1>urn:opendaylight:params:xml:ns:yang:controller==org.opendaylight.controller.config.yang</namespaceToPackage1>
+                    </additionalConfiguration>
+                  </generator>
+                  <generator>
+                    <codeGeneratorClass>org.opendaylight.yangtools.maven.sal.api.gen.plugin.CodeGeneratorImpl</codeGeneratorClass>
+                    <outputBaseDir>${salGeneratorPath}</outputBaseDir>
+                  </generator>
+                </codeGenerators>
+                <inspectDependencies>true</inspectDependencies>
+              </configuration>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+               <groupId>org.opendaylight.controller</groupId>
+               <artifactId>yang-jmx-generator-plugin</artifactId>
+               <version>${config.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.yangtools</groupId>
+              <artifactId>maven-sal-api-gen-plugin</artifactId>
+              <version>${yangtools.version}</version>
+              <type>jar</type>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

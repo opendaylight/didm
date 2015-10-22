@@ -1,0 +1,79 @@
+/*
+ * (c) Copyright 2015 Hewlett-Packard Development Company, L.P.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ */
+module flowmod-test {
+
+    yang-version 1;
+    namespace "urn:opendaylight:didm:flowmodtest";
+    prefix "fmt";
+
+    import config { prefix config; revision-date 2013-04-05; }
+    import opendaylight-md-sal-binding { prefix mdsal; revision-date 2013-10-28; }
+
+    organization "Hewlett-Packard";
+
+    contact
+      "Steve Dean <sdean@hp.com>";
+
+    description
+        "This module contains the base YANG definitions for
+        flowmod-test implementation.";
+
+    revision "2014-08-14" {
+        description 
+          "Initial revision.";
+    }
+
+    // This is the definition of the service implementation as a module identity.
+    identity flowmod-test-id {
+            base config:module-type;
+            
+            // Specifies the prefix for generated java classes.
+            config:java-name-prefix FMT;
+    }
+    
+
+    // Augments the 'configuration' choice node under modules/module.
+    // We consume the three main services, RPCs, DataStore, and Notifications
+    augment "/config:modules/config:module/config:configuration" {
+        case flowmod-test-id {
+            when "/config:modules/config:module/config:type = 'flowmod-test-id'";
+
+            container rpc-registry {
+                uses config:service-ref {
+                    refine type {
+                        mandatory true;
+                        config:required-identity mdsal:binding-rpc-registry;
+                    }
+                }
+            }
+
+            container data-broker {
+                uses config:service-ref {
+                    refine type {
+                        mandatory false;
+                        config:required-identity mdsal:binding-async-data-broker;
+                    }
+                }
+            }
+        }
+    }
+    
+    rpc pushFlow {
+        input {
+            leaf node-id {
+                // NOTE: we could really use a node-ref here, but a string for just the ID is easier for testing
+                type string;
+            }
+            
+            leaf table-id {
+                // NOTE: we could really use a node-ref here, but a string for just the ID is easier for testing
+                type uint16;
+            }
+        }
+    }
+}

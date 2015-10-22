@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     (c) Copyright 2015 Hewlett-Packard Development Company, L.P.
+
+     This program is made available under the terms of the
+     Eclipse Public License v1.0 which accompanies this distribution,
+     and is available at http://www.eclipse.org/legal/epl-v10.html
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.opendaylight.didm</groupId>
+        <artifactId>didm-parent</artifactId>
+        <version>0.2.0-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
+    </parent>
+
+    <groupId>org.opendaylight.didm</groupId>
+    <artifactId>didm-flowmod-test</artifactId>
+    <packaging>bundle</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${bundle.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>
+                            org.opendaylight.didm.fmt,
+                        </Export-Package>
+                        <Import-Package>*</Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.opendaylight.yangtools</groupId>
+                <artifactId>yang-maven-plugin</artifactId>
+                <version>${yangtools.version}</version>
+                <executions>
+                    <execution>
+                        <id>config</id>
+                        <goals>
+                            <goal>generate-sources</goal>
+                        </goals>
+                        <configuration>
+                            <codeGenerators>
+                                <generator>
+                                    <codeGeneratorClass>org.opendaylight.controller.config.yangjmxgenerator.plugin.JMXGenerator</codeGeneratorClass>
+                                    <outputBaseDir>${jmxGeneratorPath}</outputBaseDir>
+                                    <additionalConfiguration>
+                                        <namespaceToPackage1>urn:opendaylight:params:xml:ns:yang:controller==org.opendaylight.controller.config.yang</namespaceToPackage1>
+                                    </additionalConfiguration>
+                                </generator>
+                                <generator>
+                                    <codeGeneratorClass>org.opendaylight.yangtools.maven.sal.api.gen.plugin.CodeGeneratorImpl</codeGeneratorClass>
+                                    <outputBaseDir>${salGeneratorPath}</outputBaseDir>
+                                </generator>
+                            </codeGenerators>
+                            <inspectDependencies>true</inspectDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.opendaylight.yangtools</groupId>
+                        <artifactId>maven-sal-api-gen-plugin</artifactId>
+                        <version>${yangtools.version}</version>
+                        <type>jar</type>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.opendaylight.controller</groupId>
+                        <artifactId>yang-jmx-generator-plugin</artifactId>
+                        <version>${config.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- put config file in m2 repository -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/classes/initial/${didm.flowmod-test.configfile}</file>
+                                    <type>xml</type>
+                                    <classifier>config</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+<!--
+         <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>5.0.0</version>
+-->
+            <!--
+            Using the variable did not work.  It created a direcltry in my repo
+            called ${osgi.core.version}.  It did not replace the variable.  I think
+            this has something to do with the dependency manager and using the
+            dependency manager to inject a reference to ddm into p1-dd.
+
+            <version>${osgi.core.version}</version>
+            -->
+<!--
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+-->
+            <!--
+            Using the variable did not work.  It created a direcltry in my repo
+            called ${osgi.core.version}.  It did not replace the variable.  I think
+            this has something to do with the dependency manager and using the
+            dependency manager to inject a reference to ddm into p1-dd.
+
+            <version>${osgi.compendium.version}</version>
+            -->
+<!--
+            <version>5.0.0</version>
+        </dependency>
+-->
+
+
+<!--
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.dependencymanager</artifactId>
+-->
+            <!--
+            Using the variable did not work.  It created a direcltry in my repo
+            called ${osgi.core.version}.  It did not replace the variable.  I think
+            this has something to do with the dependency manager and using the
+            dependency manager to inject a reference to ddm into p1-dd.
+
+            <version>${osgi.dm.version}</version>
+            -->
+<!--
+            <version>3.1.0</version>
+        </dependency>
+-->
+        <dependency>
+           <groupId>org.opendaylight.controller</groupId>
+           <artifactId>config-api</artifactId>
+        </dependency>
+
+        <dependency>
+          <groupId>org.opendaylight.controller</groupId>
+          <artifactId>sal-binding-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.controller</groupId>
+            <artifactId>sal-binding-config</artifactId>
+            <version>${mdsal.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.controller.model</groupId>
+            <artifactId>model-flow-service</artifactId>
+            <version>${mdsal.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-api</artifactId>
+            <version>${openflowplugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.didm</groupId>
+            <artifactId>didm-drivers-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.didm</groupId>
+            <artifactId>didm-tools-utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+<!-- TODO: reomve -->
+        <dependency>
+            <groupId>org.opendaylight.didm</groupId>
+            <artifactId>hp-didm</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+<!--
+        <dependency>
+            <groupId>com.hp.util</groupId>
+            <artifactId>hp-util-device</artifactId>
+            <version>${hp.util.version}</version>
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>org.opendaylight</groupId>
+            <artifactId>util-driver</artifactId>
+            <version>${flare.odl.version}</version>
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>com.hp.util</groupId>
+            <artifactId>hp-util-misc</artifactId>
+            <version>${hp.util.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hp.util</groupId>
+            <artifactId>hp-util-api</artifactId>
+            <version>${hp.util.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hp.util</groupId>
+            <artifactId>hp-util-ip</artifactId>
+            <version>${hp.util.version}</version>
+        </dependency>
+-->
+
+<!--
+        <dependency>
+            <groupId>org.opendaylight.ddf</groupId>
+            <artifactId>ddf-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+-->
+
+
+        <!-- SNMP related dependencies -->
+<!--
+        <dependency>
+            <groupId>com.hp.util</groupId>
+            <artifactId>hp-util-snmp</artifactId>
+            <version>${hp.util.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+-->
+            <!-- <version>2.4.1</version> -->
+<!--
+            <version>2.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hp.util</groupId>
+            <artifactId>hp-util-net</artifactId>
+            <version>${hp.util.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hp.util</groupId>
+            <artifactId>hp-util-security</artifactId>
+            <version>${hp.util.version}</version>
+        </dependency>
+-->
+    </dependencies>
+
+</project>

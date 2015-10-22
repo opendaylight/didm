@@ -9,24 +9,76 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <parent>
-    <groupId>org.opendaylight.controller</groupId>
-    <artifactId>config-parent</artifactId>
-    <version>0.4.0-SNAPSHOT</version>
-    <relativePath/>
+  <modelVersion>4.0.0</modelVersion>
+ <parent>
+    <groupId>org.opendaylight.didm</groupId>
+    <artifactId>didm-mininet-parent</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+    <relativePath>../parent</relativePath>
   </parent>
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.opendaylight.didm.mininet</groupId>
-  <artifactId>mininet-impl</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <groupId>org.opendaylight.didm</groupId>
+  <artifactId>didm-mininet</artifactId>
   <packaging>bundle</packaging>
 
-  <properties>
-    <didm.version>0.2.0-SNAPSHOT</didm.version>
-  </properties>
+  <build>
+
+    <plugins>
+
+      <!-- for the bundle packaging -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+
+      <!-- for yang -->
+      <plugin>
+        <groupId>org.opendaylight.yangtools</groupId>
+        <artifactId>yang-maven-plugin</artifactId>
+      </plugin>
+
+      <!-- for config files -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <artifacts>
+                <!-- duplicate this section to create more config files using a unique classifier -->
+                <artifact>
+                  <file>${project.build.directory}/classes/initial/${didm.mininet.configfile}</file>
+                  <type>xml</type>
+                  <classifier>config</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
 
   <dependencies>
+
+    <!-- for config -->
+    <dependency>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>config-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>sal-binding-config</artifactId>
+    </dependency>
+
+    <!-- for base DIDM API -->
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>didm-identification-api</artifactId>

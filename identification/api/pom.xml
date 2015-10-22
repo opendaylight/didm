@@ -7,29 +7,54 @@ terms of the Eclipse Public License v1.0 which accompanies this distribution,
 and is available at http://www.eclipse.org/legal/epl-v10.html
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <groupId>org.opendaylight.mdsal</groupId>
-    <artifactId>binding-parent</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
-    <relativePath/>
-  </parent>
 
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opendaylight.didm</groupId>
+    <artifactId>didm-parent</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+    <relativePath>../../parent</relativePath>
+  </parent>
+
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-identification-api</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <properties>
-    <controller.mdsal.version>1.3.0-SNAPSHOT</controller.mdsal.version>
-  </properties>
+  <build>
+
+    <plugins>
+
+      <!-- for the bundle packaging -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+
+      <!-- for yang -->
+      <plugin>
+        <groupId>org.opendaylight.yangtools</groupId>
+        <artifactId>yang-maven-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+  </build>
 
   <dependencies>
+
+    <!-- for config -->
+    <dependency>
+      <groupId>org.opendaylight.controller</groupId>
+      <artifactId>config-api</artifactId>
+      <version>${config.version}</version>
+    </dependency>
+
+    <!-- for models -->
     <dependency>
       <groupId>org.opendaylight.controller.model</groupId>
       <artifactId>model-inventory</artifactId>
-      <version>${controller.mdsal.version}</version>
+      <version>${mdsal.version}</version>
     </dependency>
+
   </dependencies>
 
 </project>

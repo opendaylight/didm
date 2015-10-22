@@ -10,27 +10,98 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 <features name="odl-didm-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+  
+  <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.controller/features-mdsal/${mdsal.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.controller/features-flow/${mdsal.version}/xml/features</repository>
 
+  <repository>mvn:org.opendaylight.didm/features-didm-hp/${project.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.didm/features-didm-mininet/${project.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.snmp/features-snmp/${snmp.version}/xml/features</repository>
-  <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${ofplugin.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${openflowplugin.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.openflowjava/features-openflowjava/${openflowjava.version}/xml/features</repository>
 
-  <feature name='odl-didm-identification-api' version='${project.version}' description='OpenDaylight :: didm identification :: api'>
-    <feature version='${ofplugin.version}'>odl-openflowplugin-nsf-model</feature>
+  <!-- utility jar/bundles common to several features -->
+    <feature name='odl-didm-util' version='${project.version}' description='OpenDaylight :: didm-util :: Util '>
+         <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/2.3.2</bundle>
+         <bundle>mvn:com.fasterxml.jackson.core/jackson-core/2.3.2</bundle>
+         <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/2.3.2</bundle>
+         <bundle>wrap:mvn:org.apache.commons/commons-io/1.3.2</bundle>
+         <bundle>mvn:commons-lang/commons-lang/2.5</bundle>
+         <bundle>mvn:commons-codec/commons-codec/1.9</bundle>
+         <bundle>mvn:org.slf4j/slf4j-api/1.7.5</bundle>
+         <bundle>mvn:org.slf4j/slf4j-jdk14/1.7.5</bundle>
+         <bundle>mvn:org.jscience/jscience/4.3.1</bundle>
+         <bundle>mvn:org.yaml/snakeyaml/1.10</bundle>
+         <bundle>wrap:mvn:org.apache.felix/org.apache.felix.scr.annotations/1.9.6</bundle>
+         <bundle>mvn:commons-configuration/commons-configuration/1.10</bundle>
+         <bundle>mvn:commons-collections/commons-collections/3.2.1</bundle>
+         <bundle>wrap:mvn:commons-logging/commons-logging/1.1.1</bundle>
+         <bundle>wrap:mvn:commons-digester/commons-digester/1.8</bundle>
+         <bundle>wrap:mvn:commons-beanutils/commons-beanutils/1.7.0</bundle>
+         <bundle>wrap:mvn:commons-beanutils/commons-beanutils-core/1.8.0</bundle>
+         <bundle>mvn:com.google.protobuf/protobuf-java/2.5.0</bundle>
+         <bundle>mvn:org.apache.commons/commons-compress/1.5</bundle>
+         <bundle>mvn:org.jdom/com.springsource.org.jdom/1.0.0</bundle>
+         <bundle>mvn:org.apache.ant/com.springsource.org.apache.tools.ant/1.8.1</bundle>
+    </feature>
 
-    <bundle>mvn:org.opendaylight.didm/didm-identification-api/${project.version}</bundle>
-  </feature>
-  <feature name='odl-didm-identification' version='${project.version}' description='OpenDaylight :: didm identification'>
-    <feature version='${ofplugin.version}'>odl-openflowplugin-nsf-services</feature>
-    <feature version='${snmp.version}'>odl-snmp-plugin</feature>
-    <feature version='${project.version}'>odl-didm-identification-api</feature>
 
-    <bundle>mvn:org.opendaylight.didm/didm-identification-impl/${project.version}</bundle>
-    <configfile finalname="${config.configfile.directory}/didm-identification.xml">mvn:org.opendaylight.didm/didm-identification-impl/${project.version}/xml/config</configfile>
-  </feature>
-  <feature name='odl-didm-drivers-api' version='${project.version}' description='OpenDaylight :: didm drivers :: api'>
-    <feature version='${ofplugin.version}'>odl-openflowplugin-nsf-model</feature>
+   <!-- the 'all' feature does not include the driver-test -->
+    <feature name='odl-didm-all' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: All'>
+        <feature version='${yangtools.version}'>odl-yangtools-models</feature>
+        <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
+        <feature version='${mdsal.version}'>odl-flow-model</feature>
+        <feature version='${project.version}'>odl-didm-util</feature>
+        <feature version='${project.version}'>odl-didm-identification</feature>
+        <feature version='${project.version}'>odl-didm-drivers</feature>
+        <feature version='${project.version}'>odl-didm-mininet-all</feature>
+        <feature version='${project.version}'>odl-didm-hp-all</feature>
+        <feature version='${snmp.version}'>odl-snmp-plugin</feature>
+        <feature version='${project.version}'>odl-didm-flowmod-test</feature>
+        <feature version='${project.version}'>odl-didm-driver-test</feature>
+    </feature>
 
-    <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
-  </feature>
+
+  <feature name='odl-didm-identification' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: Identification'>
+        <feature version='${project.version}'>odl-didm-util</feature>
+        <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
+        <feature version='${mdsal.version}'>odl-flow-model</feature>
+        <feature version='${snmp.version}'>odl-snmp-plugin</feature>
+
+        <bundle>mvn:org.opendaylight.didm/didm-identification-api/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-identification/${project.version}</bundle>
+
+        <configfile finalname="${config.configfile.directory}/${didm.identification.configfile}">mvn:org.opendaylight.didm/didm-identification/${project.version}/xml/config</configfile>
+    </feature>
+
+    <feature name='odl-didm-drivers' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: Drivers'>
+        <feature version='${mdsal.version}'>odl-flow-model</feature>
+        <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
+    </feature>
+
+    <feature name='odl-didm-flowmod-test' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: FlowmodTest'>
+        <feature version='${yangtools.version}'>odl-yangtools-models</feature>
+        <feature version='${openflowjava.version}'>odl-openflowjava-protocol</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
+        <feature version='${project.version}'>odl-didm-drivers</feature>
+
+        <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-flowmod-test/${project.version}</bundle>
+
+        <configfile finalname="${config.configfile.directory}/${didm.flowmod-test.configfile}">mvn:org.opendaylight.didm/didm-flowmod-test/${project.version}/xml/config</configfile>
+    </feature>
+
+    <feature name='odl-didm-driver-test' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: driver-test'>
+        <feature version='${project.version}'>odl-didm-util</feature>
+        <feature version='${yangtools.version}'>odl-yangtools-models</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
+
+        <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-driver-test/${project.version}</bundle>
+
+        <configfile finalname="${config.configfile.directory}/${didm.drivertest.configfile}">mvn:org.opendaylight.didm/didm-driver-test/${project.version}/xml/config</configfile>
+    </feature>
 
 </features>
