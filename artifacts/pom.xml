@@ -41,4 +41,29 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <properties>
+    <nexusproxy>http://nexus.opendaylight.org/content</nexusproxy>
+    <nexus.repository.release>opendaylight.release</nexus.repository.release>
+    <nexus.repository.snapshot>opendaylight.snapshot</nexus.repository.snapshot>
+    <sitedeploy>dav:http://nexus.opendaylight.org/content/sites/site</sitedeploy>
+  </properties>
+  <distributionManagement>
+    <!-- OpenDayLight Released artifact -->
+    <repository>
+      <id>opendaylight-release</id>
+      <url>${nexusproxy}/repositories/${nexus.repository.release}/</url>
+    </repository>
+    <!-- OpenDayLight Snapshot artifact -->
+    <snapshotRepository>
+      <id>opendaylight-snapshot</id>
+      <url>${nexusproxy}/repositories/${nexus.repository.snapshot}/</url>
+    </snapshotRepository>
+    <!-- Site deployment -->
+    <site>
+      <id>website</id>
+      <url>${sitedeploy}</url>
+    </site>
+  </distributionManagement>
+
 </project>
