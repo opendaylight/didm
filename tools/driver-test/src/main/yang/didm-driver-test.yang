@@ -14,7 +14,7 @@ module didm-driver-test {
     import config { prefix config; revision-date 2013-04-05; }
     import opendaylight-md-sal-binding { prefix mdsal; revision-date 2013-10-28; }
 
-    revision "2014-11-14" {
+    revision "2015-10-15" {
       description
         "Initial implementation.";
     }

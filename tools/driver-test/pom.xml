@@ -89,13 +89,13 @@
       <artifactId>didm-drivers-api</artifactId>
       <version>${project.version}</version>
     </dependency>
-
+<!--
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>didm-tools-utils</artifactId>
       <version>${project.version}</version>
     </dependency>
-
+-->
     <dependency>
       <groupId>org.opendaylight.openflowplugin</groupId>
       <artifactId>openflowplugin-api</artifactId>

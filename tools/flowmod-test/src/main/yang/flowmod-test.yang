@@ -23,7 +23,7 @@ module flowmod-test {
         "This module contains the base YANG definitions for
         flowmod-test implementation.";
 
-    revision "2014-08-14" {
+    revision "2015-10-15" {
         description 
           "Initial revision.";
     }

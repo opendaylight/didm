@@ -198,13 +198,13 @@
             <artifactId>didm-drivers-api</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+<!--
         <dependency>
             <groupId>org.opendaylight.didm</groupId>
             <artifactId>didm-tools-utils</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+-->
 <!-- TODO: reomve -->
         <dependency>
             <groupId>org.opendaylight.didm</groupId>

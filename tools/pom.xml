@@ -21,7 +21,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>utils</module>
+  <!--  <module>utils</module> -->
     <module>driver-test</module>
     <module>flowmod-test</module>
   </modules>
