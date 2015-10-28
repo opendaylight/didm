@@ -23,10 +23,11 @@
 
   <properties>
     <!-- ODL dependencies for Helium Release -->
-    <yangtools.version>0.8.0-SNAPSHOT</yangtools.version>
+    <yangtools.version>0.7.0-SNAPSHOT</yangtools.version>
+    <ietf-inet-types.version>2010.09.24.8-SNAPSHOT</ietf-inet-types.version>
     <opendaylight-l2-types.version>2013.08.27.7-SNAPSHOT</opendaylight-l2-types.version>
     <controller.version>1.5.0-SNAPSHOT</controller.version>
-    <mdsal.version>2.0.0-SNAPSHOT</mdsal.version>
+    <mdsal.version>1.2.0-SNAPSHOT</mdsal.version>
     <config.version>0.3.0-SNAPSHOT</config.version>
     <openflowplugin.version>0.2.0-SNAPSHOT</openflowplugin.version>
     <openflowjava.version>0.7.0-SNAPSHOT</openflowjava.version>
@@ -109,6 +110,90 @@
   <build>
     <pluginManagement>
       <plugins>
+           <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>${maven.bundle.version}</version>
+          <extensions>true</extensions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <configuration>
+            <filesets>
+              <fileset>
+                <directory>${jmxGeneratorPath}</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+              </fileset>
+              <fileset>
+                <directory>${salGeneratorPath}</directory>
+                <includes>
+                  <include>**</include>
+                </includes>
+              </fileset>
+            </filesets>
+          </configuration>
+        </plugin>
+
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compile.plugin.version}</version>
+          <configuration>
+            <source>${java.version.source}</source>
+            <target>${java.version.target}</target>
+            <testSource>${java.version.source}</testSource>
+            <testTarget>${java.version.target}</testTarget>
+          </configuration>
+        </plugin>
+
+        <!-- for yang -->
+        <plugin>
+          <groupId>org.opendaylight.yangtools</groupId>
+          <artifactId>yang-maven-plugin</artifactId>
+          <version>${yangtools.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate-sources</goal>
+              </goals>
+              <configuration>
+                <yangFilesRootDir>src/main/yang</yangFilesRootDir>
+                <codeGenerators>
+                  <generator>
+                    <codeGeneratorClass>org.opendaylight.controller.config.yangjmxgenerator.plugin.JMXGenerator</codeGeneratorClass>
+                    <outputBaseDir>${jmxGeneratorPath}</outputBaseDir>
+                    <additionalConfiguration>
+                        <namespaceToPackage1>urn:opendaylight:params:xml:ns:yang:controller==org.opendaylight.controller.config.yang</namespaceToPackage1>
+                    </additionalConfiguration>
+                  </generator>
+                  <generator>
+                    <codeGeneratorClass>org.opendaylight.yangtools.maven.sal.api.gen.plugin.CodeGeneratorImpl</codeGeneratorClass>
+                    <outputBaseDir>${salGeneratorPath}</outputBaseDir>
+                  </generator>
+                </codeGenerators>
+                <inspectDependencies>true</inspectDependencies>
+              </configuration>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+               <groupId>org.opendaylight.controller</groupId>
+               <artifactId>yang-jmx-generator-plugin</artifactId>
+               <version>${config.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.yangtools</groupId>
+              <artifactId>maven-sal-api-gen-plugin</artifactId>
+              <version>${yangtools.version}</version>
+              <type>jar</type>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -132,37 +217,6 @@
                         <phase>test</phase>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <configuration>
-                    <!-- checkstyle is evil -->
-                    <skip>false</skip>
-                    <failOnViolation>false</failOnViolation>
-                    <configLocation>checkstyle-logging.xml</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                    <sourceDirectory>${project.basedir}</sourceDirectory>
-                    <includes>**\/*.java,**\/*.xml,**\/*.ini,**\/*.sh,**\/*.bat,**\/*.yang</includes>
-                    <excludes>**\/target\/,**\/bin\/,**\/target-ide\/,**\/src/main/yang-gen-config\/,**\/src/main/yang-gen-sal\/</excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.opendaylight.yangtools</groupId>
-                        <artifactId>checkstyle-logging</artifactId>
-                        <version>${yangtools.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
          </plugins>
       </pluginManagement>

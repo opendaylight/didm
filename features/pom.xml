@@ -22,7 +22,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <properties>
     <features.file>features.xml</features.file>
     <branding.version>1.0.0-SNAPSHOT</branding.version>
-    <karaf.resources.version>1.4.2-SNAPSHOT</karaf.resources.version>
+    <karaf.empty.version>1.6.0-SNAPSHOT</karaf.empty.version>
+    <karaf.resources.version>1.6.0-SNAPSHOT</karaf.resources.version>
     <karaf.version>3.0.1</karaf.version>
     <feature.test.version>${yangtools.version}</feature.test.version>
     <karaf.empty.version>${controller.version}</karaf.empty.version>
