@@ -8,6 +8,13 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+  <parent>
+    <groupId>org.opendaylight.didm</groupId>
+    <artifactId>didm-parent</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+    <relativePath>parent</relativePath>
+  </parent>
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-aggregator</artifactId>
@@ -21,5 +28,14 @@
     <module>drivers</module>
     <module>vendor/mininet</module> 
     <module>vendor/hp</module>
+    <module>tools</module>
   </modules>
+
+  <scm>
+    <connection>scm:git:ssh://git.opendaylight.org:29418/didm.git</connection>
+    <developerConnection>scm:git:ssh://git.opendaylight.org:29418/didm.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://wiki.opendaylight.org/view/DIDM:Main</url>
+  </scm>
+
 </project>
