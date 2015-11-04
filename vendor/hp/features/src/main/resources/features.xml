@@ -17,12 +17,12 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <feature version='${project.version}'>odl-didm-hp-impl</feature>
   </feature>
 
-  <feature name='odl-hp-didm-impl' version='${project.version}' description='OpenDaylight :: DIDM :: HP :: Implementation '>
+  <feature name='odl-didm-hp-impl' version='${project.version}' description='OpenDaylight :: DIDM :: HP :: Implementation '>
     <feature version='${didm.version}'>odl-didm-identification</feature>
     <feature version='${didm.version}'>odl-didm-drivers-api</feature>
 
     <bundle>mvn:org.opendaylight.didm/didm-hp/${project.version}</bundle>
-    <configfile finalname="${config.configfile.directory}/${hp.didm.configfile}">mvn:org.opendaylight.didm/didm-hp/${project.version}/xml/config</configfile>
+    <configfile finalname="${config.configfile.directory}/${didm.hp.configfile}">mvn:org.opendaylight.didm/didm-hp/${project.version}/xml/config</configfile>
   </feature>
 
 </features>

@@ -23,34 +23,14 @@
 
   <properties>
     <!-- ODL dependencies for Helium Release -->
-    <yangtools.version>0.7.0-SNAPSHOT</yangtools.version>
-    <ietf-inet-types.version>2010.09.24.7-SNAPSHOT</ietf-inet-types.version>
-    <opendaylight-l2-types.version>2013.08.27.7-SNAPSHOT</opendaylight-l2-types.version>
+    <yangtools.version>0.8.0-SNAPSHOT</yangtools.version>
+    <opendaylight-l2-types.version>2013.08.27.1</opendaylight-l2-types.version>
+    <ietf-inet-types.version>2010.09.24.1</ietf-inet-types.version>
     <controller.version>1.5.0-SNAPSHOT</controller.version>
-    <mdsal.version>1.2.0-SNAPSHOT</mdsal.version>
+    <mdsal.version>1.3.0-SNAPSHOT</mdsal.version>
     <config.version>0.3.0-SNAPSHOT</config.version>
-    <openflowplugin.version>0.1.0-SNAPSHOT</openflowplugin.version>
+    <openflowplugin.version>0.2.0-SNAPSHOT</openflowplugin.version>
     <openflowjava.version>0.7.0-SNAPSHOT</openflowjava.version>
-
-    <!-- ODL dependencies for Helium Release -->
-<!--
-    <yangtools.version>0.6.2-Helium</yangtools.version>
-    <ietf-inet-types.version>2010.09.24.4-Helium</ietf-inet-types.version>
-    <opendaylight-l2-types.version>2013.08.27.4-Helium</opendaylight-l2-types.version>
-    <controller.version>1.4.2-Helium</controller.version>
-    <mdsal.version>1.1-Helium</mdsal.version>
-    <config.version>0.2.5-Helium</config.version>
--->
-
-    <!-- ODL dependencies for Helium Release SR1 -->
-<!--
-    <ietf-inet-types.version>2010.09.24.4.1-Helium-SR1</ietf-inet-types.version>
-    <opendaylight-l2-types.version>2013.08.27.4.1-Helium-SR1</opendaylight-l2-types.version>
-    <yangtools.version>0.6.3-Helium-SR1</yangtools.version>
-    <controller.version>1.4.3-Helium-SR1</controller.version>
-    <mdsal.version>1.1.1-Helium-SR1</mdsal.version>
-    <config.version>0.2.6-Helium-SR1</config.version>
--->
 
     <!-- paths -->
     <jmxGeneratorPath>target/generated-sources/config</jmxGeneratorPath>
@@ -74,6 +54,15 @@
       <!-- for yang --> 
       <dependency>
         <groupId>org.opendaylight.yangtools</groupId>
+        <artifactId>features-yangtools</artifactId>
+        <version>${yangtools.version}</version>
+        <classifier>features</classifier>
+        <type>xml</type>
+      </dependency>
+
+
+      <dependency>
+        <groupId>org.opendaylight.yangtools</groupId>
         <artifactId>yang-binding</artifactId>
         <version>${yangtools.version}</version>
       </dependency>
@@ -89,6 +78,15 @@
         <artifactId>yang-common</artifactId>
         <version>${yangtools.version}</version>
       </dependency>
+      
+      <dependency>
+          <groupId>org.opendaylight.yangtools</groupId>
+          <artifactId>yangtools-artifacts</artifactId>
+          <version>${yangtools.version}</version>
+          <type>pom</type>
+          <scope>import</scope>
+      </dependency>
+
   
       <!-- for config -->
       <dependency>
@@ -117,10 +115,11 @@
       </dependency>
 
       <dependency>
-        <groupId>org.opendaylight.controller.model</groupId>
+        <groupId>org.opendaylight.openflowplugin.model</groupId>
         <artifactId>model-flow-service</artifactId>
-        <version>${mdsal.version}</version>
+        <version>${openflowplugin.version}</version>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 
@@ -200,12 +199,29 @@
                <version>${config.version}</version>
             </dependency>
             <dependency>
-              <groupId>org.opendaylight.yangtools</groupId>
+              <groupId>org.opendaylight.mdsal</groupId>
               <artifactId>maven-sal-api-gen-plugin</artifactId>
               <version>${yangtools.version}</version>
               <type>jar</type>
             </dependency>
           </dependencies>
+        </plugin>
+        <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/sal</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
         </plugin>
       </plugins>
     </pluginManagement>

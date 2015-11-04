@@ -47,7 +47,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
-<!--
+
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>features-didm</artifactId>
@@ -55,7 +55,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
--->
+
    <!-- bundles -->
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
@@ -119,7 +119,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
           </execution>
         </executions>
       </plugin>
-<!--
       <plugin>
          <groupId>org.codehaus.mojo</groupId>
          <artifactId>build-helper-maven-plugin</artifactId>
@@ -143,7 +142,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
            </execution>
          </executions>
       </plugin>
--->
       <plugin>
          <groupId>org.apache.maven.plugins</groupId>
          <artifactId>maven-surefire-plugin</artifactId>

@@ -11,17 +11,14 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
   
-  <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.controller/features-mdsal/${mdsal.version}/xml/features</repository>
-  <repository>mvn:org.opendaylight.controller/features-flow/${mdsal.version}/xml/features</repository>
-
   <repository>mvn:org.opendaylight.didm/features-didm-hp/${project.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.didm/features-didm-mininet/${project.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.snmp/features-snmp/${snmp.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${openflowplugin.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.openflowjava/features-openflowjava/${openflowjava.version}/xml/features</repository>
 
-  <!-- utility jar/bundles common to several features -->
+  <!-- utility jar/bundles common to several features 
     <feature name='odl-didm-util' version='${project.version}' description='OpenDaylight :: didm-util :: Util '>
          <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/2.3.2</bundle>
          <bundle>mvn:com.fasterxml.jackson.core/jackson-core/2.3.2</bundle>
@@ -45,28 +42,25 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
          <bundle>mvn:org.jdom/com.springsource.org.jdom/1.0.0</bundle>
          <bundle>mvn:org.apache.ant/com.springsource.org.apache.tools.ant/1.8.1</bundle>
     </feature>
-
+-->
 
    <!-- the 'all' feature does not include the driver-test -->
     <feature name='odl-didm-all' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: All'>
-        <feature version='${yangtools.version}'>odl-yangtools-models</feature>
         <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
-        <feature version='${mdsal.version}'>odl-flow-model</feature>
-        <feature version='${project.version}'>odl-didm-util</feature>
+        <!--<feature version='${project.version}'>odl-didm-util</feature>-->
         <feature version='${project.version}'>odl-didm-identification</feature>
         <feature version='${project.version}'>odl-didm-drivers</feature>
         <feature version='${project.version}'>odl-didm-mininet-all</feature>
         <feature version='${project.version}'>odl-didm-hp-all</feature>
         <feature version='${snmp.version}'>odl-snmp-plugin</feature>
-        <feature version='${project.version}'>odl-didm-flowmod-test</feature>
-        <feature version='${project.version}'>odl-didm-driver-test</feature>
+        <!--<feature version='${project.version}'>odl-didm-flowmod-test</feature>
+        <feature version='${project.version}'>odl-didm-driver-test</feature>-->
     </feature>
 
 
   <feature name='odl-didm-identification' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: Identification'>
-        <feature version='${project.version}'>odl-didm-util</feature>
+<!--        <feature version='${project.version}'>odl-didm-util</feature> -->
         <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
-        <feature version='${mdsal.version}'>odl-flow-model</feature>
         <feature version='${snmp.version}'>odl-snmp-plugin</feature>
 
         <bundle>mvn:org.opendaylight.didm/didm-identification-api/${project.version}</bundle>
@@ -76,32 +70,29 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     </feature>
 
     <feature name='odl-didm-drivers' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: Drivers'>
-        <feature version='${mdsal.version}'>odl-flow-model</feature>
         <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
     </feature>
-
+<!--
     <feature name='odl-didm-flowmod-test' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: FlowmodTest'>
-        <feature version='${yangtools.version}'>odl-yangtools-models</feature>
         <feature version='${openflowjava.version}'>odl-openflowjava-protocol</feature>
         <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
         <feature version='${project.version}'>odl-didm-drivers</feature>
 
-        <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>  
         <bundle>mvn:org.opendaylight.didm/didm-flowmod-test/${project.version}</bundle>
 
         <configfile finalname="${config.configfile.directory}/${didm.flowmod-test.configfile}">mvn:org.opendaylight.didm/didm-flowmod-test/${project.version}/xml/config</configfile>
     </feature>
 
     <feature name='odl-didm-driver-test' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: driver-test'>
-        <feature version='${project.version}'>odl-didm-util</feature>
-        <feature version='${yangtools.version}'>odl-yangtools-models</feature>
+        <feature version='${project.version}'>odl-didm-util</feature> 
         <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
 
-        <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle> 
         <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-driver-test/${project.version}</bundle>
 
         <configfile finalname="${config.configfile.directory}/${didm.drivertest.configfile}">mvn:org.opendaylight.didm/didm-driver-test/${project.version}/xml/config</configfile>
     </feature>
-
+-->
 </features>

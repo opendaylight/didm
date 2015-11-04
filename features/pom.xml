@@ -18,6 +18,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>features-didm</artifactId>
   <packaging>jar</packaging>
+  <version>0.2.0-SNAPSHOT</version>
 
   <properties>
     <features.file>features.xml</features.file>
@@ -73,7 +74,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
           </execution>
         </executions>
       </plugin>
-<!--
       <plugin>
          <groupId>org.codehaus.mojo</groupId>
          <artifactId>build-helper-maven-plugin</artifactId>
@@ -97,7 +97,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
            </execution>
          </executions>
       </plugin>
--->
       <plugin>
          <groupId>org.apache.maven.plugins</groupId>
          <artifactId>maven-surefire-plugin</artifactId>
