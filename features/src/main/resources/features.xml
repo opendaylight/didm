@@ -70,6 +70,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     </feature>
 
     <feature name='odl-didm-drivers' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: Drivers'>
+        <bundle>wrap:mvn:com.google.guava/guava/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
     </feature>
 <!--

@@ -29,10 +29,11 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <karaf.empty.version>${controller.version}</karaf.empty.version>
     <surefire.version>2.16</surefire.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
+    <guava.version>18.0</guava.version>
   </properties>
 
   <dependencies>
-    <!-- test to validate features.xml -->
+    <!-- Internal ODL Dependencies -->
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>features-test</artifactId>
@@ -49,6 +50,13 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <type>zip</type>
     </dependency>
 -->
+
+    <!-- External Dependencies -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
