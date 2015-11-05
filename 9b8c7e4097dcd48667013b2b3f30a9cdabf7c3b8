@@ -22,6 +22,30 @@
       "revId": "9b8c7e4097dcd48667013b2b3f30a9cdabf7c3b8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bada0100_fc76eed7",
+        "filename": "features/src/main/resources/features.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 3635
+      },
+      "writtenOn": "2015-11-05T22:13:39Z",
+      "side": 1,
+      "message": "This does work... I tested it locally.  What version of maven are you using?",
+      "parentUuid": "bada0100_7c63de1a",
+      "range": {
+        "startLine": 73,
+        "startChar": 57,
+        "endLine": 73,
+        "endChar": 61
+      },
+      "revId": "9b8c7e4097dcd48667013b2b3f30a9cdabf7c3b8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
