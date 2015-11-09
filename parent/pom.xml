@@ -28,7 +28,7 @@
     <ietf-inet-types.version>2010.09.24.1</ietf-inet-types.version>
     <controller.version>1.5.0-SNAPSHOT</controller.version>
     <mdsal.version>1.3.0-SNAPSHOT</mdsal.version>
-    <config.version>0.3.0-SNAPSHOT</config.version>
+    <config.version>0.4.0-SNAPSHOT</config.version>
     <openflowplugin.version>0.2.0-SNAPSHOT</openflowplugin.version>
     <openflowjava.version>0.7.0-SNAPSHOT</openflowjava.version>
 
