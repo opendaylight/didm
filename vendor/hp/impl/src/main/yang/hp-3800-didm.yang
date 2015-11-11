@@ -21,15 +21,15 @@ module hp-3800 {
         base id:device-type-base;
     }
 
-    identity hp-3800 {
+    identity hp-3800-provider {
             base config:module-type;
 
             config:java-name-prefix HP3800;
     }
 
     augment "/config:modules/config:module/config:configuration" {
-        case hp-3800 {
-            when "/config:modules/config:module/config:type = 'hp-3800'";
+        case hp-3800-provider {
+            when "/config:modules/config:module/config:type = 'hp-3800-provider'";
 
            container data-broker {
                 uses config:service-ref {

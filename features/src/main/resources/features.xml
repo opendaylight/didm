@@ -12,8 +12,9 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
   
   <repository>mvn:org.opendaylight.controller/features-mdsal/${mdsal.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.didm/features-didm-hp/${project.version}/xml/features</repository>
-  <repository>mvn:org.opendaylight.didm/features-didm-mininet/${project.version}/xml/features</repository>
+  <!--<repository>mvn:org.opendaylight.didm/features-didm-mininet/${project.version}/xml/features</repository>-->
   <repository>mvn:org.opendaylight.snmp/features-snmp/${snmp.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${openflowplugin.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.openflowjava/features-openflowjava/${openflowjava.version}/xml/features</repository>
@@ -50,8 +51,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
         <!--<feature version='${project.version}'>odl-didm-util</feature>-->
         <feature version='${project.version}'>odl-didm-identification</feature>
         <feature version='${project.version}'>odl-didm-drivers</feature>
-        <feature version='${project.version}'>odl-didm-mininet-all</feature>
-        <feature version='${project.version}'>odl-didm-hp-all</feature>
+        <!--<feature version='${project.version}'>odl-didm-mininet-all</feature>-->
+        <feature version='${project.version}'>odl-didm-hp-all</feature> 
         <feature version='${snmp.version}'>odl-snmp-plugin</feature>
         <!--<feature version='${project.version}'>odl-didm-flowmod-test</feature>
         <feature version='${project.version}'>odl-didm-driver-test</feature>-->
@@ -59,9 +60,10 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 
 
   <feature name='odl-didm-identification' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: Identification'>
-<!--        <feature version='${project.version}'>odl-didm-util</feature> -->
+<!--        <feature version='${project.version}'>odl-didm-util</feature> --> 
+        <feature version='${snmp.version}'>odl-snmp-plugin</feature> 
         <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
-        <feature version='${snmp.version}'>odl-snmp-plugin</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
 
         <bundle>mvn:org.opendaylight.didm/didm-identification-api/${project.version}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-identification/${project.version}</bundle>
@@ -70,13 +72,16 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     </feature>
 
     <feature name='odl-didm-drivers' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: Drivers'>
-        <bundle>wrap:mvn:com.google.guava/guava/{{VERSION}}</bundle>
+        
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
+
+        <bundle>wrap:mvn:com.google.guava/guava/${guava.version}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
     </feature>
 <!--
     <feature name='odl-didm-flowmod-test' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: FlowmodTest'>
         <feature version='${openflowjava.version}'>odl-openflowjava-protocol</feature>
-        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
         <feature version='${project.version}'>odl-didm-drivers</feature>
 
         <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>  
@@ -87,7 +92,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 
     <feature name='odl-didm-driver-test' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: driver-test'>
         <feature version='${project.version}'>odl-didm-util</feature> 
-        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
 
         <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle> 
         <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>

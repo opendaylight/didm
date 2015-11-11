@@ -42,10 +42,10 @@
     <didm.flowmod-test.configfile>flowmod-test.xml</didm.flowmod-test.configfile>
 
     <!-- SNMP Plugin project -->
-    <snmp.version>1.0-SNAPSHOT</snmp.version>
+    <snmp.version>1.1.0-SNAPSHOT</snmp.version>
 
     <apache.servicemix.guava.version>10_1</apache.servicemix.guava.version>
-    <google.guava.version>15.0</google.guava.version>
+    <guava.version>18.0</guava.version>
   </properties>
 
   <dependencyManagement>
@@ -53,58 +53,47 @@
   
       <!-- for yang --> 
       <dependency>
-        <groupId>org.opendaylight.yangtools</groupId>
-        <artifactId>features-yangtools</artifactId>
-        <version>${yangtools.version}</version>
-        <classifier>features</classifier>
-        <type>xml</type>
-      </dependency>
-
-
-      <dependency>
-        <groupId>org.opendaylight.yangtools</groupId>
-        <artifactId>yang-binding</artifactId>
-        <version>${yangtools.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.opendaylight.controller</groupId>
-        <artifactId>sal-common-util</artifactId>
-        <version>${mdsal.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.opendaylight.yangtools</groupId>
-        <artifactId>yang-common</artifactId>
-        <version>${yangtools.version}</version>
-      </dependency>
-      
-      <dependency>
           <groupId>org.opendaylight.yangtools</groupId>
           <artifactId>yangtools-artifacts</artifactId>
           <version>${yangtools.version}</version>
           <type>pom</type>
           <scope>import</scope>
       </dependency>
-
-  
-      <!-- for config -->
+      <dependency>
+        <groupId>org.opendaylight.mdsal</groupId>
+        <artifactId>mdsal-artifacts</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.mdsal.model</groupId>
+        <artifactId>mdsal-model-artifacts</artifactId>
+        <version>0.8.0-SNAPSHOT</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
       <dependency>
         <groupId>org.opendaylight.controller</groupId>
-        <artifactId>config-api</artifactId>
+        <artifactId>config-artifacts</artifactId>
         <version>${config.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.opendaylight.openflowplugin</groupId>
+        <artifactId>openflowplugin-artifacts</artifactId>
+        <version>${openflowplugin.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
       </dependency>
 
       <dependency>
-        <groupId>org.opendaylight.controller</groupId>
-        <artifactId>sal-binding-config</artifactId>
-        <version>${mdsal.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.opendaylight.controller</groupId>
-        <artifactId>sal-binding-api</artifactId>
-        <version>${mdsal.version}</version>
+        <groupId>org.opendaylight.yangtools</groupId>
+        <artifactId>features-yangtools</artifactId>
+        <version>${yangtools.version}</version>
+        <classifier>features</classifier>
+        <type>xml</type>
       </dependency>
 
       <!-- for models -->
@@ -120,6 +109,7 @@
         <version>${openflowplugin.version}</version>
       </dependency>
 
+      
     </dependencies>
   </dependencyManagement>
 
