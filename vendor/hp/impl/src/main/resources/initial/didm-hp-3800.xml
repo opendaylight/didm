@@ -8,15 +8,15 @@
 -->
 <snapshot>
     <required-capabilities>
-        <capability>urn:opendaylight:didm:hp3800?module=didm-hp-3800&amp;revision=2015-10-15</capability>
+        <capability>urn:opendaylight:params:xml:ns:yang:didm:hp?module=hp-3800&amp;revision=2015-02-18</capability>
     </required-capabilities>
     <configuration>
 
         <data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <modules xmlns="urn:opendaylight:params:xml:ns:yang:controller:config">
                 <module>
-                    <type xmlns:hp="urn:opendaylight:didm:hp3800">hp:didm-hp-3800-provider</type>
-                    <name>didm-hp-3800-provider</name>
+                    <type xmlns:hp="urn:opendaylight:params:xml:ns:yang:didm:hp">hp:hp-3800-provider</type>
+                    <name>hp-3800-provider</name>
 
                     <rpc-registry>
                         <type xmlns:binding="urn:opendaylight:params:xml:ns:yang:controller:md:sal:binding">binding:binding-rpc-registry</type>

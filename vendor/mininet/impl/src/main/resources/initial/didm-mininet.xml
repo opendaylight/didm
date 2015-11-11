@@ -8,7 +8,7 @@
 -->
 <snapshot>
     <required-capabilities>
-        <capability>urn:opendaylight:didm:mininet?module=didm-mininet&amp;revision=2015-10-15/capability>
+        <capability>urn:opendaylight:didm:mininet?module=didm-mininet&amp;revision=2014-11-14/capability>
     </required-capabilities>
     <configuration>
 

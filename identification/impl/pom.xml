@@ -71,15 +71,12 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       <groupId>org.opendaylight.controller</groupId>
       <artifactId>config-api</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.opendaylight.controller</groupId>
-      <artifactId>sal-binding-config</artifactId>
-    </dependency>
 
     <!-- for models -->
     <dependency>
       <groupId>org.opendaylight.controller.model</groupId>
       <artifactId>model-inventory</artifactId>
+      <version>${mdsal.version}</version>
     </dependency>
 
     <dependency>
@@ -87,6 +84,25 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       <artifactId>model-flow-service</artifactId>
       <version>${openflowplugin.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>
+      <artifactId>model-flow-base</artifactId>
+      <version>${openflowplugin.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>
+      <artifactId>model-flow-statistics</artifactId>
+      <version>${openflowplugin.version}</version>
+    </dependency>
+
+    <dependency>
+       <groupId>org.opendaylight.controller</groupId>
+       <artifactId>sal-binding-api</artifactId>
+       <version>${mdsal.version}</version>
+    </dependency>
+
 
     <dependency>
       <groupId>org.opendaylight.didm</groupId>

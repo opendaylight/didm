@@ -8,14 +8,14 @@
 -->
 <snapshot>
     <required-capabilities>
-        <capability>urn:opendaylight:didm:identification:impl?module=didm-identification-impl&amp;revision=2015-10-15</capability>
+        <capability>urn:opendaylight:params:xml:ns:yang:didm:identification:impl?module=didm-identification-impl&amp;revision=2015-02-02</capability>
     </required-capabilities>
     <configuration>
 
         <data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
             <modules xmlns="urn:opendaylight:params:xml:ns:yang:controller:config">
                 <module>
-                    <type xmlns:id="urn:opendaylight:didm:identification:impl">id:device-identification-manager</type>
+                    <type xmlns:id="urn:opendaylight:params:xml:ns:yang:didm:identification:impl">id:device-identification-manager</type>
                     <name>device-identification-manager</name>
 
                     <data-broker>
@@ -40,7 +40,7 @@
 <!--
             <services xmlns="urn:opendaylight:params:xml:ns:yang:controller:config">
                 <service>
-                    <type xmlns:id="urn:opendaylight:didm:identification:api">
+                    <type xmlns:id="urn:opendaylight:params:xml:ns:yang:didm:identification:api">
                         id:device-identification-provider-registry
                     </type>
                     <instance>

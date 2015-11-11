@@ -19,7 +19,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 
   <feature name='odl-didm-mininet-impl' version='${project.version}' description='OpenDaylight :: DIDM :: mininet :: Implementation '>
     <feature version='${didm.version}'>odl-didm-identification</feature>
-    <feature version='${didm.version}'>odl-didm-drivers-api</feature>
+    <feature version='${didm.version}'>odl-didm-drivers</feature>
 
     <bundle>mvn:org.opendaylight.didm/didm-mininet/${project.version}</bundle>
     <configfile finalname="${config.configfile.directory}/${didm.mininet.configfile}">mvn:org.opendaylight.didm/didm-mininet/${project.version}/xml/config</configfile>

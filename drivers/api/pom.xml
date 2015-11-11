@@ -33,8 +33,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
                <instructions>
                    <Import-Package>*</Import-Package>
                    <Export-Package>
-                       org.opendaylight.yang.gen.v1.urn.opendaylight.didm.api.openflow.rev151015,
-                       org.opendaylight.yang.gen.v1.urn.opendaylight.didm.api.openflow.rev151015.*,
+                       org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211,
+                       org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.*,
                        org.opendaylight.didm.drivers.common
                    </Export-Package>
                </instructions>
@@ -82,6 +82,24 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       <version>${openflowplugin.version}</version>
     </dependency>
     
+    <dependency>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>
+      <artifactId>model-flow-statistics</artifactId>
+      <version>${openflowplugin.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>
+      <artifactId>model-flow-service</artifactId>
+      <version>${openflowplugin.version}</version>
+    </dependency>
+
+    <dependency>
+       <groupId>org.opendaylight.controller</groupId>
+       <artifactId>sal-binding-api</artifactId>
+       <version>${mdsal.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>

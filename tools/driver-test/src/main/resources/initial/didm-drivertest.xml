@@ -33,7 +33,7 @@
     </configuration>
 
     <required-capabilities>
-        <capability>urn:opendaylight:didm:drivertest?module=didm-driver-test&amp;revision=2015-10-15</capability>
+        <capability>urn:opendaylight:didm:drivertest?module=didm-driver-test&amp;revision=2014-11-14</capability>
     </required-capabilities>
 
 </snapshot>
