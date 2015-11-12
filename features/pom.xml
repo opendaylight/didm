@@ -108,6 +108,16 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     </dependency>
 
      
+    <!-- Config Dependencies -->
+    <dependency>
+      <groupId>org.opendaylight.didm</groupId>
+      <artifactId>didm-identification</artifactId>
+      <version>${project.version}</version>
+      <classifier>config</classifier>
+      <type>xml</type>
+    </dependency>
+
+
     <!-- External Dependencies -->
     <dependency>
       <groupId>com.google.guava</groupId>
