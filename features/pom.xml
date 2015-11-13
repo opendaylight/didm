@@ -84,6 +84,21 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
        <type>xml</type>
        <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>didm-identification-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>didm-identification</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>didm-drivers-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
     <!-- bundle dependencies -->
     <dependency>
