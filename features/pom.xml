@@ -94,11 +94,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <artifactId>didm-identification</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>didm-drivers-api</artifactId>
-      <version>${project.version}</version>
-    </dependency>
 
     <!-- bundle dependencies -->
     <dependency>
