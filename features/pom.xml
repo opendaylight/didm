@@ -22,7 +22,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
 
   <properties>
     <mdsal.version>1.3.0-SNAPSHOT</mdsal.version>
-    <config.version>0.3.0-SNAPSHOT</config.version>
+    <config.version>0.4.0-SNAPSHOT</config.version>
     <openflowplugin.version>0.2.0-SNAPSHOT</openflowplugin.version>
     <openflowjava.version>0.7.0-SNAPSHOT</openflowjava.version>
     <features.file>features.xml</features.file>
