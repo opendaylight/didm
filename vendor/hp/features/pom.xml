@@ -22,7 +22,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <branding.version>1.2.0-SNAPSHOT</branding.version>
     <karaf.resources.version>1.6.0-SNAPSHOT</karaf.resources.version>
     <karaf.version>3.0.3</karaf.version>
-    <feature.test.version>0.8.0-SNAPSHOT</feature.test.version>
+    <feature.test.version>1.6.0-SNAPSHOT</feature.test.version>
     <karaf.empty.version>1.6.0-SNAPSHOT</karaf.empty.version>
     <surefire.version>2.16</surefire.version>
     <features.file>features.xml</features.file>
@@ -74,7 +74,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
 
    <!-- test to validate features.xml -->
     <dependency>
-      <groupId>org.opendaylight.yangtools</groupId>
+      <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>features-test</artifactId>
       <version>${feature.test.version}</version>
       <scope>test</scope>
