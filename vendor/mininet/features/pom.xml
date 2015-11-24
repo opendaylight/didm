@@ -10,20 +10,20 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.opendaylight.didm</groupId>
-    <artifactId>didm-mininet-parent</artifactId>
+    <artifactId>didm-ovs-parent</artifactId>
     <version>0.2.0-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
-  <artifactId>features-didm-mininet</artifactId>
+  <artifactId>features-didm-ovs</artifactId>
   <packaging>jar</packaging>
 
   <properties>
     <branding.version>1.2.0-SNAPSHOT</branding.version>
     <karaf.resources.version>1.6.0-SNAPSHOT</karaf.resources.version>
     <karaf.version>3.0.3</karaf.version>
-    <feature.test.version>0.8.0-SNAPSHOT</feature.test.version>
+    <feature.test.version>1.6.0-SNAPSHOT</feature.test.version>
     <karaf.empty.version>1.6.0-SNAPSHOT</karaf.empty.version>
     <surefire.version>2.16</surefire.version>
     <features.file>features.xml</features.file>
@@ -63,31 +63,16 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
 
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
-      <artifactId>didm-mininet</artifactId>
+      <artifactId>didm-ovs</artifactId>
       <version>${project.version}</version>
     </dependency>
 
-
-    <dependency>
-      <groupId>org.opendaylight.didm</groupId>
-      <artifactId>didm-drivers-api</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-
-<!--
-    <dependency>
-      <groupId>org.apache.servicemix.bundles</groupId>
-      <artifactId>org.apache.servicemix.bundles.guava</artifactId>
-      <version>${apache.servicemix.guava.version}</version>
-    </dependency>
--->
 
     <!-- config files -->
 
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
-      <artifactId>didm-mininet</artifactId>
+      <artifactId>didm-ovs</artifactId>
       <version>${project.version}</version>
       <type>xml</type>
       <classifier>config</classifier>
@@ -96,7 +81,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
 
     <!-- test to validate features.xml -->
     <dependency>
-      <groupId>org.opendaylight.yangtools</groupId>
+      <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>features-test</artifactId>
       <version>${feature.test.version}</version>
       <scope>test</scope>

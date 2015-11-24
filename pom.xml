@@ -26,7 +26,7 @@
     <module>features</module>
     <module>identification</module>
     <module>drivers</module>
-<!--    <module>vendor/mininet</module>  -->
+    <module>vendor/mininet</module> 
     <module>vendor/hp</module> 
   </modules>
   

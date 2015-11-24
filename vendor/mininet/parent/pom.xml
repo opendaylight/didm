@@ -17,12 +17,12 @@
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
-  <artifactId>didm-mininet-parent</artifactId>
+  <artifactId>didm-ovs-parent</artifactId>
   <packaging>pom</packaging>
 
   <properties>
     <didm.version>0.2.0-SNAPSHOT</didm.version>
-    <didm.mininet.configfile>didm-mininet.xml</didm.mininet.configfile>
+    <didm.ovs.configfile>didm-ovs.xml</didm.ovs.configfile>
   </properties>
 
 </project>

@@ -12,13 +12,13 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <modelVersion>4.0.0</modelVersion>
  <parent>
     <groupId>org.opendaylight.didm</groupId>
-    <artifactId>didm-mininet-parent</artifactId>
+    <artifactId>didm-ovs-parent</artifactId>
     <version>0.2.0-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
-  <artifactId>didm-mininet</artifactId>
+  <artifactId>didm-ovs</artifactId>
   <packaging>bundle</packaging>
 
   <build>
@@ -53,7 +53,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
               <artifacts>
                 <!-- duplicate this section to create more config files using a unique classifier -->
                 <artifact>
-                  <file>${project.build.directory}/classes/initial/${didm.mininet.configfile}</file>
+                  <file>${project.build.directory}/classes/initial/${didm.ovs.configfile}</file>
                   <type>xml</type>
                   <classifier>config</classifier>
                 </artifact>
@@ -76,6 +76,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <dependency>
       <groupId>org.opendaylight.controller</groupId>
       <artifactId>sal-binding-config</artifactId>
+      <version>${mdsal.version}</version>
     </dependency>
 
     <!-- for base DIDM API -->
@@ -89,6 +90,25 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       <artifactId>didm-drivers-api</artifactId>
       <version>${didm.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>
+      <artifactId>model-flow-base</artifactId>
+      <version>${openflowplugin.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>
+      <artifactId>model-flow-service</artifactId>
+      <version>${openflowplugin.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.controller.model</groupId>
+      <artifactId>model-inventory</artifactId>
+      <version>${mdsal.version}</version>
+    </dependency>
+
   </dependencies>
 
 </project>

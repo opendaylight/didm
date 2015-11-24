@@ -12,14 +12,8 @@ module hp-3800 {
 
     import config { prefix config; revision-date 2013-04-05; }
     import opendaylight-md-sal-binding { prefix mdsal; revision-date 2013-10-28; }
-    import didm-identification { prefix id; revision-date "2015-02-02"; }
 
     revision "2015-02-18" { description "Initial implementation."; }
-
-    identity hp-3800-device-type {
-        description "Device type for hp-3800 devices";
-        base id:device-type-base;
-    }
 
     identity hp-3800-provider {
             base config:module-type;

@@ -20,12 +20,10 @@ module didm-device-types {
 
     container device-types {
         list device-type-info {
-            key "device-type";
+            key "device-type-name";
 
-            leaf device-type {
-                type identityref {
-                    base id:device-type-base;
-                }
+            leaf device-type-name {
+                type string;
                 description "identifier for a list entry, the device type name.";
             }
 
