@@ -113,7 +113,7 @@ public class Hp3800ModuleImpl implements DataChangeListener, AutoCloseable {
     		writeTx.submit();  // write the data to the md-sal data store
     	} catch(Exception e) {
     		// Todo: what should we do if the write fails??
-    		LOG.info("failed to write devie type info to md-sal data store: ");
+    		LOG.error("failed to write devie type info to md-sal data store: ");
     	}
     }
     private InstanceIdentifier<DeviceTypeInfo> createPath(String name) {
@@ -242,11 +242,11 @@ public class Hp3800ModuleImpl implements DataChangeListener, AutoCloseable {
 	private void handleDataRemoved(Set<InstanceIdentifier<?>> removedPaths) {
         Preconditions.checkNotNull(removedPaths);
         if(!removedPaths.isEmpty()) {
-            LOG.error("Data was removed ({})", removedPaths.size());
+            LOG.info("Data was removed ({})", removedPaths.size());
 
             // iid will be of the form \nodes\node[id="<uuid>"]\devicetype
             for (InstanceIdentifier<?> path : removedPaths) {
-                LOG.error("Path removed: {}", path);
+                LOG.info("Path removed: {}", path);
                 unregisterRpcs(path);
             }
         }
@@ -255,9 +255,9 @@ public class Hp3800ModuleImpl implements DataChangeListener, AutoCloseable {
 	private void unregisterRpcs(InstanceIdentifier<?> path) {
         List<BindingAwareBroker.RoutedRpcRegistration<RpcService>> routedRpcRegistrations = rpcRegistrations.get(path);
         if(routedRpcRegistrations != null) {
-            LOG.error("Unregistering all RPCs for path: {}", path);
+            LOG.info("Unregistering all RPCs for path: {}", path);
             for (BindingAwareBroker.RoutedRpcRegistration<RpcService> routedRpcRegistration : routedRpcRegistrations) {
-                LOG.error("Unregistering RPC implementation {} for {} ", routedRpcRegistration.getInstance(), routedRpcRegistration.getServiceType());
+                LOG.info("Unregistering RPC implementation {} for {} ", routedRpcRegistration.getInstance(), routedRpcRegistration.getServiceType());
                 routedRpcRegistration.close();
             }
             rpcRegistrations.remove(path);

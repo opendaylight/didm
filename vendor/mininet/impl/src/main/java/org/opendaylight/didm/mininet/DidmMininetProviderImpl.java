@@ -71,7 +71,7 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
     	
     	// subscribe to be notified when a device-type augmentation is applied to an inventory node
     	dataChangeListenerRegistration = dataBroker.registerDataChangeListener(LogicalDatastoreType.OPERATIONAL, PATH, this, AsyncDataBroker.DataChangeScope.BASE);
-        LOG.error("Device-type Listener registered");
+        LOG.info("Device-type Listener registered");
     	
     	writeTestDataToDeviceTypeDataStore();
     }
@@ -221,11 +221,11 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
 	private void handleDataRemoved(Set<InstanceIdentifier<?>> removedPaths) {
         Preconditions.checkNotNull(removedPaths);
         if(!removedPaths.isEmpty()) {
-            LOG.error("Data was removed ({})", removedPaths.size());
+            LOG.info("Data was removed ({})", removedPaths.size());
 
             // iid will be of the form \nodes\node[id="<uuid>"]\devicetype
             for (InstanceIdentifier<?> path : removedPaths) {
-                LOG.error("Path removed: {}", path);
+                LOG.info("Path removed: {}", path);
                 unregisterRpcs(path);
             }
         }
@@ -234,9 +234,9 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
 	private void unregisterRpcs(InstanceIdentifier<?> path) {
         List<BindingAwareBroker.RoutedRpcRegistration<RpcService>> routedRpcRegistrations = rpcRegistrations.get(path);
         if(routedRpcRegistrations != null) {
-            LOG.error("Unregistering all RPCs for path: {}", path);
+            LOG.info("Unregistering all RPCs for path: {}", path);
             for (BindingAwareBroker.RoutedRpcRegistration<RpcService> routedRpcRegistration : routedRpcRegistrations) {
-                LOG.error("Unregistering RPC implementation {} for {} ", routedRpcRegistration.getInstance(), routedRpcRegistration.getServiceType());
+                LOG.info("Unregistering RPC implementation {} for {} ", routedRpcRegistration.getInstance(), routedRpcRegistration.getServiceType());
                 routedRpcRegistration.close();
             }
             rpcRegistrations.remove(path);

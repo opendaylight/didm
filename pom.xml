@@ -28,6 +28,7 @@
     <module>drivers</module>
     <module>vendor/mininet</module> 
     <module>vendor/hp</module> 
+    <module>tools</module>
   </modules>
   
   <scm>

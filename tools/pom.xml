@@ -22,7 +22,7 @@
 
   <modules>
     <module>utils</module>
-    <module>driver-test</module>
-    <module>flowmod-test</module>
+<!--    <module>driver-test</module>
+    <module>flowmod-test</module> -->
   </modules>
 </project>
