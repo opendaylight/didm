@@ -9,19 +9,19 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>features-parent</artifactId>
-    <version>1.5.3-Lithium-SR3</version>
+    <version>1.5.4-SNAPSHOT</version>
     <relativePath/>
   </parent>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-features</artifactId>
-  <version>0.1.3-Lithium-SR3</version>
+  <version>0.1.4-SNAPSHOT</version>
   <name>${project.artifactId}</name>
   <modelVersion>4.0.0</modelVersion>
   <properties>
-    <mdsal.version>1.2.3-Lithium-SR3</mdsal.version>
-    <yangtools.version>0.7.3-Lithium-SR3</yangtools.version>
-    <snmp.version>1.0.3-Lithium-SR3</snmp.version>
-    <ofplugin.version>0.1.3-Lithium-SR3</ofplugin.version>
+    <mdsal.version>1.2.4-SNAPSHOT</mdsal.version>
+    <yangtools.version>0.7.4-SNAPSHOT</yangtools.version>
+    <snmp.version>1.0.4-SNAPSHOT</snmp.version>
+    <ofplugin.version>0.1.4-SNAPSHOT</ofplugin.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
   </properties>
   <dependencies>
