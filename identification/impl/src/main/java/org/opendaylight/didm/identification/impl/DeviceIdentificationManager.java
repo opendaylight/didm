@@ -73,7 +73,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
 
         dataChangeListenerRegistration = dataBroker.registerDataChangeListener(LogicalDatastoreType.OPERATIONAL, NODE_IID, this, AsyncDataBroker.DataChangeScope.BASE);
         if (dataChangeListenerRegistration != null) {
-             LOG.error("Listener registered");
+             LOG.info("Listener registered");
         }
         else {
 
@@ -100,7 +100,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
     @Override
     public void close() throws Exception {
         if(dataChangeListenerRegistration != null) {
-            LOG.error("closing onDataChanged listener registration");
+            LOG.info("closing onDataChanged listener registration");
             dataChangeListenerRegistration.close();
             dataChangeListenerRegistration = null;
         }
@@ -108,7 +108,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
 
     @Override
     public void onDataChanged(AsyncDataChangeEvent<InstanceIdentifier<?>, DataObject> change) {
-        LOG.error("data change event");
+        LOG.info("data change event");
 
         handleDataCreated(change.getCreatedData());
         handleDataUpdated(change.getUpdatedData());
@@ -156,31 +156,6 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
         }
     }
 
-    private void checkOFMatch(final InstanceIdentifier<Node> path, Node node, FlowCapableNode flowCapableNode, List<DeviceTypeInfo> dtiInfoList ){
-    	 if (flowCapableNode != null) {
-             String hardware = flowCapableNode.getHardware();
-             String manufacturer = flowCapableNode.getManufacturer();
-             String serialNumber = flowCapableNode.getSerialNumber();
-             String software = flowCapableNode.getSoftware();
-
-             LOG.debug("Node '{}' is FlowCapable (\"{}\", \"{}\", \"{}\", \"{}\")",
-                     node.getId().getValue(), hardware, manufacturer, serialNumber, software);
-
-             // TODO: is there a more efficient way to do this?
-             for(DeviceTypeInfo dti: dtiInfoList) {
-                 // if the manufacturer matches and there is a h/w match
-                 if (manufacturer != null && (manufacturer.equals(dti.getOpenflowManufacturer()))) {
-                     List<String> hardwareValues = dti.getOpenflowHardware();
-                     if(hardwareValues != null && hardwareValues.contains(hardware)) {
-                             setDeviceType(dti.getDeviceTypeName(), path);
-                             return;
-                     }
-                 }
-             }
-         }
-
-    }
-
     private void identifyDevice(final InstanceIdentifier<Node> path, Node node) {
         LOG.debug("Attempting to identify '{}'", node.getId().toString());
         String hardware = null;
@@ -189,7 +164,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
         String software = null;
         String sysOid = null;
 
-        LOG.error("Read updated node");
+        LOG.info("Read updated node");
 
         // 1) check for OF match
         FlowCapableNode flowCapableNode = node.getAugmentation(FlowCapableNode.class);
@@ -208,7 +183,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
             // assign unknown for default switch.
                 // ****************************************************
                 if (flowCapableNode.getIpAddress() != null) {
-                        org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev100924.IpAddress ip;
+                        IpAddress ip;
                         ip = flowCapableNode.getIpAddress();
                         String ipStr = ip.getIpv4Address().getValue();
 
@@ -219,7 +194,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                         LOG.error("SNMP sysOid could not be obtained");
                     }
                     else {
-                        LOG.error("Found SNMP sysOid: {}", sysOid);
+                        LOG.info("Found SNMP sysOid: {}", sysOid);
                     }
                 }
 
@@ -273,7 +248,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
     private void handleDataUpdated(Map<InstanceIdentifier<?>, DataObject> updatedData) {
         Preconditions.checkNotNull(updatedData);
         if(!updatedData.isEmpty()) {
-            LOG.error("{} Node(s) updated", updatedData.size());
+            LOG.info("{} Node(s) updated", updatedData.size());
         }
     }
 
@@ -284,7 +259,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
     private void handleDataRemoved(Set<InstanceIdentifier<?>> removedPaths) {
         Preconditions.checkNotNull(removedPaths);
         if(!removedPaths.isEmpty()) {
-            LOG.error("{} Node(s) removed", removedPaths.size());
+            LOG.info("{} Node(s) removed", removedPaths.size());
         }
     }
 
