@@ -93,7 +93,7 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
     		writeTx.submit();  // write the data to the md-sal data store
     	} catch(Exception e) {
     		// TODO: what should we do if the write fails??
-    		LOG.error("failed to write devie type info to md-sal data store: ");
+    		LOG.error("failed to write device type info to md-sal data store: ");
     	}
     }
     private InstanceIdentifier<DeviceTypeInfo> createPath(String name) {

@@ -191,7 +191,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
                     LOG.info("IpAddres in string format: " + ipStr);
                     sysOid = fetchSysOid.fetch(ipStr);
                     if (sysOid == null) {
-                        LOG.error("SNMP sysOid could not be obtained");
+                        LOG.info("SNMP sysOid could not be obtained");
                     }
                     else {
                         LOG.info("Found SNMP sysOid: {}", sysOid);
