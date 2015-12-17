@@ -6,14 +6,12 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 
-package org.opendaylight.did.flowmod;
+package org.opendaylight.didm.flowmod;
 
 import java.util.Set;
 
 /**
  * Denotes the published OpenFlow Protocol versions.
- *
- * @author Simon Hunt
  */
 public enum ProtocolVersion {
     /** Version 1.0.0 (December 31, 2009) */
@@ -128,7 +126,7 @@ public enum ProtocolVersion {
     //        }
     //    if (version == null)
     //    	throw new DecodeException("Unknown OpenFlow Protocol " +
-    //                "version code: 0x" + ByteUtils.byteToHex(v));
+    //                "version code: 0x" + ByteUtils.byteToHex(v)); *
     //    return version;
     //}
 
