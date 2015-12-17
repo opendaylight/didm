@@ -6,7 +6,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 
-package org.opendaylight.didm.util;
+package org.opendaylight.didm.tools.utils;
 
 import java.util.Collection;
 import java.util.List;
@@ -37,18 +37,18 @@ import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 
 import com.google.common.collect.ImmutableList;
 
-public class DriverUtil {   
-	
+public class DriverUtil {
+
      /**
       * This utility method installs the flows to the switch.
-      * @param flowService reference of SalFlowService. 
+      * @param flowService reference of SalFlowService.
       * @param flows Collection of flows to be installed.
       * @param node Flows to be deleted from the node.
      */
 
      public static void install_flows(SalFlowService flowService, Collection<org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow> flows, InstanceIdentifier<Node> node) {
          for (org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow flow : flows) {
-             // create the input for the addFlow 
+             // create the input for the addFlow
              TableKey flowTableKey = new TableKey(flow.getTableId());
              InstanceIdentifier<Table> tableID = node.builder().augmentation(FlowCapableNode.class)
                                                  .child(Table.class, flowTableKey)
@@ -77,12 +77,12 @@ public class DriverUtil {
 
      /**
       * This utility method deletes the flows as per the match.
-      * @param flowService reference of SalFlowService. 
+      * @param flowService reference of SalFlowService.
       * @param flows Collection of flows to be deleted.
       * @param node Flows to be deleted from the node.
      */
-     public static void deleteFlows(SalFlowService flowService, 
-          Collection<org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow> flows, 
+     public static void deleteFlows(SalFlowService flowService,
+          Collection<org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow> flows,
           InstanceIdentifier<Node> node) {
 
           for(org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow flow : flows) {

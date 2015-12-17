@@ -7,39 +7,33 @@
  */
 package org.opendaylight.didm.hp3800;
 
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 import java.util.ArrayList;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
-import org.opendaylight.controller.md.sal.binding.api.DataChangeListener;
-import org.opendaylight.controller.md.sal.common.api.data.AsyncDataBroker;
-import org.opendaylight.controller.md.sal.common.api.data.AsyncDataChangeEvent;
-import org.opendaylight.controller.md.sal.common.api.data.LogicalDatastoreType;
-import org.opendaylight.controller.sal.binding.api.BindingAwareBroker;
 import org.opendaylight.controller.sal.binding.api.RpcProviderRegistry;
-import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeContext;
-import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.Nodes;
+import org.opendaylight.didm.flowmod.DefaultFlowMod;
+import org.opendaylight.didm.flowmod.FlowModChassisV2;
+import org.opendaylight.didm.tools.utils.DriverUtil;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.SalFlowService;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeRef;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.nodes.Node;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.AdjustFlowInput;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.AdjustFlowOutput;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.AdjustFlowOutputBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.OpenflowFeatureService;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.output.FlowBuilder;
-import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.output.Flow;
-import org.opendaylight.yangtools.concepts.ListenerRegistration;
-import org.opendaylight.yangtools.yang.binding.DataObject;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 import org.opendaylight.yangtools.yang.common.RpcResult;
 import org.opendaylight.yangtools.yang.common.RpcResultBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.Futures;
 
 
@@ -52,19 +46,39 @@ import com.google.common.util.concurrent.Futures;
  */
 public class OpenFlowDeviceDriver implements OpenflowFeatureService {
     private static final Logger LOG = LoggerFactory.getLogger(OpenFlowDeviceDriver.class);
+    DataBroker dataBroker;
+    private final RpcProviderRegistry rpcRegistry;
+
+
+    public OpenFlowDeviceDriver(DataBroker dataBroker, RpcProviderRegistry rpcRegistry) {
+        this.dataBroker = dataBroker;
+        this.rpcRegistry = rpcRegistry;
+    }
 
     @Override
     public Future<RpcResult<AdjustFlowOutput>> adjustFlow(AdjustFlowInput input) {
-        List<Flow> adjustedFlows = new ArrayList<Flow>();
-        LOG.debug("HP 3800 adjustFlow");
-
+        Set<Flow> adjustedFlows = new HashSet<Flow>();
+        LOG.info("HP 3800 adjustFlow");
+        NodeRef nodeRef = input.getNode();
+        InstanceIdentifier<Node> nodePath = (InstanceIdentifier<Node>)nodeRef.getValue();
         // TODO: finish this method, but for now just return the same flow that was received
-        org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.input.Flow flow = input.getFlow();
+        FlowModChassisV2 flowModDriver =  new FlowModChassisV2(nodePath, dataBroker);
 
-        // TODO: finish this method, but for now just return the same flow that was receive
-        adjustedFlows.add(new FlowBuilder(flow).build());
+        org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.input.Flow flow = input.getFlow();
+        org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow fb = new org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.FlowBuilder(flow).build();
+        adjustedFlows = flowModDriver.adjustFlowMod(fb);
+
+        //Push flows to device
+        SalFlowService salFlowService = rpcRegistry.getRpcService(SalFlowService.class);
+        DriverUtil.install_flows(salFlowService, adjustedFlows, nodePath);
+
+        //Send the output flow to the RPC listener
+        List<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.output.Flow> adjustedOutputFlows = new ArrayList<org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.output.Flow>();
+        for(Flow oFflow : adjustedFlows){
+            adjustedOutputFlows.add(new FlowBuilder(oFflow).build());
+        }
         AdjustFlowOutputBuilder outputBuilder = new AdjustFlowOutputBuilder();
-        outputBuilder.setFlow(adjustedFlows);
+        outputBuilder.setFlow(adjustedOutputFlows);
         AdjustFlowOutput rpcResultType = outputBuilder.build();
         return Futures.immediateFuture(RpcResultBuilder
                 .<AdjustFlowOutput>status(true).withResult(rpcResultType).build());
