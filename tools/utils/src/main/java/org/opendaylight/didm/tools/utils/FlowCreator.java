@@ -44,24 +44,24 @@ import org.slf4j.LoggerFactory;
 
 
 public class FlowCreator {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(FlowCreator.class);
-	
+
 	private final static Long ARP = 0x806L;
-	
+
 	private static final short TABLE_ID = (short) 0;
     private static final String ARP_FLOW = "ARP_FLOW";
     private static final String DEFAULT_FLOW_ID = "12345";
     private static final int HARD_TIMEOUT = 1800;
     private static final int IDLE_TIMEOUT = 180;
-	
+
 	public FlowCreator() {
 	}
 
 	public Flow buildArpFlowMod() {
-		
+
 		FlowBuilder flowBuilder = new FlowBuilder();
-		
+
 		// create a match condition for ARP reply packets
 		MatchBuilder matchBuilder = new MatchBuilder();
 		EthernetMatchBuilder ethernetMatchBuilder = new EthernetMatchBuilder();
@@ -70,7 +70,7 @@ public class FlowCreator {
         ethernetMatchBuilder.setEthernetType(ethTypeBuilder.build());
         matchBuilder.setEthernetMatch(ethernetMatchBuilder.build());
         flowBuilder.setMatch(matchBuilder.build());
-		
+
         // create an instruction with two actions (output controller, output normal)
         List<Action> actionList = new ArrayList<Action>();
 
@@ -84,7 +84,7 @@ public class FlowCreator {
         abCtlr.setOrder(0);
         abCtlr.setKey(new ActionKey(0));
         actionList.add(abCtlr.build());
-        
+
         // create an action to output to normal port
         ActionBuilder abNorm = new ActionBuilder();
         OutputActionBuilder outputNorm = new OutputActionBuilder();
@@ -95,7 +95,7 @@ public class FlowCreator {
         abNorm.setOrder(0);
         abNorm.setKey(new ActionKey(0));
         actionList.add(abNorm.build());
-               
+
         // Create an Apply Action
         ApplyActionsBuilder aab = new ApplyActionsBuilder();
         aab.setAction(actionList);
@@ -112,7 +112,7 @@ public class FlowCreator {
         instructions.add(ib.build());
         isb.setInstruction(instructions);
         flowBuilder.setInstructions(isb.build());
-        
+
         // set other fields in flow
         flowBuilder.setPriority(0);
 
@@ -133,13 +133,13 @@ public class FlowCreator {
         flowBuilder.setFlowName(ARP_FLOW);
         flowBuilder.setHardTimeout(HARD_TIMEOUT);
         flowBuilder.setIdleTimeout(IDLE_TIMEOUT);
-        
+
 		Flow flow = flowBuilder.build();
-		
+
 		LOG.info("FlowCreator: Flow: " + flow.toString());
-		
+
 		return flow;
 	}
-	
-	
+
+
 }
