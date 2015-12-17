@@ -20,7 +20,9 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <feature name='odl-didm-hp-impl' version='${project.version}' description='OpenDaylight :: DIDM :: HP :: Implementation '>
     <feature version='${didm.version}'>odl-didm-identification</feature>
     <feature version='${didm.version}'>odl-didm-drivers</feature>
+    <feature version='${didm.version}'>odl-didm-util</feature>
 
+    <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>
     <bundle>mvn:org.opendaylight.didm/didm-drivers-api/${project.version}</bundle>
     <bundle>mvn:org.opendaylight.didm/didm-hp/${project.version}</bundle>
     <configfile finalname="${config.configfile.directory}/${didm.hp.configfile}">mvn:org.opendaylight.didm/didm-hp/${project.version}/xml/config</configfile>
