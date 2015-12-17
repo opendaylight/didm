@@ -90,7 +90,7 @@ public class Hp3800ModuleImpl implements DataChangeListener, AutoCloseable {
 
     	// subscribe to be notified when a device-type augmentation is applied to an inventory node
     	dataChangeListenerRegistration = dataBroker.registerDataChangeListener(LogicalDatastoreType.OPERATIONAL, PATH, this, AsyncDataBroker.DataChangeScope.BASE);
-        LOG.info("Device-type Listener registered");
+        LOG.info("Device-type Listener registered: {}", this);
 
     	writeTestDataToDeviceTypeDataStore();
 
@@ -131,7 +131,7 @@ public class Hp3800ModuleImpl implements DataChangeListener, AutoCloseable {
         Preconditions.checkArgument(deviceType.equals(HP_DEVICE_TYPE), "Only the '{}' device type is supported!", HP_DEVICE_TYPE);
 
         ClassToInstanceMap<RpcService> drivers = MutableClassToInstanceMap.create();
-        drivers.putInstance(OpenflowFeatureService.class, new OpenFlowDeviceDriver());
+        drivers.putInstance(OpenflowFeatureService.class, new OpenFlowDeviceDriver(dataBroker, rpcRegistry));
         return drivers;
     }
 

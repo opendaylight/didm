@@ -19,8 +19,10 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${openflowplugin.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.openflowjava/features-openflowjava/${openflowjava.version}/xml/features</repository>
 
-  <!-- utility jar/bundles common to several features 
+  <!-- utility jar/bundles common to several features --> 
     <feature name='odl-didm-util' version='${project.version}' description='OpenDaylight :: didm-util :: Util '>
+         <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>
+ <!--
          <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/2.3.2</bundle>
          <bundle>mvn:com.fasterxml.jackson.core/jackson-core/2.3.2</bundle>
          <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/2.3.2</bundle>
@@ -42,13 +44,14 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
          <bundle>mvn:org.apache.commons/commons-compress/1.5</bundle>
          <bundle>mvn:org.jdom/com.springsource.org.jdom/1.0.0</bundle>
          <bundle>mvn:org.apache.ant/com.springsource.org.apache.tools.ant/1.8.1</bundle>
-    </feature>
 -->
+    </feature>
+
 
    <!-- the 'all' feature does not include the driver-test -->
     <feature name='odl-didm-all' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: All'>
         <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
-        <!--<feature version='${project.version}'>odl-didm-util</feature>-->
+        <feature version='${project.version}'>odl-didm-util</feature>
         <feature version='${project.version}'>odl-didm-identification</feature>
         <feature version='${project.version}'>odl-didm-drivers</feature>
         <feature version='${project.version}'>odl-didm-ovs-all</feature>
