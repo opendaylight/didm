@@ -7,7 +7,6 @@
  */
 package org.opendaylight.didm.hp3800;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,9 +15,9 @@ import java.util.ArrayList;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.sal.binding.api.RpcProviderRegistry;
-import org.opendaylight.didm.flowmod.DefaultFlowMod;
 import org.opendaylight.didm.flowmod.FlowModChassisV2;
 import org.opendaylight.didm.tools.utils.DriverUtil;
+import org.opendaylight.didm.tools.utils.FlowCreator;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.SalFlowService;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeRef;
@@ -33,7 +32,6 @@ import org.opendaylight.yangtools.yang.common.RpcResult;
 import org.opendaylight.yangtools.yang.common.RpcResultBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.google.common.util.concurrent.Futures;
 
 
@@ -67,6 +65,10 @@ public class OpenFlowDeviceDriver implements OpenflowFeatureService {
         org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.input.Flow flow = input.getFlow();
         org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow fb = new org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.FlowBuilder(flow).build();
         adjustedFlows = flowModDriver.adjustFlowMod(fb);
+        //Test ARP flow using flow creator test code
+        //FlowCreator flowCreator = new FlowCreator();
+        //Flow arpFlow = flowCreator.buildArpFlowMod();
+        //adjustedFlows = flowModDriver.adjustFlowMod(arpFlow);
 
         //Push flows to device
         SalFlowService salFlowService = rpcRegistry.getRpcService(SalFlowService.class);

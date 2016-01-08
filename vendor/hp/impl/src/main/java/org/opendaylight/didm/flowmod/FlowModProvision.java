@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.opendaylight.didm.tools.utils.StringUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
@@ -81,6 +80,7 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.action.types.rev131112.acti
 import org.opendaylight.yang.gen.v1.urn.opendaylight.action.types.rev131112.action.action.SetFieldCase;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.action.types.rev131112.action.action.output.action._case.OutputAction;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.action.types.rev131112.action.list.Action;
+import org.opendaylight.openflowjava.protocol.api.util.BinContent;
 import org.opendaylight.openflowplugin.api.openflow.md.util.OpenflowVersion;
 import org.opendaylight.openflowplugin.openflow.md.util.InventoryDataServiceUtil;
 
@@ -222,12 +222,6 @@ public class FlowModProvision extends DefaultFlowMod{
         // When adjusting a flow mod, make sure that the resulting flows are
         // not duplicates of the basic flows that are laid down by default
         Set<Flow> baseFlows = generateDefaultFlows();
-
-        // If the caller has already populated table ID, we should leave as is
-        if (origFlow.getTableId() != null) {
-            adjustedFlows.add(origFlow);
-            return returnOrThrow(removeDuplicates(baseFlows, adjustedFlows), origFlow);
-        }
 
         // Find the best table to use for the given match fields and
         // instructions
@@ -647,10 +641,9 @@ public class FlowModProvision extends DefaultFlowMod{
                     Uri uri = opAction.getOutputNodeConnector();
                     OpenflowVersion ofVersion = OpenflowVersion.OF13;
                     Long portNumber = InventoryDataServiceUtil.portNumberfromNodeConnectorId(ofVersion, uri.getValue());
-
-                    if (portNumber == PortNumberValues.CONTROLLER.getIntValue()){
+                    if (portNumber.equals(BinContent.intToUnsignedLong(PortNumberValues.CONTROLLER.getIntValue()))){
                         actionCopyController = true;
-                    } else if (portNumber == PortNumberValues.NORMAL.getIntValue()) {
+                    } else if (portNumber.equals(BinContent.intToUnsignedLong(PortNumberValues.NORMAL.getIntValue()))) {
                         actionFwdNormal = true;
                     }
 
