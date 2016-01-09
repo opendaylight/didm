@@ -207,21 +207,9 @@ public class DefaultFlowMod {
         this.node = DefaultFlowMod.getDataObject(
                 dataBroker.newReadOnlyTransaction(), nodePath);
         this.flowCapableNode = node.getAugmentation(FlowCapableNode.class);
-
-        // TESTING: ********************************
-        // FlowCreator flowCreator = new FlowCreator();
-        // Flow flow = flowCreator.buildArpFlowMod();
-
-        // TableFeatureCreator tableCreator = new TableFeatureCreator();
-        // this.tables = tableCreator.create3800Table();
-
-        // Match match = flow.getMatch();
-        // Table mfTable = getTableForMatch(match);
-        // Table insTable = getTableIdForInstructions(flow);
-        // TESTING: end of testing code *************
     }
 
-    /* InventoryDataServiceUtil.getDataObject() */
+
     protected static <T extends DataObject> T getDataObject(
             final ReadTransaction readOnlyTransaction,
             final InstanceIdentifier<T> identifier) {
@@ -303,7 +291,7 @@ public class DefaultFlowMod {
         fb.setHardTimeout(0);
         fb.setFlags(new FlowModFlags(false, false, false, false, true));
         fb.setPriority(0);
-        fb.setCookie(new FlowCookie(BigInteger.valueOf(0xffff000000000000L)));
+        fb.setCookie(new FlowCookie(BigInteger.valueOf(0xffff00L)));
         return fb;
     }
 
@@ -366,9 +354,11 @@ public class DefaultFlowMod {
     protected void matchAll(FlowBuilder fb) {
         org.opendaylight.yang.gen.v1.urn.opendaylight.openflow.oxm.rev150225.match.grouping.MatchBuilder mb = new org.opendaylight.yang.gen.v1.urn.opendaylight.openflow.oxm.rev150225.match.grouping.MatchBuilder();
         mb.setType(OxmMatchType.class);
-        MatchBuilder Ofmb = MatchConvertorImpl.fromOFMatchToSALMatch(
+        List<MatchEntry> entries = new ArrayList<>();
+        mb.setMatchEntry(entries);
+        MatchBuilder salmb = MatchConvertorImpl.fromOFMatchToSALMatch(
                 mb.build(), this.dataPathId, OpenflowVersion.OF13);
-        fb.setMatch(Ofmb.build());
+        fb.setMatch(salmb.build());
     }
 
     /**
@@ -739,7 +729,6 @@ public class DefaultFlowMod {
         fb.setTableId(firstTableId);
         fb.setInstructions(insb.build());
 
-        // TODO: dangerous. What if newMatch becomes a matchAll?
         Match newMatch = removeInvalidMatchesForTable(flow.getMatch(),
                 firstTable);
         fb.setMatch(newMatch);
@@ -1404,10 +1393,6 @@ public class DefaultFlowMod {
             }
             // Apply Actions
             else if (instr.getInstruction() instanceof ApplyActionsCase) {
-                // debug
-                org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.instruction.apply.actions._case.ApplyActions ap = ((ApplyActionsCase) instr
-                        .getInstruction()).getApplyActions();
-
                 if (doesTableSupportInstApplyActions(table, isTableMiss,
                         ((ApplyActionsCase) instr.getInstruction())
                                 .getApplyActions().getAction())) {
@@ -1467,9 +1452,6 @@ public class DefaultFlowMod {
                                 inst.getInstruction())) {
                             return true;
                         }
-                        // if (inst.getInstruction().equals(instruction)) {
-                        // return true;
-                        // }
                     }
                     return false;
                 }
@@ -1538,8 +1520,6 @@ public class DefaultFlowMod {
 
                     for (Action flowmodAction : flowmodActions) {
                         for (Action tableAction : actionList) {
-                            // TODO verify that the if statement below is
-                            // correct
                             if (areActionsEqual(flowmodAction.getAction(),
                                     tableAction.getAction())) {
                                 return true;
@@ -1551,10 +1531,6 @@ public class DefaultFlowMod {
                         if (flowmodAction.getAction() instanceof SetFieldCase) {
                             SetField setField = ((SetFieldCase) flowmodAction
                                     .getAction()).getSetField();
-                            // TODO verify that the statement below works. Can
-                            // we use the method doesTableSuportMatch
-                            // verify that all match field are supported by the
-                            // table
                             if (doesTableSupportMatch(table, setField)) {
                                 return true;
                             }
@@ -1571,8 +1547,6 @@ public class DefaultFlowMod {
 
                     for (Action flowmodAction : flowmodActions) {
                         for (Action tableAction : actionList) {
-                            // TODO verify that the if statement below is
-                            // correct
                             if (areActionsEqual(flowmodAction.getAction(),
                                     tableAction.getAction())) {
                                 return true;
@@ -1584,10 +1558,6 @@ public class DefaultFlowMod {
                         if (flowmodAction.getAction() instanceof SetFieldCase) {
                             SetField setField = ((SetFieldCase) flowmodAction
                                     .getAction()).getSetField();
-                            // TODO verify that the statement below works. Can
-                            // we use the method doesTableSuportMatch
-                            // verify that all match field are supported by the
-                            // table
                             if (doesTableSupportMatch(table, setField)) {
                                 return true;
                             }
@@ -1629,14 +1599,6 @@ public class DefaultFlowMod {
 
                     for (Action flowmodAction : flowmodActions) {
                         for (Action tableAction : actionList) {
-                            // TODO verify that the if statement below is
-                            // correct
-                            // debug
-                            // org.opendaylight.yang.gen.v1.urn.opendaylight.action.types.rev131112.action.Action
-                            // fa = flowmodAction.getAction();
-                            // org.opendaylight.yang.gen.v1.urn.opendaylight.action.types.rev131112.action.Action
-                            // ta = tableAction.getAction();
-
                             if (areActionsEqual(flowmodAction.getAction(),
                                     tableAction.getAction())) {
                                 return true;
@@ -1651,10 +1613,6 @@ public class DefaultFlowMod {
                         } else if (flowmodAction.getAction() instanceof SetFieldCase) {
                             SetField setField = ((SetFieldCase) flowmodAction
                                     .getAction()).getSetField();
-                            // TODO verify that the statement below works. Can
-                            // we use the method doesTableSuportMatch
-                            // verify that all match field are supported by the
-                            // table
                             if (doesTableSupportMatch(table, setField)) {
                                 return true;
                             }
@@ -1675,19 +1633,10 @@ public class DefaultFlowMod {
 
                     for (Action flowmodAction : flowmodActions) {
                         for (Action tableAction : actionList) {
-                            // TODO verify that the if statement below is
-                            // correct
                             if (areActionsEqual(flowmodAction.getAction(),
                                     tableAction.getAction())) {
                                 return true;
                             }
-
-                            // TODO do we need to check the output action and
-                            // set field action as
-                            // wee did for the non-miss case. We appear to be
-                            // doing both for
-                            // WRITE_ACTION case (see the method
-                            // doesTableSupportInstWriteActions)
                         }
                     }
                     return false;

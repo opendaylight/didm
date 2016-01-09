@@ -10,7 +10,10 @@ package org.opendaylight.didm.tools.utils;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicLong;
 
+import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev100924.Uri;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.action.types.rev131112.action.list.Action;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.FlowCapableNode;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.FlowId;
@@ -18,6 +21,7 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.ta
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.TableKey;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.FlowKey;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.AddFlowInputBuilder;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.AddFlowOutput;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.FlowTableRef;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.RemoveFlowInputBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.SalFlowService;
@@ -33,12 +37,20 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.group.types.rev131018.group
 import org.opendaylight.yang.gen.v1.urn.opendaylight.group.types.rev131018.group.buckets.BucketBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeRef;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.nodes.Node;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeConnectorRef;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
+import org.opendaylight.yangtools.yang.common.RpcResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.ImmutableList;
 
 public class DriverUtil {
 
+    private static final Logger LOG = LoggerFactory
+            .getLogger(DriverUtil.class);
+    private static AtomicLong flowIdInc = new AtomicLong();
      /**
       * This utility method installs the flows to the switch.
       * @param flowService reference of SalFlowService.
@@ -48,31 +60,57 @@ public class DriverUtil {
 
      public static void install_flows(SalFlowService flowService, Collection<org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow> flows, InstanceIdentifier<Node> node) {
          for (org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow flow : flows) {
+             NodeConnectorRef nodeConnectorRef = new NodeConnectorRef(node);
              // create the input for the addFlow
              TableKey flowTableKey = new TableKey(flow.getTableId());
-             InstanceIdentifier<Table> tableID = node.builder().augmentation(FlowCapableNode.class)
-                                                 .child(Table.class, flowTableKey)
-                                                 .build();
+             // create the flow path
+             InstanceIdentifier<Flow> flowPath = buildFlowPath(nodeConnectorRef, flowTableKey);
+             final InstanceIdentifier<Table> tableInstanceId = flowPath.<Table>firstIdentifierOf(Table.class);
+             final InstanceIdentifier<Node> nodeInstanceId = flowPath.<Node>firstIdentifierOf(Node.class);
 
-             // TODO : increment the flow id after each use. otherwise flow will take same ID.
-             FlowId flowid = new FlowId("1000");
-             FlowKey flow_key = new FlowKey(flowid);
-             InstanceIdentifier<org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow> flowID = tableID.child(org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.Flow.class, flow_key);
+             final AddFlowInputBuilder builder = new AddFlowInputBuilder(flow);
+             builder.setNode(new NodeRef(nodeInstanceId));
+             builder.setFlowRef(new FlowRef(flowPath));
+             builder.setFlowTable(new FlowTableRef(tableInstanceId));
+             builder.setTransactionUri(new Uri(flow.getId().getValue()));
 
-             AddFlowInputBuilder inputBuilder = new AddFlowInputBuilder()
-                                        .setBufferId(Long.valueOf(0))
-                                        .setPriority(flow.getPriority())
-                                        .setFlowTable(new FlowTableRef(tableID))
-                                        .setFlowRef(new FlowRef(flowID))
-                                        .setNode(new NodeRef(node))
-                                        .setMatch(flow.getMatch())
-                                        .setTableId(flow.getTableId())
-                                        .setHardTimeout(flow.getHardTimeout())
-                                        .setBufferId(Long.valueOf(0))
-                                        .setInstructions(flow.getInstructions());
+             final Future<RpcResult<AddFlowOutput>> rpcResultFuture =  flowService.addFlow(builder.build());
+             try{
+             if(rpcResultFuture != null){
+                 final RpcResult<?> addFlowOutputRpcResult = rpcResultFuture.get();
+                 if(addFlowOutputRpcResult != null)
+                     if (addFlowOutputRpcResult.isSuccessful())
+                         LOG.info("Pushed the flow successfully", flow.getFlowName());
 
-             flowService.addFlow(inputBuilder.build());
+             }
+             }catch (Exception ex){
+                 LOG.error("Exception while pushing flow to the device", ex.getMessage());
+             }
          }
+
+     }
+
+     private static InstanceIdentifier<Flow> buildFlowPath(NodeConnectorRef nodeConnectorRef, TableKey flowTableKey) {
+         // generate unique flow key
+         FlowId flowId = new FlowId(String.valueOf(flowIdInc.getAndIncrement()));
+         FlowKey flowKey = new FlowKey(flowId);
+
+         return generateFlowInstanceIdentifier(nodeConnectorRef, flowTableKey, flowKey);
+     }
+
+     private static InstanceIdentifier<Flow> generateFlowInstanceIdentifier(final NodeConnectorRef nodeConnectorRef,
+         final TableKey flowTableKey,
+         final FlowKey flowKey) {
+            return generateFlowTableInstanceIdentifier(nodeConnectorRef, flowTableKey).child(Flow.class, flowKey);
+     }
+     private static InstanceIdentifier<Table> generateFlowTableInstanceIdentifier(final NodeConnectorRef nodeConnectorRef, final TableKey flowTableKey) {
+         return generateNodeInstanceIdentifier(nodeConnectorRef).builder()
+             .augmentation(FlowCapableNode.class)
+             .child(Table.class, flowTableKey)
+             .build();
+     }
+     private static InstanceIdentifier<Node> generateNodeInstanceIdentifier(final NodeConnectorRef nodeConnectorRef) {
+         return nodeConnectorRef.getValue().firstIdentifierOf(Node.class);
      }
 
      /**
