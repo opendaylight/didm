@@ -18,7 +18,6 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import org.opendaylight.didm.tools.utils.StringUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
@@ -102,6 +101,7 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.MplsT
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.PbbIsid;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.list.Instruction;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.list.InstructionBuilder;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.list.InstructionKey;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.instruction.ApplyActionsCaseBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.instruction.GoToTableCase;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.instruction.ApplyActionsCase;
@@ -690,6 +690,8 @@ public class DefaultFlowMod {
         InstructionBuilder ib = new InstructionBuilder();
         ib.setInstruction(new GoToTableCaseBuilder().setGoToTable(gb.build())
                 .build());
+        ib.setOrder(0);
+        ib.setKey(new InstructionKey(0));
         Instruction newInstr = ib.build();
         return newInstr;
     }
