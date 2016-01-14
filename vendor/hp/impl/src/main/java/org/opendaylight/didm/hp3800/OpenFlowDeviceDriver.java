@@ -59,7 +59,6 @@ public class OpenFlowDeviceDriver implements OpenflowFeatureService {
         LOG.info("HP 3800 adjustFlow");
         NodeRef nodeRef = input.getNode();
         InstanceIdentifier<Node> nodePath = (InstanceIdentifier<Node>)nodeRef.getValue();
-        // TODO: finish this method, but for now just return the same flow that was received
         FlowModChassisV2 flowModDriver =  new FlowModChassisV2(nodePath, dataBroker);
 
         org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.adjust.flow.input.Flow flow = input.getFlow();

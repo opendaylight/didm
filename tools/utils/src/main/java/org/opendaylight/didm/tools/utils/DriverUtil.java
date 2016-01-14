@@ -19,6 +19,7 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.Fl
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.FlowId;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.Table;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.TableKey;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.FlowBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.table.FlowKey;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.AddFlowInputBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.AddFlowOutput;
@@ -51,6 +52,7 @@ public class DriverUtil {
     private static final Logger LOG = LoggerFactory
             .getLogger(DriverUtil.class);
     private static AtomicLong flowIdInc = new AtomicLong();
+    private static AtomicLong keyInc = new AtomicLong();
      /**
       * This utility method installs the flows to the switch.
       * @param flowService reference of SalFlowService.
@@ -68,11 +70,19 @@ public class DriverUtil {
              final InstanceIdentifier<Table> tableInstanceId = flowPath.<Table>firstIdentifierOf(Table.class);
              final InstanceIdentifier<Node> nodeInstanceId = flowPath.<Node>firstIdentifierOf(Node.class);
 
-             final AddFlowInputBuilder builder = new AddFlowInputBuilder(flow);
+             // need to rebuild the flow of the correct type to send to salFlowService
+             FlowBuilder flowBuilder = new FlowBuilder(flow);
+             String id = String.valueOf(keyInc.getAndIncrement());
+             FlowKey key = new FlowKey(new FlowId(id));
+             flowBuilder.setKey(key);
+             flowBuilder.setId(new FlowId(id));
+             Flow flowToSend = flowBuilder.build();
+
+             final AddFlowInputBuilder builder = new AddFlowInputBuilder(flowToSend);
              builder.setNode(new NodeRef(nodeInstanceId));
              builder.setFlowRef(new FlowRef(flowPath));
              builder.setFlowTable(new FlowTableRef(tableInstanceId));
-             builder.setTransactionUri(new Uri(flow.getId().getValue()));
+             builder.setTransactionUri(new Uri(flowToSend.getId().getValue()));
 
              final Future<RpcResult<AddFlowOutput>> rpcResultFuture =  flowService.addFlow(builder.build());
              try{
