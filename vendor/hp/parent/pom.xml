@@ -12,7 +12,7 @@
   <parent>
     <groupId>org.opendaylight.didm</groupId>
     <artifactId>didm-parent</artifactId>
-    <version>0.2.0-Beryllium</version>
+    <version>0.2.1-SNAPSHOT</version>
     <relativePath>../../../parent</relativePath>
   </parent>
 
@@ -21,7 +21,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <didm.version>0.2.0-Beryllium</didm.version>
+    <didm.version>0.2.1-SNAPSHOT</didm.version>
     <didm.hp.configfile>didm-hp-3800.xml</didm.hp.configfile>
   </properties>
 

@@ -11,7 +11,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-hp-aggregator</artifactId>
-  <version>0.2.0-Beryllium</version>
+  <version>0.2.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
