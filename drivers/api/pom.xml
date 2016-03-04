@@ -10,19 +10,19 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <parent>
     <groupId>org.opendaylight.yangtools</groupId>
     <artifactId>binding-parent</artifactId>
-    <version>0.7.4-Lithium-SR4</version>
+    <version>0.7.5-SNAPSHOT</version>
     <relativePath/>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-drivers-api</artifactId>
-  <version>0.1.4-Lithium-SR4</version>
+  <version>0.1.5-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <properties>
-    <mdsal.version>1.2.4-Lithium-SR4</mdsal.version>
-    <ofplugin.version>0.1.4-Lithium-SR4</ofplugin.version>
+    <mdsal.version>1.2.5-SNAPSHOT</mdsal.version>
+    <ofplugin.version>0.1.5-SNAPSHOT</ofplugin.version>
   </properties>
 
   <dependencies>

@@ -12,19 +12,19 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <parent>
     <groupId>org.opendaylight.controller</groupId>
     <artifactId>config-parent</artifactId>
-    <version>0.3.4-Lithium-SR4</version>
+    <version>0.3.5-SNAPSHOT</version>
     <relativePath/>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-identification-impl</artifactId>
-  <version>0.1.4-Lithium-SR4</version>
+  <version>0.1.5-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <properties>
-    <snmp.version>1.0.4-Lithium-SR4</snmp.version>
-    <ofplugin.version>0.1.4-Lithium-SR4</ofplugin.version>
+    <snmp.version>1.0.5-SNAPSHOT</snmp.version>
+    <ofplugin.version>0.1.5-SNAPSHOT</ofplugin.version>
   </properties>
 
   <dependencies>
