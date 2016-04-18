@@ -12,6 +12,9 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.ClassToInstanceMap;
 import com.google.common.collect.MutableClassToInstanceMap;
+import com.google.common.util.concurrent.CheckedFuture;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.md.sal.binding.api.DataChangeListener;
@@ -36,6 +39,7 @@ import org.opendaylight.controller.md.sal.binding.api.WriteTransaction;
 import org.opendaylight.controller.md.sal.common.api.data.AsyncDataBroker;
 import org.opendaylight.controller.md.sal.common.api.data.AsyncDataChangeEvent;
 import org.opendaylight.controller.md.sal.common.api.data.LogicalDatastoreType;
+import org.opendaylight.controller.md.sal.common.api.data.TransactionCommitFailedException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,18 +92,27 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
     	
     	WriteTransaction writeTx = dataBroker.newWriteOnlyTransaction();
     	writeTx.merge(LogicalDatastoreType.CONFIGURATION, path, dti, true);
-    	
-    	try {
-    		writeTx.submit();  // write the data to the md-sal data store
-    	} catch(Exception e) {
-    		// TODO: what should we do if the write fails??
-    		LOG.error("failed to write device type info to md-sal data store: ");
-    	}
+
+        CheckedFuture<Void, TransactionCommitFailedException> future = writeTx.submit();
+
+        Futures.addCallback(future, new FutureCallback<Void>() {
+
+            @Override
+            public void onSuccess(Void result) {
+                LOG.debug("successfully wrote the dti to data store");
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                LOG.error("failed to write device type info to md-sal data store: {}", t.getMessage());
+            }
+        });
     }
+
     private InstanceIdentifier<DeviceTypeInfo> createPath(String name) {
-    	return InstanceIdentifier.<DeviceTypes>builder(DeviceTypes.class)
-    			.<DeviceTypeInfo, DeviceTypeInfoKey>child(DeviceTypeInfo.class, 
-    					new DeviceTypeInfoKey(name)).toInstance(); 
+        return InstanceIdentifier.<DeviceTypes>builder(DeviceTypes.class)
+                .<DeviceTypeInfo, DeviceTypeInfoKey>child(DeviceTypeInfo.class, new DeviceTypeInfoKey(name))
+                .build();
     }
 
     public List<String> getDeviceTypes() {
