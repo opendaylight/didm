@@ -5,25 +5,24 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-module didm-mininet {
+module didm-ovs {
 
-    namespace "urn:opendaylight:params:xml:ns:yang:didm:mininet";
-    prefix didm-mininet;
+    namespace "urn:opendaylight:params:xml:ns:yang:didm:ovs";
+    prefix didm-ovs;
 
     import config { prefix config; revision-date 2013-04-05; }
     import opendaylight-md-sal-binding { prefix mdsal; revision-date 2013-10-28; }
 
     revision "2015-02-11" { description "Initial implementation."; }
 
-    identity didm-mininet-provider {
+    identity didm-ovs-provider {
             base config:module-type;
-
-            config:java-name-prefix DidmMininetProvider;
+            config:java-name-prefix DidmOVSProvider;
     }
 
     augment "/config:modules/config:module/config:configuration" {
-        case didm-mininet-provider {
-            when "/config:modules/config:module/config:type = 'didm-mininet-provider'";
+        case didm-ovs-provider {
+            when "/config:modules/config:module/config:type = 'didm-ovs-provider'";
 
            container data-broker {
                 uses config:service-ref {
@@ -33,7 +32,7 @@ module didm-mininet {
                     }
                 }
             }
-            
+
             container rpc-registry {
                uses config:service-ref {
                    refine type {

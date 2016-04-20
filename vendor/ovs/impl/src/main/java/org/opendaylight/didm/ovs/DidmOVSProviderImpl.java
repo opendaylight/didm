@@ -6,7 +6,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 
-package org.opendaylight.didm.mininet;
+package org.opendaylight.didm.ovs;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ClassToInstanceMap;
@@ -44,17 +44,17 @@ import java.util.Map;
 import java.util.Set;
 
 /***
- * Provider of mininet device drivers
+ * Provider of ovs device drivers
  */
-public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseable {
+public class DidmOVSProviderImpl implements DataChangeListener, AutoCloseable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DidmMininetProviderImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DidmOVSProviderImpl.class);
 
     private static final InstanceIdentifier<DeviceType> PATH = InstanceIdentifier.builder(Nodes.class).child(Node.class)
             .augmentation(DeviceType.class).build();
 
-    private static String MININET_DEVICE_TYPE = "mininet";
-    private static List<String> SUPPORTED_DEVICE_TYPES = Lists.newArrayList(MININET_DEVICE_TYPE);
+    private static String OVS_DEVICE_TYPE = "ovs";
+    private static List<String> SUPPORTED_DEVICE_TYPES = Lists.newArrayList(OVS_DEVICE_TYPE);
     private static String MANUFACTURER = "Nicira, Inc.";
     private static List<String> HARDWARE = Lists.newArrayList("Open vSwitch");
     private static List<String> SYSOID = Lists.newArrayList("No sysOid");
@@ -64,7 +64,7 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
     private ListenerRegistration<DataChangeListener> dataChangeListenerRegistration;
     private Map<InstanceIdentifier<?>, List<BindingAwareBroker.RoutedRpcRegistration<RpcService>>> rpcRegistrations = new HashMap<>();
 
-    public DidmMininetProviderImpl(DataBroker dataBroker, RpcProviderRegistry rpcRegistry) {
+    public DidmOVSProviderImpl(DataBroker dataBroker, RpcProviderRegistry rpcRegistry) {
         Preconditions.checkNotNull(dataBroker);
         Preconditions.checkNotNull(rpcRegistry);
         this.dataBroker = dataBroker;
@@ -80,10 +80,10 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
     }
 
     private void writeTestDataToDeviceTypeDataStore() {
-        InstanceIdentifier<DeviceTypeInfo> path = createPath(MININET_DEVICE_TYPE);
+        InstanceIdentifier<DeviceTypeInfo> path = createPath(OVS_DEVICE_TYPE);
 
         DeviceTypeInfoBuilder dtiBuilder = new DeviceTypeInfoBuilder();
-        dtiBuilder.setDeviceTypeName(MININET_DEVICE_TYPE);
+        dtiBuilder.setDeviceTypeName(OVS_DEVICE_TYPE);
         dtiBuilder.setOpenflowManufacturer(MANUFACTURER);
         dtiBuilder.setOpenflowHardware(HARDWARE);
         dtiBuilder.setSysoid(SYSOID);
@@ -112,8 +112,8 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
 
     public ClassToInstanceMap<RpcService> getDrivers(String deviceType) {
         Preconditions.checkNotNull(deviceType);
-        Preconditions.checkArgument(deviceType.equals(MININET_DEVICE_TYPE), "Only the '{}' device type is supported!",
-                MININET_DEVICE_TYPE);
+        Preconditions.checkArgument(deviceType.equals(OVS_DEVICE_TYPE), "Only the '{}' device type is supported!",
+                OVS_DEVICE_TYPE);
 
         ClassToInstanceMap<RpcService> drivers = MutableClassToInstanceMap.create();
         drivers.putInstance(OpenflowFeatureService.class, new OpenFlowDeviceDriver());
@@ -152,7 +152,7 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
                 InstanceIdentifier<?> path = dataObjectEntry.getKey();
                 DeviceType dt = (DeviceType) dataObjectEntry.getValue();
 
-                if (dt.getDeviceType().equals(MININET_DEVICE_TYPE)) {
+                if (dt.getDeviceType().equals(OVS_DEVICE_TYPE)) {
 
                     String deviceType = dt.getDeviceType();
                     LOG.info("DeviceTypeInfo is {}", deviceType);
@@ -173,7 +173,7 @@ public class DidmMininetProviderImpl implements DataChangeListener, AutoCloseabl
 
     /***
      * Registers all drivers for a devicetype
-     * 
+     *
      * @param deviceType
      *            The devicetype
      * @param path
