@@ -6,7 +6,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 
-package org.opendaylight.didm.mininet;
+package org.opendaylight.didm.ovs;
 
 
 import com.google.common.util.concurrent.Futures;
@@ -25,11 +25,11 @@ import java.util.concurrent.Future;
 import java.util.ArrayList;
 
 /**
- * The mininet OF driver does the following:
+ * The OVS OF driver does the following:
  *
  * 1. listen for node added/removed in inventory (future: filtered by device type)
- * 2. when a mininet node is added, register the routed RPCs (other driver types may register as DCLs for a feature such as vlan)
- * 3. when a mininet node is removed, close the RPC registration (and/or DCLs for other driver types)
+ * 2. when a ovs node is added, register the routed RPCs (other driver types may register as DCLs for a feature such as vlan)
+ * 3. when a ovs node is removed, close the RPC registration (and/or DCLs for other driver types)
  */
 public class OpenFlowDeviceDriver implements OpenflowFeatureService  {
     private static final Logger LOG = LoggerFactory.getLogger(OpenFlowDeviceDriver.class);
