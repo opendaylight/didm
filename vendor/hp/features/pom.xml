@@ -48,14 +48,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <type>xml</type>
     </dependency>
 
-    <dependency>
-      <groupId>org.opendaylight.didm</groupId>
-      <artifactId>features-didm</artifactId>
-      <version>${didm.version}</version>
-      <classifier>features</classifier>
-      <type>xml</type>
-    </dependency>
-
    <!-- bundles -->
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
