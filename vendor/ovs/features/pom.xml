@@ -50,7 +50,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
-
+    <!--
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>features-didm</artifactId>
@@ -58,6 +58,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
+    -->
 
     <!-- bundles -->
 
