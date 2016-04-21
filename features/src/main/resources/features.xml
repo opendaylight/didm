@@ -10,13 +10,16 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 <features name="odl-didm-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
-  
+  <repository>mvn:org.opendaylight.snmp/features-snmp/${snmp.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.dlux/features-dlux/${dlux.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.netconf/features-restconf/${restconf.version}/xml/features</repository> 
+  <repository>mvn:org.opendaylight.mdsal.model/features-mdsal-model/${mdsal.model.version}/xml/features</repository>  
   <repository>mvn:org.opendaylight.controller/features-mdsal/${mdsal.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.didm/features-didm-hp/${project.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.didm/features-didm-ovs/${project.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.snmp/features-snmp/${snmp.version}/xml/features</repository>
-  <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${openflowplugin.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin-li/${openflowplugin.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.openflowjava/features-openflowjava/${openflowjava.version}/xml/features</repository>
 
   <!-- utility jar/bundles common to several features --> 
