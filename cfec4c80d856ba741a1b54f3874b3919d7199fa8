@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa57193c_724e27c3",
+        "filename": "features/src/main/resources/features.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3994
+      },
+      "writtenOn": "2016-04-25T20:47:15Z",
+      "side": 1,
+      "message": "Check whether we really need dlux",
+      "revId": "cfec4c80d856ba741a1b54f3874b3919d7199fa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa57193c_f2d197ce",
+        "filename": "vendor/ovs/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3994
+      },
+      "writtenOn": "2016-04-25T20:47:15Z",
+      "side": 1,
+      "message": "Do we really need to specify ./ ?\nAs long as we have the respective directory, build should work fine right?",
+      "revId": "cfec4c80d856ba741a1b54f3874b3919d7199fa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
