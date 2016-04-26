@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa57193c_5efccc3e",
+        "filename": "features/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3994
+      },
+      "writtenOn": "2016-04-26T21:55:23Z",
+      "side": 1,
+      "message": "I don\u0027t think that we need dlux",
+      "revId": "7d2f41ac7909d44a5a6a0f026c10eefc1cea5812",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa57193c_fefe8037",
+        "filename": "vendor/ovs/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3994
+      },
+      "writtenOn": "2016-04-26T21:55:23Z",
+      "side": 1,
+      "message": "Why do we need this ./ ?\nSorry, I\u0027m not getting this part as we have parent directories defined everywhere else....",
+      "revId": "7d2f41ac7909d44a5a6a0f026c10eefc1cea5812",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
