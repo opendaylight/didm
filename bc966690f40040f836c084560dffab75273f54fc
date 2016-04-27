@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa57193c_d94d9374",
+        "filename": "features/src/main/resources/features.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3994
+      },
+      "writtenOn": "2016-04-27T22:06:13Z",
+      "side": 1,
+      "message": "we don\u0027t need restconf as well. This comes with openflowplugin-li",
+      "revId": "bc966690f40040f836c084560dffab75273f54fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
