@@ -15,7 +15,6 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>parent</module>
     <module>impl</module>
     <module>features</module>
   </modules>

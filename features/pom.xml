@@ -9,10 +9,10 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.opendaylight.didm</groupId>
-    <artifactId>didm-parent</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
-    <relativePath>../parent</relativePath>
+    <groupId>org.opendaylight.odlparent</groupId>
+    <artifactId>features-parent</artifactId>
+    <version>1.7.0-SNAPSHOT</version>
+    <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
@@ -25,16 +25,12 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <config.version>0.5.0-SNAPSHOT</config.version>
     <openflowplugin.version>0.3.0-SNAPSHOT</openflowplugin.version>
     <openflowjava.version>0.8.0-SNAPSHOT</openflowjava.version>
-    <features.file>features.xml</features.file>
-    <branding.version>1.1.0-SNAPSHOT</branding.version>
-    <karaf.resources.version>1.5.0-SNAPSHOT</karaf.resources.version>
-    <karaf.version>3.0.1</karaf.version>
     <feature.test.version>1.7.0-SNAPSHOT</feature.test.version>
-    <karaf.empty.version>${controller.version}</karaf.empty.version>
     <surefire.version>2.16</surefire.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
-    <guava.version>18.0</guava.version>
     <mdsal.model.version>0.9.0-SNAPSHOT</mdsal.model.version>
+    <snmp.version>1.2.0-SNAPSHOT</snmp.version>
+    <yangtools.version>1.0.0-SNAPSHOT</yangtools.version>
   </properties>
 
   <dependencies>
@@ -46,33 +42,10 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <scope>test</scope>
     </dependency>
 
-    <!-- dependency for opendaylight-karaf-empty for use by testing -->
-<!--
-    <dependency>
-      <groupId>org.opendaylight.controller</groupId>
-      <artifactId>opendaylight-karaf-empty</artifactId>
-      <version>${karaf.empty.version}</version>
-      <type>zip</type>
-    </dependency>
--->
-
     <dependency>
        <groupId>org.opendaylight.controller</groupId>
        <artifactId>features-mdsal</artifactId>
        <version>${mdsal.version}</version>
-       <classifier>features</classifier>
-       <type>xml</type>
-    </dependency>
-       <dependency>
-       <groupId>org.opendaylight.yangtools</groupId>
-       <artifactId>features-yangtools</artifactId>
-       <classifier>features</classifier>
-       <type>xml</type>
-    </dependency>
-       <dependency>
-       <groupId>org.opendaylight.openflowjava</groupId>
-       <artifactId>features-openflowjava</artifactId>
-       <version>${openflowjava.version}</version>
        <classifier>features</classifier>
        <type>xml</type>
     </dependency>
@@ -85,14 +58,25 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
        <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>didm-identification-api</artifactId>
-      <version>${project.version}</version>
+      <groupId>org.opendaylight.snmp</groupId>
+      <artifactId>features-snmp</artifactId>
+      <version>${snmp.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>didm-identification</artifactId>
+      <artifactId>features-didm-hp</artifactId>
       <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>features-didm-ovs</artifactId>
+      <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
     </dependency>
 
     <!-- bundle dependencies -->
@@ -132,72 +116,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>${guava.version}</version>
    </dependency>
   </dependencies>
 
-     
-  <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-
-     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.3</version>
-        <executions>
-          <execution>
-            <id>filter</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>resources</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-         <groupId>org.codehaus.mojo</groupId>
-         <artifactId>build-helper-maven-plugin</artifactId>
-         <version>1.8</version>
-         <executions>
-           <execution>
-             <id>attach-artifacts</id>
-             <phase>package</phase>
-             <goals>
-               <goal>attach-artifact</goal>
-             </goals>
-             <configuration>
-               <artifacts>
-                 <artifact>
-                   <file>${project.build.directory}/classes/${features.file}</file>
-                   <type>xml</type>
-                   <classifier>features</classifier>
-                 </artifact>
-               </artifacts>
-             </configuration>
-           </execution>
-         </executions>
-      </plugin>
-      <plugin>
-         <groupId>org.apache.maven.plugins</groupId>
-         <artifactId>maven-surefire-plugin</artifactId>
-         <version>${surefire.version}</version>
-         <configuration>
-           <systemPropertyVariables>
-             <karaf.distro.groupId>org.opendaylight.controller</karaf.distro.groupId>
-             <karaf.distro.artifactId>opendaylight-karaf-empty</karaf.distro.artifactId>
-             <karaf.distro.version>${karaf.empty.version}</karaf.distro.version>
-           </systemPropertyVariables>
-           <dependenciesToScan>
-            <dependency>org.opendaylight.yangtools:features-test</dependency>
-           </dependenciesToScan>
-         </configuration>
-       </plugin>
-    </plugins>
-  </build>
 </project>

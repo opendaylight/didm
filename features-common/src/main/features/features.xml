@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Copyright © 2016 Red Hat, Inc. and others
+
+     This program is made available under the terms of the
+     Eclipse Public License v1.0 which accompanies this distribution,
+     and is available at http://www.eclipse.org/legal/epl-v10.html
+-->
+<features name="odl-didm-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+
+    <repository>mvn:org.opendaylight.controller/features-mdsal/{{VERSION}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.snmp/features-snmp/{{VERSION}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin-li/{{VERSION}}/xml/features</repository>
+
+    <feature name='odl-didm-identification' version='${project.version}'
+             description='OpenDaylight :: Device Identification and Driver Management :: Identification'>
+        <feature version='${snmp.version}'>odl-snmp-plugin</feature>
+        <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
+
+        <bundle>mvn:org.opendaylight.didm/didm-identification-api/{{VERSION}}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-identification/{{VERSION}}</bundle>
+
+        <configfile finalname="${config.configfile.directory}/${didm.identification.configfile}">
+            mvn:org.opendaylight.didm/didm-identification/{{VERSION}}/xml/config
+        </configfile>
+    </feature>
+
+    <feature name='odl-didm-drivers' version='${project.version}'
+             description='OpenDaylight :: Device Identification and Driver Management :: Drivers'>
+
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
+
+        <bundle>wrap:mvn:com.google.guava/guava/{{VERSION}}</bundle>
+        <bundle>mvn:org.opendaylight.didm/didm-drivers-api/{{VERSION}}</bundle>
+    </feature>
+
+    <!-- utility jar/bundles common to several features -->
+    <feature name='odl-didm-util' version='${project.version}' description='OpenDaylight :: didm-util :: Util '>
+        <feature version="[18,19)">odl-guava</feature>
+        <bundle>mvn:org.opendaylight.didm/didm-tools-utils/{{VERSION}}</bundle>
+        <bundle>mvn:commons-io/commons-io/{{VERSION}}</bundle>
+        <feature version="${openflowplugin.version}">odl-openflowplugin-southbound-li</feature>
+    </feature>
+
+</features>

@@ -12,14 +12,18 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <modelVersion>4.0.0</modelVersion>
  <parent>
     <groupId>org.opendaylight.didm</groupId>
-    <artifactId>didm-ovs-parent</artifactId>
+    <artifactId>didm-parent</artifactId>
     <version>0.3.0-SNAPSHOT</version>
-    <relativePath>../parent</relativePath>
+    <relativePath>../../../parent</relativePath>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-ovs</artifactId>
   <packaging>bundle</packaging>
+
+  <properties>
+    <didm.ovs.configfile>didm-ovs.xml</didm.ovs.configfile>
+  </properties>
 
   <build>
 
@@ -83,12 +87,12 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>didm-identification-api</artifactId>
-      <version>${didm.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>didm-drivers-api</artifactId>
-      <version>${didm.version}</version>
+      <version>${project.version}</version>
     </dependency>
 
     <dependency>

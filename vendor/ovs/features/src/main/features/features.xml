@@ -11,18 +11,18 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
 
-  <repository>mvn:org.opendaylight.didm/features-didm/${didm.version}/xml/features</repository>
+  <repository>mvn:org.opendaylight.didm/features-common/{{VERSION}}/xml/features</repository>
 
   <feature name='odl-didm-ovs-all' version='${project.version}' description='OpenDaylight :: DIDM Mininet reference driver'>
     <feature version='${project.version}'>odl-didm-ovs-impl</feature>
     </feature>
 
   <feature name='odl-didm-ovs-impl' version='${project.version}' description='OpenDaylight :: DIDM :: ovs :: Implementation '>
-    <feature version='${didm.version}'>odl-didm-identification</feature>
-    <feature version='${didm.version}'>odl-didm-drivers</feature>
+    <feature version='${project.version}'>odl-didm-identification</feature>
+    <feature version='${project.version}'>odl-didm-drivers</feature>
 
     <bundle>mvn:org.opendaylight.didm/didm-ovs/${project.version}</bundle>
-    <configfile finalname="${config.configfile.directory}/${didm.ovs.configfile}">mvn:org.opendaylight.didm/didm-ovs/${project.version}/xml/config</configfile>
+    <configfile finalname="${config.configfile.directory}/${didm.ovs.configfile}">mvn:org.opendaylight.didm/didm-ovs/{{VERSION}}/xml/config</configfile>
   </feature>
 
 </features>

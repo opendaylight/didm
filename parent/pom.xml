@@ -42,9 +42,6 @@
 
     <!-- SNMP Plugin project -->
     <snmp.version>1.2.0-SNAPSHOT</snmp.version>
-
-    <apache.servicemix.guava.version>10_1</apache.servicemix.guava.version>
-    <guava.version>18.0</guava.version>
   </properties>
 
   <dependencyManagement>
