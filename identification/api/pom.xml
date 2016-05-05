@@ -10,51 +10,23 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.opendaylight.didm</groupId>
-    <artifactId>didm-parent</artifactId>
-    <version>0.4.0-SNAPSHOT</version>
-    <relativePath>../../parent</relativePath>
+    <groupId>org.opendaylight.mdsal</groupId>
+    <artifactId>binding-parent</artifactId>
+    <version>0.10.0-SNAPSHOT</version>
+    <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-identification-api</artifactId>
+  <version>0.4.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <build>
-
-    <plugins>
-
-      <!-- for the bundle packaging -->
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-      </plugin>
-
-      <!-- for yang -->
-      <plugin>
-        <groupId>org.opendaylight.yangtools</groupId>
-        <artifactId>yang-maven-plugin</artifactId>
-      </plugin>
-
-    </plugins>
-  </build>
-
   <dependencies>
-   
-    <!-- for config -->
-    <dependency>
-      <groupId>org.opendaylight.controller</groupId>
-      <artifactId>config-api</artifactId>
-      <version>${config.version}</version>
-    </dependency>
-
-    <!-- for models -->
+    <!-- controller dependency -->
     <dependency>
       <groupId>org.opendaylight.controller.model</groupId>
       <artifactId>model-inventory</artifactId>
-      <version>${mdsal.version}</version>
+      <version>1.5.0-SNAPSHOT</version>
     </dependency>
-
   </dependencies>
-
 </project>
