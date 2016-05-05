@@ -22,7 +22,6 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>parent</module>
     <module>features-common</module>
     <module>features</module>
     <module>identification</module>
