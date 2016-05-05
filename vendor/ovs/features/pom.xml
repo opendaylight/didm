@@ -23,8 +23,9 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <properties>
     <feature.test.version>1.7.0-SNAPSHOT</feature.test.version>
     <karaf.empty.version>1.7.0-SNAPSHOT</karaf.empty.version>
+    <mdsal.version>1.4.0-SNAPSHOT</mdsal.version>
     <surefire.version>2.16</surefire.version>
-
+    <yangtools.version>1.0.0-SNAPSHOT</yangtools.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
     <didm.ovs.configfile>didm-ovs.xml</didm.ovs.configfile>
 
@@ -64,7 +65,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <artifactId>didm-ovs</artifactId>
       <version>${project.version}</version>
     </dependency>
-
 
     <!-- config files -->
 
