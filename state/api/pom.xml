@@ -20,16 +20,12 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <version>0.4.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <properties>
-    <controller.mdsal.version>1.5.0-SNAPSHOT</controller.mdsal.version>
-  </properties>
-
   <dependencies>
     <dependency>
+      <!-- controller dependency -->
       <groupId>org.opendaylight.controller.model</groupId>
       <artifactId>model-inventory</artifactId>
-      <version>${controller.mdsal.version}</version>
+      <version>1.5.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
-
 </project>
