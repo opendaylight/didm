@@ -10,98 +10,39 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.opendaylight.didm</groupId>
-    <artifactId>didm-parent</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
-    <relativePath>../../parent</relativePath>
+    <groupId>org.opendaylight.controller</groupId>
+    <artifactId>config-parent</artifactId>
+    <version>0.5.0-SNAPSHOT</version>
+    <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-driver-test</artifactId>
+  <version>0.3.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <build>
-    <plugins>
-      
-      <!-- for the bundle packaging -->
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-      </plugin>
-
-      <!-- for yang -->
-      <plugin>
-        <groupId>org.opendaylight.yangtools</groupId>
-        <artifactId>yang-maven-plugin</artifactId>
-      </plugin>
-
-      <!-- for config files -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.9.1</version>
-        <executions>
-          <execution>
-            <id>attach-artifacts</id>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>${project.build.directory}/classes/initial/${didm.drivertest.configfile}</file>
-                  <type>xml</type>
-                  <classifier>config</classifier>
-                </artifact>
-              </artifacts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
   <dependencies>
-
-    <!-- for config -->
-    <dependency>
-      <groupId>org.opendaylight.controller</groupId>
-      <artifactId>sal-binding-config</artifactId>
-      <version>${mdsal.version}</version>
-    </dependency>
-
-    <!-- for models -->
-    <dependency>
-      <groupId>org.opendaylight.controller.model</groupId>
-      <artifactId>model-inventory</artifactId>
-      <version>${mdsal.version}</version>
-    </dependency>
-
+    <!-- project specific dependency -->
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>didm-identification-api</artifactId>
       <version>${project.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>didm-drivers-api</artifactId>
       <version>${project.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.opendaylight.didm</groupId>
       <artifactId>didm-tools-utils</artifactId>
       <version>${project.version}</version>
     </dependency>
-
+    <!-- openflowplugin dependencies -->
     <dependency>
       <groupId>org.opendaylight.openflowplugin</groupId>
       <artifactId>openflowplugin-api</artifactId>
       <version>${openflowplugin.version}</version>
     </dependency>
-
   </dependencies>
-
 </project>
