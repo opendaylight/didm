@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa57193c_8ec45693",
+        "filename": "vendor/hp/impl/src/main/java/org/opendaylight/didm/flowmod/DefaultFlowMod.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 3994
+      },
+      "writtenOn": "2016-05-06T22:47:44Z",
+      "side": 1,
+      "message": "getTableFeatures() returns all table features of flowcapablenode right? flowcapablenode in this context is the device. we used to get table.getTableFeatures(). Now this is replaced with flowcapableNode.getTableFeatures(). Are these functionally same and return the same list?",
+      "revId": "e9a4eb4f0b8098dd0503e8af589fda1646c5c481",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
