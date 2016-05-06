@@ -209,6 +209,10 @@ public class DefaultFlowMod {
         this.flowCapableNode = node.getAugmentation(FlowCapableNode.class);
     }
 
+    private List<TableFeatures> getTableFeatures() {
+        return flowCapableNode.getTableFeatures() != null
+                ? flowCapableNode.getTableFeatures() : Collections.<TableFeatures> emptyList() ;
+    }
 
     protected static <T extends DataObject> T getDataObject(
             final ReadTransaction readOnlyTransaction,
@@ -330,9 +334,10 @@ public class DefaultFlowMod {
     }
 
     private List<TableFeatureProperties> getTableFeatureProperties(Table table) {
-        if (table.getTableFeatures().isEmpty())
+        List<TableFeatures> tableFeaturesList = getTableFeatures();
+        if (tableFeaturesList.isEmpty())
             return Collections.emptyList();
-        TableFeatures tableFeatures = table.getTableFeatures().get(0);
+        TableFeatures tableFeatures = tableFeaturesList.get(0);
         return tableFeatures.getTableProperties().getTableFeatureProperties();
     }
 
@@ -804,9 +809,11 @@ public class DefaultFlowMod {
     }
 
     protected List<SetFieldMatch> getMatchList(Table table) {
-        if (table.getTableFeatures().isEmpty())
+        List<TableFeatures> tableFeaturesList = getTableFeatures();
+        if (tableFeaturesList.isEmpty()) {
             return Collections.emptyList();
-        TableFeatures tableFeatures = table.getTableFeatures().get(0);
+        }
+        TableFeatures tableFeatures = tableFeaturesList.get(0);
         List<TableFeatureProperties> tableFeaturePropertiesList = tableFeatures
                 .getTableProperties().getTableFeatureProperties();
         for (TableFeatureProperties tableFeatureProperties : tableFeaturePropertiesList) {
@@ -1158,7 +1165,7 @@ public class DefaultFlowMod {
     }
 
     private boolean doesTableSupportMatchField(Table table, Class<?> clazz) {
-        List<TableFeatures> tableFeatures = table.getTableFeatures();
+        List<TableFeatures> tableFeatures = getTableFeatures();
 
         for (TableFeatures tf : tableFeatures) {
             TableProperties tableProperties = tf.getTableProperties();
@@ -1434,7 +1441,7 @@ public class DefaultFlowMod {
             Table table,
             boolean isTableMiss,
             org.opendaylight.yang.gen.v1.urn.opendaylight.flow.types.rev131026.instruction.Instruction instruction) {
-        List<TableFeatures> tableFeatures = table.getTableFeatures();
+        List<TableFeatures> tableFeatures = getTableFeatures();
 
         for (TableFeatures tf : tableFeatures) {
             TableProperties tableProperties = tf.getTableProperties();
@@ -1504,7 +1511,7 @@ public class DefaultFlowMod {
      */
     protected boolean doesTableSupportInstWriteActions(Table table,
             boolean isTableMiss, List<Action> flowmodActions) {
-        List<TableFeatures> tableFeatures = table.getTableFeatures();
+        List<TableFeatures> tableFeatures = getTableFeatures();
 
         for (TableFeatures tf : tableFeatures) {
             TableProperties tableProperties = tf.getTableProperties();
@@ -1583,7 +1590,7 @@ public class DefaultFlowMod {
      */
     protected boolean doesTableSupportInstApplyActions(Table table,
             boolean isTableMiss, List<Action> flowmodActions) {
-        List<TableFeatures> tableFeatures = table.getTableFeatures();
+        List<TableFeatures> tableFeatures = getTableFeatures();
 
         for (TableFeatures tf : tableFeatures) {
             TableProperties tableProperties = tf.getTableProperties();
@@ -1844,7 +1851,7 @@ public class DefaultFlowMod {
      */
     protected boolean doesTableSupportInstGotoTable(Table table,
             boolean isTableMiss, Short tableId) {
-        List<TableFeatures> tableFeatures = table.getTableFeatures();
+        List<TableFeatures> tableFeatures = getTableFeatures();
 
         for (TableFeatures tf : tableFeatures) {
             TableProperties tableProperties = tf.getTableProperties();
