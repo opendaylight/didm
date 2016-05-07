@@ -16,6 +16,24 @@
       "revId": "e9a4eb4f0b8098dd0503e8af589fda1646c5c481",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa57193c_8e89f6cc",
+        "filename": "vendor/hp/impl/src/main/java/org/opendaylight/didm/flowmod/DefaultFlowMod.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 3675
+      },
+      "writtenOn": "2016-05-07T21:29:41Z",
+      "side": 1,
+      "message": "As I understand from this yang model changed https://git.opendaylight.org/gerrit/#/c/36559/5/model/model-flow-service/src/main/yang/flow-node-inventory.yang I tend to think that yes, the functionality will remain unchanged. To be hones though, I think it worth being tested before being pushed.\nIf you\u0027d like me to kick off a CSIT job in the sandbox, let me know I can do that. Else I would appreciate if you can test it yourself.\nThe thing is, without this fix, or a fix of the sort, current didm project is broken, and out of boron int/dist daily build.",
+      "parentUuid": "fa57193c_8ec45693",
+      "revId": "e9a4eb4f0b8098dd0503e8af589fda1646c5c481",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
