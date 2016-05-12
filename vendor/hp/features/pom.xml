@@ -10,7 +10,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.didm</groupId>
     <artifactId>didm-hp-parent</artifactId>
-    <version>0.2.2-SNAPSHOT</version>
+    <version>0.2.2-Beryllium-SR2</version>
     <relativePath>../parent</relativePath>
   </parent>
 
@@ -19,11 +19,11 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <packaging>jar</packaging>
 
   <properties>
-    <branding.version>1.2.2-SNAPSHOT</branding.version>
-    <karaf.resources.version>1.6.2-SNAPSHOT</karaf.resources.version>
+    <branding.version>1.2.2-Beryllium-SR2</branding.version>
+    <karaf.resources.version>1.6.2-Beryllium-SR2</karaf.resources.version>
     <karaf.version>3.0.3</karaf.version>
-    <feature.test.version>1.6.2-SNAPSHOT</feature.test.version>
-    <karaf.empty.version>1.6.2-SNAPSHOT</karaf.empty.version>
+    <feature.test.version>1.6.2-Beryllium-SR2</feature.test.version>
+    <karaf.empty.version>1.6.2-Beryllium-SR2</karaf.empty.version>
     <surefire.version>2.16</surefire.version>
     <features.file>features.xml</features.file>
 
