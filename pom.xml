@@ -11,14 +11,14 @@
   <parent>
     <groupId>org.opendaylight.didm</groupId>
     <artifactId>didm-parent</artifactId>
-    <version>0.2.2-Beryllium-SR2</version>
+    <version>0.2.3-SNAPSHOT</version>
     <relativePath>parent</relativePath>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-aggregator</artifactId>
-  <version>0.2.2-Beryllium-SR2</version>
+  <version>0.2.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>

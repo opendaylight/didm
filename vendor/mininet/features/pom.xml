@@ -11,7 +11,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.didm</groupId>
     <artifactId>didm-ovs-parent</artifactId>
-    <version>0.2.2-Beryllium-SR2</version>
+    <version>0.2.3-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
@@ -20,11 +20,11 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <packaging>jar</packaging>
 
   <properties>
-    <branding.version>1.2.2-Beryllium-SR2</branding.version>
-    <karaf.resources.version>1.6.2-Beryllium-SR2</karaf.resources.version>
+    <branding.version>1.2.3-SNAPSHOT</branding.version>
+    <karaf.resources.version>1.6.3-SNAPSHOT</karaf.resources.version>
     <karaf.version>3.0.3</karaf.version>
-    <feature.test.version>1.6.2-Beryllium-SR2</feature.test.version>
-    <karaf.empty.version>1.6.2-Beryllium-SR2</karaf.empty.version>
+    <feature.test.version>1.6.3-SNAPSHOT</feature.test.version>
+    <karaf.empty.version>1.6.3-SNAPSHOT</karaf.empty.version>
     <surefire.version>2.16</surefire.version>
     <features.file>features.xml</features.file>
 
@@ -38,7 +38,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <dependency>
       <groupId>org.opendaylight.yangtools</groupId>
       <artifactId>features-yangtools</artifactId>
-      <version>0.8.2-Beryllium-SR2</version>
+      <version>0.8.3-SNAPSHOT</version>
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
@@ -46,7 +46,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <dependency>
       <groupId>org.opendaylight.controller</groupId>
       <artifactId>features-mdsal</artifactId>
-      <version>1.3.2-Beryllium-SR2</version>
+      <version>1.3.3-SNAPSHOT</version>
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
