@@ -15,12 +15,13 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 
   <feature name='odl-didm-ovs-all' version='${project.version}' description='OpenDaylight :: DIDM Mininet reference driver'>
     <feature version='${project.version}'>odl-didm-ovs-impl</feature>
-    </feature>
+  </feature>
 
   <feature name='odl-didm-ovs-impl' version='${project.version}' description='OpenDaylight :: DIDM :: ovs :: Implementation '>
     <feature version='${project.version}'>odl-didm-identification</feature>
     <feature version='${project.version}'>odl-didm-drivers</feature>
 
+    <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>
     <bundle>mvn:org.opendaylight.didm/didm-ovs/${project.version}</bundle>
     <configfile finalname="${config.configfile.directory}/${didm.ovs.configfile}">mvn:org.opendaylight.didm/didm-ovs/{{VERSION}}/xml/config</configfile>
   </feature>
