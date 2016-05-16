@@ -94,6 +94,11 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       <artifactId>didm-drivers-api</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.opendaylight.didm</groupId>
+      <artifactId>didm-tools-utils</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.opendaylight.openflowplugin.model</groupId>
