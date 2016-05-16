@@ -21,9 +21,12 @@ import org.opendaylight.controller.md.sal.common.api.data.AsyncDataChangeEvent;
 import org.opendaylight.controller.md.sal.common.api.data.LogicalDatastoreType;
 import org.opendaylight.controller.sal.binding.api.BindingAwareBroker;
 import org.opendaylight.controller.sal.binding.api.RpcProviderRegistry;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.service.rev130819.SalFlowService;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.group.service.rev130918.SalGroupService;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeContext;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.Nodes;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.nodes.Node;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.atrium.rev150211.AtriumFlowObjectiveService;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.OpenflowFeatureService;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.DeviceTypes;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.identification.devicetypes.rev150202.device.types.DeviceTypeInfo;
@@ -117,6 +120,13 @@ public class DidmOVSProviderImpl implements DataChangeListener, AutoCloseable {
 
         ClassToInstanceMap<RpcService> drivers = MutableClassToInstanceMap.create();
         drivers.putInstance(OpenflowFeatureService.class, new OpenFlowDeviceDriver());
+
+        // obtain the flow and group service.
+        SalFlowService salFlowService = rpcRegistry.getRpcService(SalFlowService.class);
+        SalGroupService salGroupService = rpcRegistry.getRpcService(SalGroupService.class);
+
+        drivers.putInstance(AtriumFlowObjectiveService.class,
+                new AtriumFlowObjectiveDriver(salFlowService, salGroupService));
         return drivers;
     }
 
