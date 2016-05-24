@@ -34,6 +34,24 @@
       "revId": "e9a4eb4f0b8098dd0503e8af589fda1646c5c481",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa57193c_e9ce6cb3",
+        "filename": "vendor/hp/impl/src/main/java/org/opendaylight/didm/flowmod/DefaultFlowMod.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 3994
+      },
+      "writtenOn": "2016-05-24T20:18:02Z",
+      "side": 1,
+      "message": "I\u0027m not sure if you have looked at my response in an e-mail about the test results. Will forward. Have tested and verified that the functionality is broken with this fix. I\u0027ve attached the outputs for comparison a well.",
+      "parentUuid": "fa57193c_8e89f6cc",
+      "revId": "e9a4eb4f0b8098dd0503e8af589fda1646c5c481",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
