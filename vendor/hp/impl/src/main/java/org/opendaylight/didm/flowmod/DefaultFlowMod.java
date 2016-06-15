@@ -223,9 +223,9 @@ public class DefaultFlowMod {
         TableFeatures tableFeatures = null;
 
         if(!flowCapableNode.getTableFeatures().isEmpty()) {
-            for(TableFeatures tFreatures : flowCapableNode.getTableFeatures()) {
-                if (tFreatures.getKey().getTableId() == table.getId()) {
-                    tableFeatures = tFreatures;
+            for(TableFeatures tFeatures : flowCapableNode.getTableFeatures()) {
+                if (tFeatures.getKey().getTableId() == table.getId()) {
+                    tableFeatures = tFeatures;
                     return tableFeatures;
                 }
             }
