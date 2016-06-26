@@ -20,7 +20,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <feature name='odl-didm-ovs-impl' version='${project.version}' description='OpenDaylight :: DIDM :: ovs :: Implementation '>
     <feature version='${project.version}'>odl-didm-identification</feature>
     <feature version='${project.version}'>odl-didm-drivers</feature>
-
+    <feature version='${project.version}'>odl-didm-util</feature>
     <bundle>mvn:org.opendaylight.didm/didm-ovs/${project.version}</bundle>
     <configfile finalname="${config.configfile.directory}/${didm.ovs.configfile}">mvn:org.opendaylight.didm/didm-ovs/{{VERSION}}/xml/config</configfile>
   </feature>

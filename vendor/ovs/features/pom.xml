@@ -57,6 +57,12 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
       <type>xml</type>
     </dependency>
 
+<dependency>
+      <groupId>org.opendaylight.didm</groupId>
+      <artifactId>didm-tools-utils</artifactId>
+      <version>${project.version}</version>
+</dependency>
+
     <!-- bundles -->
 
     <dependency>

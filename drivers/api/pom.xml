@@ -35,6 +35,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
                    <Export-Package>
                        org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211,
                        org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.openflow.rev150211.*,
+                       org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.atrium.rev150211,
+                       org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.didm.drivers.atrium.rev150211.*,
                        org.opendaylight.didm.drivers.common
                    </Export-Package>
                </instructions>
