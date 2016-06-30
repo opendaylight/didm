@@ -8,6 +8,7 @@
 
 package org.opendaylight.didm.tools.utils;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -162,7 +163,7 @@ public class DriverUtil {
                        .setBucketId(new BucketId(grpID.longValue()));
 
           grpInputBuilder.setBuckets(new BucketsBuilder()
-                                         .setBucket(ImmutableList.of(buckerBuilder.build()))
+                                         .setBucket(Arrays.asList(buckerBuilder.build()))
                                          .build())
                                          .setNode(new NodeRef(nodeID))
                                          .setGroupRef(new GroupRef(nodeID))
