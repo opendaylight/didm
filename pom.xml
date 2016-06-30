@@ -30,6 +30,8 @@
     <module>vendor/ovs</module>
     <module>vendor/hp</module> 
     <module>tools</module>
+    <module>artifacts</module>
+    <module>didm-karaf</module>
   </modules>
   
   <build>
