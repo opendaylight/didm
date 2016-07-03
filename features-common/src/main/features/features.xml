@@ -12,13 +12,13 @@
 
     <repository>mvn:org.opendaylight.controller/features-mdsal/{{VERSION}}/xml/features</repository>
     <repository>mvn:org.opendaylight.snmp/features-snmp/{{VERSION}}/xml/features</repository>
-    <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin-li/{{VERSION}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/{{VERSION}}/xml/features</repository>
 
     <feature name='odl-didm-identification' version='${project.version}'
              description='OpenDaylight :: Device Identification and Driver Management :: Identification'>
         <feature version='${snmp.version}'>odl-snmp-plugin</feature>
         <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
-        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
 
         <bundle>mvn:org.opendaylight.didm/didm-identification-api/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-identification/{{VERSION}}</bundle>
@@ -31,7 +31,7 @@
     <feature name='odl-didm-drivers' version='${project.version}'
              description='OpenDaylight :: Device Identification and Driver Management :: Drivers'>
 
-        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
 
         <bundle>wrap:mvn:com.google.guava/guava/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-drivers-api/{{VERSION}}</bundle>
@@ -42,7 +42,7 @@
         <feature version="[18,19)">odl-guava</feature>
         <bundle>mvn:org.opendaylight.didm/didm-tools-utils/{{VERSION}}</bundle>
         <bundle>mvn:commons-io/commons-io/{{VERSION}}</bundle>
-        <feature version="${openflowplugin.version}">odl-openflowplugin-southbound-li</feature>
+        <feature version="${openflowplugin.version}">odl-openflowplugin-southbound</feature>
     </feature>
 
 </features>

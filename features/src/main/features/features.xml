@@ -34,7 +34,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 <!--
     <feature name='odl-didm-flowmod-test' version='${project.version}' description='OpenDaylight :: Device Identification and Driver Management :: FlowmodTest'>
         <feature version='${openflowjava.version}'>odl-openflowjava-protocol</feature>
-        <feature version='${openflowplugin.version}'>odl-openflowplugin-all-li</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
         <feature version='${project.version}'>odl-didm-drivers</feature>
 
         <bundle>mvn:org.opendaylight.didm/didm-tools-utils/${project.version}</bundle>  
