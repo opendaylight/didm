@@ -18,7 +18,7 @@
              description='OpenDaylight :: Device Identification and Driver Management :: Identification'>
         <feature version='${snmp.version}'>odl-snmp-plugin</feature>
         <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
-        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-flow-services</feature>
 
         <bundle>mvn:org.opendaylight.didm/didm-identification-api/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-identification/{{VERSION}}</bundle>
@@ -31,7 +31,7 @@
     <feature name='odl-didm-drivers' version='${project.version}'
              description='OpenDaylight :: Device Identification and Driver Management :: Drivers'>
 
-        <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
+        <feature version='${openflowplugin.version}'>odl-openflowplugin-flow-services</feature>
 
         <bundle>wrap:mvn:com.google.guava/guava/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.didm/didm-drivers-api/{{VERSION}}</bundle>
