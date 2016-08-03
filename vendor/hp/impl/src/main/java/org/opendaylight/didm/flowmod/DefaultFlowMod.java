@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import org.opendaylight.didm.tools.utils.StringUtils;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.TcpFlags;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.table.features.TableFeaturesKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,7 +90,6 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.TcpSr
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.TcpDst;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.UdpSrc;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.UdpDst;
-import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.TcpFlag;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.Icmpv4Code;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.Icmpv4Type;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.Icmpv6Code;
@@ -1108,9 +1108,9 @@ public class DefaultFlowMod {
         }
 
         // check TCP flag match
-        if (match.getTcpFlagMatch() != null) {
-            if (match.getTcpFlagMatch().getTcpFlag() != null) {
-                if (doesTableSupportMatchField(table, TcpFlag.class)) {
+        if (match.getTcpFlagsMatch() != null) {
+            if (match.getTcpFlagsMatch().getTcpFlags() != null) {
+                if (doesTableSupportMatchField(table, TcpFlags.class)) {
                     return true;
                 }
             }
@@ -1338,8 +1338,8 @@ public class DefaultFlowMod {
                                     && sfMatch.getMatchType() == UdpDst.class) {
                                 return true;
                             }
-                            if (clazz.equals(TcpFlag.class)
-                                    && sfMatch.getMatchType() == TcpFlag.class) {
+                            if (clazz.equals(TcpFlags.class)
+                                    && sfMatch.getMatchType() == TcpFlags.class) {
                                 return true;
                             }
                             if (clazz.equals(Icmpv4Code.class)
