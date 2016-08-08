@@ -10,18 +10,18 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <parent>
     <groupId>org.opendaylight.mdsal</groupId>
     <artifactId>binding-parent</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>0.10.0-SNAPSHOT</version>
     <relativePath/>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-state-api</artifactId>
-  <version>0.3.0-SNAPSHOT</version>
+  <version>0.4.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <properties>
-    <controller.mdsal.version>1.4.0-SNAPSHOT</controller.mdsal.version>
+    <controller.mdsal.version>1.5.0-SNAPSHOT</controller.mdsal.version>
   </properties>
 
   <dependencies>
