@@ -19,6 +19,8 @@ import java.util.concurrent.ExecutionException;
 
 import org.opendaylight.didm.tools.utils.StringUtils;
 import org.opendaylight.openflowplugin.openflow.md.core.sal.convertor.ConvertorManagerFactory;
+
+import org.opendaylight.openflowplugin.openflow.md.core.sal.convertor.data.VersionConvertorData;
 import org.opendaylight.openflowplugin.openflow.md.core.sal.convertor.data.VersionDatapathIdConvertorData;
 import org.opendaylight.openflowplugin.openflow.md.core.sal.convertor.match.MatchResponseConvertor;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.table.types.rev131026.TcpFlags;
@@ -379,6 +381,13 @@ public class DefaultFlowMod {
         return Collections.emptyList();
     }
 
+    // TODO : Remove the use of non exposed OpenFlowPlugin APIs.
+    private MatchBuilder fromOFMatchToSALMatch(org.opendaylight.yang.gen.v1.urn.opendaylight.openflow.oxm.rev150225.match.grouping.Match match,
+            OpenflowVersion version) {
+        VersionDatapathIdConvertorData dpVersion = new VersionDatapathIdConvertorData(version.getVersion());
+        return new MatchResponseConvertor().convert(match, dpVersion);
+    }
+
     /**
      * Create a match that matches all packets.
      * @param fb FlowBuilder with flow matching default flow
@@ -388,9 +397,7 @@ public class DefaultFlowMod {
         mb.setType(OxmMatchType.class);
         List<MatchEntry> entries = new ArrayList<>();
         mb.setMatchEntry(entries);
-        VersionDatapathIdConvertorData dpVersion =
-                new VersionDatapathIdConvertorData(OpenflowVersion.OF13.getVersion());
-        MatchBuilder salmb = new MatchResponseConvertor().convert(mb.build(), dpVersion);
+        MatchBuilder salmb = fromOFMatchToSALMatch(mb.build(), OpenflowVersion.OF13);
 
         fb.setMatch(salmb.build());
     }
@@ -815,9 +822,7 @@ public class DefaultFlowMod {
         }
         org.opendaylight.yang.gen.v1.urn.opendaylight.openflow.oxm.rev150225.match.grouping.MatchBuilder mbb = new org.opendaylight.yang.gen.v1.urn.opendaylight.openflow.oxm.rev150225.match.grouping.MatchBuilder();
         mbb.setMatchEntry(validFields);
-        VersionDatapathIdConvertorData dpVersion =
-                new VersionDatapathIdConvertorData(OpenflowVersion.OF13.getVersion());
-        MatchBuilder mb = new MatchResponseConvertor().convert(mbb.build(), dpVersion);
+        MatchBuilder mb = fromOFMatchToSALMatch(mbb.build(), OpenflowVersion.OF13);
 
         return mb.build();
     }
