@@ -11,7 +11,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-ovs-aggregator</artifactId>
-  <version>0.2.4-SNAPSHOT</version>
+  <version>0.2.4-Beryllium-SR4</version>
   <packaging>pom</packaging>
 
   <modules>
