@@ -14,20 +14,20 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>features-parent</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.7.1-Boron-SR1</version>
         <relativePath/>
     </parent>
 
     <groupId>org.opendaylight.didm</groupId>
     <artifactId>features-common</artifactId>
-    <version>0.3.1-SNAPSHOT</version>
+    <version>0.3.1-Boron-SR1</version>
 
     <properties>
         <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
         <didm.identification.configfile>didm-identification.xml</didm.identification.configfile>
-        <mdsal.version>1.4.1-SNAPSHOT</mdsal.version>
-        <openflowplugin.version>0.3.1-SNAPSHOT</openflowplugin.version>
-        <snmp.version>1.2.1-SNAPSHOT</snmp.version>
+        <mdsal.version>1.4.1-Boron-SR1</mdsal.version>
+        <openflowplugin.version>0.3.1-Boron-SR1</openflowplugin.version>
+        <snmp.version>1.2.1-Boron-SR1</snmp.version>
     </properties>
 
     <dependencies>
