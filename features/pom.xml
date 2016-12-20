@@ -11,26 +11,26 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>features-parent</artifactId>
-    <version>1.7.2-SNAPSHOT</version>
+    <version>1.7.3-SNAPSHOT</version>
     <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>features-didm</artifactId>
   <packaging>jar</packaging>
-  <version>0.3.2-SNAPSHOT</version>
+  <version>0.3.3-SNAPSHOT</version>
 
   <properties>
-    <mdsal.version>1.4.2-SNAPSHOT</mdsal.version>
-    <config.version>0.5.2-SNAPSHOT</config.version>
-    <openflowplugin.version>0.3.2-SNAPSHOT</openflowplugin.version>
-    <openflowjava.version>0.8.2-SNAPSHOT</openflowjava.version>
-    <feature.test.version>1.7.2-SNAPSHOT</feature.test.version>
+    <mdsal.version>1.4.3-SNAPSHOT</mdsal.version>
+    <config.version>0.5.3-SNAPSHOT</config.version>
+    <openflowplugin.version>0.3.3-SNAPSHOT</openflowplugin.version>
+    <openflowjava.version>0.8.3-SNAPSHOT</openflowjava.version>
+    <feature.test.version>1.7.3-SNAPSHOT</feature.test.version>
     <surefire.version>2.16</surefire.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
-    <mdsal.model.version>0.9.2-SNAPSHOT</mdsal.model.version>
-    <snmp.version>1.2.2-SNAPSHOT</snmp.version>
-    <yangtools.version>1.0.2-SNAPSHOT</yangtools.version>
+    <mdsal.model.version>0.9.3-SNAPSHOT</mdsal.model.version>
+    <snmp.version>1.2.3-SNAPSHOT</snmp.version>
+    <yangtools.version>1.0.3-SNAPSHOT</yangtools.version>
   </properties>
 
   <dependencies>
