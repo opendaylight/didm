@@ -273,7 +273,7 @@ public class DeviceIdentificationManager implements DataChangeListener, AutoClos
         CheckedFuture<Void, TransactionCommitFailedException> submitFuture = tx.submit();
 
         // chain the result of the write with the expected rpc future.
-        ListenableFuture<RpcResult<Void>> transform = Futures.transform(submitFuture, new AsyncFunction<Void, RpcResult<Void>>() {
+        ListenableFuture<RpcResult<Void>> transform = Futures.transformAsync(submitFuture, new AsyncFunction<Void, RpcResult<Void>>() {
             @Override
             public ListenableFuture<RpcResult<Void>> apply(Void result) throws Exception {
                 return Futures.immediateFuture(RpcResultBuilder.<Void>success().build());
