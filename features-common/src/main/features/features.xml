@@ -39,7 +39,6 @@
 
     <!-- utility jar/bundles common to several features -->
     <feature name='odl-didm-util' version='${project.version}' description='OpenDaylight :: didm-util :: Util '>
-        <feature version="[18,19)">odl-guava</feature>
         <bundle>mvn:org.opendaylight.didm/didm-tools-utils/{{VERSION}}</bundle>
         <bundle>mvn:commons-io/commons-io/{{VERSION}}</bundle>
         <feature version="${openflowplugin.version}">odl-openflowplugin-southbound</feature>
