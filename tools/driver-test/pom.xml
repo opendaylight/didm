@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
      (c) Copyright 2014 Hewlett-Packard Development Company, L.P.
 
-     This program is made available under the terms of the 
+     This program is made available under the terms of the
      Eclipse Public License v1.0 which accompanies this distribution,
      and is available at http://www.eclipse.org/legal/epl-v10.html
 -->
@@ -19,10 +19,13 @@
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-driver-test</artifactId>
   <packaging>bundle</packaging>
+  <!-- <name> formatting is used by autorelease to parse and notify projects on
+       build failure. Please do not modify this unless you have a good reason. -->
+  <name>ODL :: didm :: ${project.artifactId}</name>
 
   <build>
     <plugins>
-      
+
       <!-- for the bundle packaging -->
       <plugin>
         <groupId>org.apache.felix</groupId>
