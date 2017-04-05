@@ -11,26 +11,26 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>features-parent</artifactId>
-    <version>1.7.3-SNAPSHOT</version>
+    <version>1.7.3-Boron-SR3</version>
     <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>features-didm</artifactId>
   <packaging>jar</packaging>
-  <version>0.3.3-SNAPSHOT</version>
+  <version>0.3.3-Boron-SR3</version>
 
   <properties>
-    <mdsal.version>1.4.3-SNAPSHOT</mdsal.version>
-    <config.version>0.5.3-SNAPSHOT</config.version>
-    <openflowplugin.version>0.3.3-SNAPSHOT</openflowplugin.version>
-    <openflowjava.version>0.8.3-SNAPSHOT</openflowjava.version>
-    <feature.test.version>1.7.3-SNAPSHOT</feature.test.version>
+    <mdsal.version>1.4.3-Boron-SR3</mdsal.version>
+    <config.version>0.5.3-Boron-SR3</config.version>
+    <openflowplugin.version>0.3.3-Boron-SR3</openflowplugin.version>
+    <openflowjava.version>0.8.3-Boron-SR3</openflowjava.version>
+    <feature.test.version>1.7.3-Boron-SR3</feature.test.version>
     <surefire.version>2.16</surefire.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
-    <mdsal.model.version>0.9.3-SNAPSHOT</mdsal.model.version>
-    <snmp.version>1.2.3-SNAPSHOT</snmp.version>
-    <yangtools.version>1.0.3-SNAPSHOT</yangtools.version>
+    <mdsal.model.version>0.9.3-Boron-SR3</mdsal.model.version>
+    <snmp.version>1.2.3-Boron-SR3</snmp.version>
+    <yangtools.version>1.0.3-Boron-SR3</yangtools.version>
   </properties>
 
   <dependencies>
