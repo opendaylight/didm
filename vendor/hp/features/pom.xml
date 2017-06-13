@@ -10,7 +10,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>features-parent</artifactId>
-    <version>1.8.0-Carbon</version>
+    <version>1.9.0</version>
     <relativePath/>
   </parent>
 
@@ -20,8 +20,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <packaging>jar</packaging>
 
   <properties>
-    <feature.test.version>1.8.0-Carbon</feature.test.version>
-    <karaf.empty.version>1.8.0-Carbon</karaf.empty.version>
+    <feature.test.version>1.9.0</feature.test.version>
+    <karaf.empty.version>1.9.0</karaf.empty.version>
     <mdsal.version>1.6.0-SNAPSHOT</mdsal.version>
     <surefire.version>2.16</surefire.version>
     <yangtools.version>1.2.0-SNAPSHOT</yangtools.version>

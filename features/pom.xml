@@ -11,7 +11,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>features-parent</artifactId>
-    <version>1.8.0-Carbon</version>
+    <version>1.9.0</version>
     <relativePath/>
   </parent>
 
@@ -25,7 +25,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <config.version>0.7.0-SNAPSHOT</config.version>
     <openflowplugin.version>0.5.0-SNAPSHOT</openflowplugin.version>
     <openflowjava.version>0.10.0-SNAPSHOT</openflowjava.version>
-    <feature.test.version>1.8.0-Carbon</feature.test.version>
+    <feature.test.version>1.9.0</feature.test.version>
     <surefire.version>2.16</surefire.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
     <mdsal.model.version>0.11.0-SNAPSHOT</mdsal.model.version>
