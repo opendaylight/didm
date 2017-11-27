@@ -1,7 +1,4 @@
-# UUID                                  	Group Name
+# UUID                                                         	Group Name
 #
-c9025ab9ddc1e3171919e085449f22c54f8f7b54	GitHub Replication
-ed4ab2254bc989e2753729a66702e02d4989f26f	Non-Interactive didm users
-global:Anonymous-Users                  	Anonymous Users
-global:Registered-Users                 	Registered Users
+c9025ab9ddc1e3171919e085449f22c54f8f7b54                       	GitHub Replication
 ldap:cn=gerrit-didm-committers,ou=Groups,dc=opendaylight,dc=org	ldap/gerrit-didm-committers
