@@ -12,12 +12,12 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent-lite</artifactId>
-    <version>1.8.3-SNAPSHOT</version>
+    <version>1.8.3-Carbon</version>
     <relativePath/>
   </parent>
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>didm-hp-aggregator</artifactId>
-  <version>0.4.3-SNAPSHOT</version>
+  <version>0.4.3-Carbon</version>
   <packaging>pom</packaging>
 
   <modules>
