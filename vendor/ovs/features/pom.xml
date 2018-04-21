@@ -11,21 +11,21 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>features-parent</artifactId>
-    <version>1.8.4-SNAPSHOT</version>
+    <version>1.8.4-Carbon</version>
     <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.didm</groupId>
   <artifactId>features-didm-ovs</artifactId>
-  <version>0.4.4-SNAPSHOT</version>
+  <version>0.4.4-Carbon</version>
   <packaging>jar</packaging>
 
   <properties>
-    <feature.test.version>1.8.4-SNAPSHOT</feature.test.version>
-    <karaf.empty.version>1.8.4-SNAPSHOT</karaf.empty.version>
-    <mdsal.version>1.5.4-SNAPSHOT</mdsal.version>
+    <feature.test.version>1.8.4-Carbon</feature.test.version>
+    <karaf.empty.version>1.8.4-Carbon</karaf.empty.version>
+    <mdsal.version>1.5.4-Carbon</mdsal.version>
     <surefire.version>2.16</surefire.version>
-    <yangtools.version>1.1.4-SNAPSHOT</yangtools.version>
+    <yangtools.version>1.1.4-Carbon</yangtools.version>
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
     <didm.ovs.configfile>didm-ovs.xml</didm.ovs.configfile>
 
@@ -45,7 +45,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <dependency>
       <groupId>org.opendaylight.controller</groupId>
       <artifactId>features-mdsal</artifactId>
-      <version>1.5.4-SNAPSHOT</version>
+      <version>1.5.4-Carbon</version>
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
